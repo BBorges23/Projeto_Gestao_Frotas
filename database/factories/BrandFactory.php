@@ -16,21 +16,8 @@ class BrandFactory extends Factory
      */
     public function definition(): array
     {
-        $brand_ex = [
-            'Ford',
-            'Toyota',
-            'Honda',
-            'Chevrolet',
-            'Volkswagen',
-            'Nissan',
-            'BMW',
-            'Mercedes-Benz',
-            'Audi',
-            'Hyundai',
-        ];
-
         return [
-            'name' => $this->faker->randomElement($brand_ex)
+
         ];
     }
 }

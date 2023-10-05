@@ -31,7 +31,7 @@ class DatabaseSeeder extends Seeder
             TravelSeeder::class,
             VehicleSeeder::class,
             BrandSeeder::class,
-            ModelSeeder::class,
+            CarModelSeeder::class,
             UserSeeder::class
         ]);
     }

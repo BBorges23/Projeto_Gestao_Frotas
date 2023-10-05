@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name',100);
             $table->unsignedInteger('nif');
             $table->string('email',100);
-            $table->unsignedInteger('phone');
+            $table->string('phone',50);
             //$table->unsignedInteger('numero_viagens');
 
             $table->timestamps();

@@ -17,7 +17,13 @@ class MaintenanceFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            /*'state'=>fake()->boolean(50),
+            'vehicle_id'=>fake()->numberBetween(1,1000),
+            'licence_plate' => fake()->regexify('[A-Z0-9]{8}'),
+            'motive'=>fake()->text,
+            'date_entry'=>fake()->dateTime(now()),
+            'date_exit'=>fake()->dateTimeBetween('now','+2 week')
+            */
         ];
     }
 }
