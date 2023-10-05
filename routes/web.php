@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BrandController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/models' ,[BrandController::class, 'index'])->name('models.index');
 Route::get('/', function () {
     return 'ola abelhasSSS';
 });
