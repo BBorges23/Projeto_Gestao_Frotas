@@ -30,7 +30,7 @@ class BrandFactory extends Factory
         ];
 
         return [
-            //'name' => $this->faker->randomElement($brand_ex)
+            'name' => $this->faker->randomElement($brand_ex)
         ];
     }
 }
