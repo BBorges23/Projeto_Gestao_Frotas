@@ -17,11 +17,9 @@ return new class extends Migration
 
             $table->unsignedBigInteger('vehicle_id');
             $table->foreign('vehicle_id')->references('id')->on('vehicles');
-
-            $table->string('licence_plate',50);
             $table->string('motive',250);
-            $table->date('date_entry');
-            $table->date('date_exit');
+//            $table->date('date_entry');
+//            $table->date('date_exit');
             $table->timestamps();
         });
     }

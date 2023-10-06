@@ -17,7 +17,8 @@ class TravelFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'vehicle_id'=>fake()->numberBetween(1,10),
+            'driver_id'=>fake()->numberBetween(1,15)
         ];
     }
 }

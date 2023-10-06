@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('email',100);
             $table->string('phone',50);
             //$table->unsignedInteger('numero_viagens');
-
             $table->timestamps();
         });
     }
