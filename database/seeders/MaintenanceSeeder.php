@@ -15,12 +15,12 @@ class MaintenanceSeeder extends Seeder
     public function run(): void
 
     {
-       DB::table('maintenances')->insert([
-           ['state'=>false, 'vehicle_id'=>1,'motive'=>'Oléo','created_at'=>now(), 'updated_at'=>now()],
+//       DB::table('maintenances')->insert([
+//           ['state'=>false, 'vehicle_id'=>1,'motive'=>'Oléo','created_at'=>now(), 'updated_at'=>now()],
+//
+//
+//       ]);
 
-
-       ]);
-
-        //Maintenance::factory(15)->create();
+        Maintenance::factory(10)->create();
     }
 }

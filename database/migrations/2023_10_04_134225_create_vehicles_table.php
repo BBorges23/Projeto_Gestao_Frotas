@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('model_id');
             $table->foreign('model_id')->references('id')->on('models');
 
-            $table->string('licence_plate',8);
+            $table->string('licence_plate',8)->unique();
             $table->year('year');
             $table->date('date_buy');
             $table->timestamps();

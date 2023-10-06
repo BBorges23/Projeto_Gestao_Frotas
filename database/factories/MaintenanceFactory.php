@@ -17,11 +17,11 @@ class MaintenanceFactory extends Factory
     public function definition(): array
     {
         return [
-//            'state'=>fake()->boolean(50),
-//            'vehicle_id'=>fake()->numberBetween(1,10),
-//            'motive'=>fake()->text
-//            'date_entry'=>fake()->dateTime(now()),
-//            'date_exit'=>fake()->dateTimeBetween('now','+2 week')
+            'state'=>fake()->boolean(50),
+            'vehicle_id'=>fake()->numberBetween(1,10),
+            'motive'=>fake()->text,
+            'date_entry'=>fake()->dateTime(now()),
+            'date_exit'=>fake()->dateTimeBetween('now','+2 week')
         ];
     }
 }

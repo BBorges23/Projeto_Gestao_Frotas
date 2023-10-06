@@ -18,7 +18,7 @@ class TravelFactory extends Factory
     {
         return [
             'vehicle_id'=>fake()->numberBetween(1,10),
-            'driver_id'=>fake()->numberBetween(1,15)
+            'driver_id'=>fake()->numberBetween(1,10)
         ];
     }
 }

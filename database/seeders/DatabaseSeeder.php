@@ -26,13 +26,13 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         $this->call([
-            DriverSeeder::class,
-            MaintenanceSeeder::class,
-            TravelSeeder::class,
-            VehicleSeeder::class,
+            UserSeeder::class,
             BrandSeeder::class,
             CarModelSeeder::class,
-            UserSeeder::class
+            VehicleSeeder::class,
+            DriverSeeder::class,
+            MaintenanceSeeder::class,
+            TravelSeeder::class
         ]);
     }
 }
