@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('travels', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('vehicle_id');
-            $table->foreign('vehicle_id')->on('vehicles')->references('id');
+            $table->foreign('vehicle_id')->references('id')->on('vehicles');
             $table->unsignedBigInteger('driver_id');
             $table->foreign('driver_id')->references('id')->on('drivers');
             $table->timestamps();

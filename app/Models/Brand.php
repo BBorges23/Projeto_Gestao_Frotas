@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Brand extends Model
 {
     use HasFactory;
-    public function models(): HasMany{
-        return $this->hasMany(Model::class);
+    public function model(): HasMany{
+        return $this->hasMany(CarModel::class);
     }
 }

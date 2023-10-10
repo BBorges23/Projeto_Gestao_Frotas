@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
@@ -12,13 +13,9 @@ class Vehicle extends Model
 {
     use HasFactory;
 
-//    public function driven_by(): BelongsTo {
-//        return $this->BelongsTo(Driver::class);
-//    }
-
-    public function models(): HasOne
+    public function model(): BelongsTo
     {
-        return $this->hasOne(CarModel::class);
+        return $this->BelongsTo(CarModel::class,'model_id');
     }
 
     public function travel(): HasMany
@@ -29,5 +26,10 @@ class Vehicle extends Model
     public function maintenance(): HasMany
     {
         return $this->hasMany(Maintenance::class);
+    }
+
+    public function driver(): BelongsToMany
+    {
+        return $this->belongsToMany(Driver::class, 'travels', 'vehicle_id', 'driver_id');
     }
 }

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Travel extends Model
@@ -12,14 +13,16 @@ class Travel extends Model
 
     protected $table = 'travels';
 
-    public function driver(): HasOne
+    public function driver(): BelongsTo
     {
-        return $this->hasOne(Driver::class);
+        return $this->belongsTo(Driver::class);
     }
 
-    public function vehicles(): HasOne
+    public function vehicle(): BelongsTo
     {
-        return $this->hasOne(Vehicle::class);
+        return $this->belongsTo(Vehicle::class);
     }
+
+
 
 }
