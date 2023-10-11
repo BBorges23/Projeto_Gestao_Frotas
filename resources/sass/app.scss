@@ -1,0 +1,23 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,1000;1,200;1,300;1,500&display=swap');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import 'bootstrap/scss/bootstrap';
+
+//Bootstrap icons
+@import "bootstrap-icons/font/bootstrap-icons.css";
+
+//Fontawesome
+@import "@fortawesome/fontawesome-free/css/all.css";
+
+//CSS do Tema
+@import "/resources/css/theme.css";
+
+//Css próprio
+@import "/resources/css/app.css";
+@import "/resources/css/parts/dasboard.css";
+
+
