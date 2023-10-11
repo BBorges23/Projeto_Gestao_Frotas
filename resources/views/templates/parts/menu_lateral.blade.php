@@ -13,7 +13,7 @@
                 </a>
                 <div class="sb-sidenav-menu-heading">Admin</div>
                 <a class="nav-link" href="#">
-                    <div class="sb-nav-link-icon"><i class="fa-solid fa-users"></i></i></div>
+                    <div class="sb-nav-link-icon"><i class="fa-solid fa-users"></i></div>
                     Utilizadores
                 </a>
                 <a class="nav-link" href="#">
