@@ -17,7 +17,7 @@ use App\Http\Controllers\DashboardController;
 */
 
 Route::get('/models' ,[BrandController::class, 'index'])->name('models.index');
-Route::get('/', function () { return 'ola abelhasSSS'; });
+Route::get('/', function () { return view('index'); });
 
 
 /**
