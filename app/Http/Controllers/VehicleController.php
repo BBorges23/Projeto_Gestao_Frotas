@@ -30,7 +30,6 @@ class VehicleController extends Controller
      */
     public function store(Request $request)
     {
-        //
     }
 
     /**
@@ -62,7 +61,10 @@ class VehicleController extends Controller
      */
     public function destroy(Vehicle $vehicle)
     {
+        $vehicle->maintenance()->delete();
+        $vehicle->travel()->delete();
+
         $vehicle->delete();
-        return redirect()->route('admin.vehicle');
+        return redirect()->route('admin.vehicles.index');
     }
 }
