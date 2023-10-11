@@ -26,10 +26,9 @@ Route::get('/', function () { return 'ola abelhasSSS'; });
 Route::prefix('/admin')->group(function (){
    Route::name('admin.')->group(function (){
       Route::get('/index',[DashboardController::class,'admin'])->name('index');
+
+       Route::resource('vehicles',VehicleController::class);
    });
-
-
-   Route::resource('vehicles',VehicleController::class);
 });
 
 
@@ -42,9 +41,10 @@ Route::prefix('/admin')->group(function (){
 Route::prefix('/cliente')->group(function (){
     Route::name('vehicle.')->group(function (){
         Route::get('/home',[VehicleController::class,'index'])->name('home');
+
+        Route::resource('vehicles',VehicleController::class)
+            ->only('show','index');
     });
-    Route::resource('vehicles',VehicleController::class)
-        ->only('show','index');
 });
 
 

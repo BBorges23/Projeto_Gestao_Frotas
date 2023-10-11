@@ -24,7 +24,7 @@
 
             </tr>
             <form class="form-custom" method="POST"
-                  action="{{route('vehicles.destroy',['vehicle'=>$vehicle])}}" style="display: inline">
+                  action="{{route('admin.vehicles.destroy',['vehicle'=>$vehicle])}}" style="display: inline">
                 @csrf
                 @method('DELETE')
                 <button type="submit" class="btn btn-danger"><i class="far fa-trash-alt">Aquii</i>

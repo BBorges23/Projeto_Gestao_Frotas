@@ -2,12 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CarModel;
 use App\Models\Vehicle;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class VehicleController extends Controller
 {
+    protected $msg = [
+        'required' => 'O nome do autor é obrigatório',
+        'min' => 'O nome do autor terá que possuir pelo menos 2 letra',
+        'max' => 'A biografia não pode conter mais que 500 caracteres'
+    ];
+    protected $rules = [
+        'nome' => 'required|min:2',
+        'bio' => 'nullable|max:500'
+    ];
+
     /**
      * Display a listing of the resource.
      */
@@ -22,7 +33,7 @@ class VehicleController extends Controller
      */
     public function create()
     {
-        return view('pages.vehicle.create');
+        return view('pages.vehicle.create', ['models'=>CarModel::all()]);
     }
 
     /**
@@ -30,7 +41,10 @@ class VehicleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $dados = $request->all();
+        $vehicle = new Vehicle($dados);
+        $vehicle->save();
+        return redirect()->route('admin.vehicles.index');
     }
 
     /**
@@ -38,7 +52,9 @@ class VehicleController extends Controller
      */
     public function show(Vehicle $vehicle)
     {
-        //
+        return view('pages.vehicle.show', [
+            'vehicle' => $vehicle,
+            'model' => $vehicle->model]);
     }
 
     /**
@@ -46,7 +62,10 @@ class VehicleController extends Controller
      */
     public function edit(Vehicle $vehicle)
     {
-        //
+        return view('pages.vehicle.edit', [
+            'vehicle' => $vehicle,
+            'models' => CarModel::all()
+        ]);
     }
 
     /**
@@ -54,7 +73,10 @@ class VehicleController extends Controller
      */
     public function update(Request $request, Vehicle $vehicle)
     {
-        //
+        $dados = $request->all();
+        $vehicle->update($dados);
+        $vehicle->save();
+        return redirect()->route('admin.vehicles.show', ['vehicle'=>$vehicle]);
     }
 
     /**
@@ -62,7 +84,11 @@ class VehicleController extends Controller
      */
     public function destroy(Vehicle $vehicle)
     {
+
+        $vehicle->maintenance()->delete();
+        $vehicle->travel()->delete();
         $vehicle->delete();
-        return redirect()->route('admin.vehicle');
+        return redirect()->route('admin.vehicles.index');
+
     }
 }
