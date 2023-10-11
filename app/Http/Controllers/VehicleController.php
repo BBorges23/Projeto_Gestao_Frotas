@@ -62,7 +62,6 @@ class VehicleController extends Controller
      */
     public function destroy(Vehicle $vehicle)
     {
-        dd($vehicle);
         $vehicle->delete();
         return redirect()->route('admin.vehicle');
     }
