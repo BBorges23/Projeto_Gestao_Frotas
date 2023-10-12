@@ -1,5 +1,6 @@
 <?php
 namespace App\Http\Controllers;
+
 use App\Models\CarModel;
 use App\Models\Vehicle;
 use App\Http\Controllers\Controller;
@@ -15,6 +16,7 @@ class VehicleController extends Controller
         'nome' => 'required|min:2',
         'bio' => 'nullable|max:500'
     ];
+
     /**
      * Display a listing of the resource.
      */
@@ -75,9 +77,11 @@ class VehicleController extends Controller
      */
     public function destroy(Vehicle $vehicle)
     {
+
         $vehicle->maintenance()->delete();
         $vehicle->travel()->delete();
         $vehicle->delete();
         return redirect()->route('admin.vehicles.index');
+
     }
 }
