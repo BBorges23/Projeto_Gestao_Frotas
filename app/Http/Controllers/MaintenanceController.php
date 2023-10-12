@@ -1,11 +1,8 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use App\Models\Maintenance;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
 class MaintenanceController extends Controller
 {
     /**
@@ -13,7 +10,7 @@ class MaintenanceController extends Controller
      */
     public function index()
     {
-        //
+        return view('pages.maintenance.index', ['maintenances'=>Maintenance::all()]);
     }
 
     /**
@@ -23,7 +20,6 @@ class MaintenanceController extends Controller
     {
         //
     }
-
     /**
      * Store a newly created resource in storage.
      */
@@ -31,7 +27,6 @@ class MaintenanceController extends Controller
     {
         //
     }
-
     /**
      * Display the specified resource.
      */
@@ -39,7 +34,6 @@ class MaintenanceController extends Controller
     {
         //
     }
-
     /**
      * Show the form for editing the specified resource.
      */
@@ -47,7 +41,6 @@ class MaintenanceController extends Controller
     {
         //
     }
-
     /**
      * Update the specified resource in storage.
      */
@@ -55,12 +48,11 @@ class MaintenanceController extends Controller
     {
         //
     }
-
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(Maintenance $maintenance)
     {
-
+        //
     }
 }

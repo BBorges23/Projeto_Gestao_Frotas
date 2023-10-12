@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Brand;
 use App\Models\CarModel;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
 class CarModelController extends Controller
 {
     /**
@@ -13,7 +13,7 @@ class CarModelController extends Controller
      */
     public function index()
     {
-        //
+        return view('pages.carmodel.index', ['carmodel'=>CarModel::all()]);
     }
 
     /**
@@ -21,7 +21,7 @@ class CarModelController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.carmodel.create',['brands' => Brand::all()]);
     }
 
     /**
@@ -29,7 +29,10 @@ class CarModelController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $dados=$request->all();
+        $carmodel = new CarModel($dados);
+        $carmodel->save();
+        return redirect()->route('admin.models.show', $carmodel);
     }
 
     /**
@@ -37,8 +40,9 @@ class CarModelController extends Controller
      */
     public function show(CarModel $carModel)
     {
-        //
+
     }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -47,7 +51,6 @@ class CarModelController extends Controller
     {
         //
     }
-
     /**
      * Update the specified resource in storage.
      */
@@ -55,7 +58,6 @@ class CarModelController extends Controller
     {
         //
     }
-
     /**
      * Remove the specified resource from storage.
      */

@@ -1,21 +1,16 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use App\Models\Brand;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
 class BrandController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(Brand $brand)
+    public function index()
     {
-        $brands = $brand->all();
-
-        return view('');
+        return view('pages.brand.index', ['brands'=>Brand::all()]);
     }
 
     /**
@@ -23,7 +18,7 @@ class BrandController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.brand.create');
     }
 
     /**
@@ -31,7 +26,10 @@ class BrandController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $dados=$request->all();
+        $brand = new Brand($dados);
+        $brand->save();
+        return redirect()->route('admin.brands.show', $brand);
     }
 
     /**
@@ -39,7 +37,8 @@ class BrandController extends Controller
      */
     public function show(Brand $brand)
     {
-        //
+        return view('pages.brand.show', ['brand' => $brand]);
+
     }
 
     /**
@@ -47,7 +46,7 @@ class BrandController extends Controller
      */
     public function edit(Brand $brand)
     {
-        //
+        return view('pages.brand.edit', ['brand'=>$brand]);
     }
 
     /**
@@ -55,7 +54,10 @@ class BrandController extends Controller
      */
     public function update(Request $request, Brand $brand)
     {
-        //
+        $dados = $request->all();
+        $brand->update($dados);
+        $brand->save();
+        return redirect()->route('admin.brands.show',['brand'=>$brand]);
     }
 
     /**

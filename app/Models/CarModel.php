@@ -12,6 +12,8 @@ class CarModel extends Model
 {
     use HasFactory;
 
+    protected $guarded=[];
+
     protected $table='models';//car_models
 
     public function brand(): BelongsTo{

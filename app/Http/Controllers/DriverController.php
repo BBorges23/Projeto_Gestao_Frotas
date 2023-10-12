@@ -1,11 +1,8 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use App\Models\Driver;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
 class DriverController extends Controller
 {
     /**
@@ -13,7 +10,7 @@ class DriverController extends Controller
      */
     public function index()
     {
-        //
+        return view('pages.driver.index', ['drivers'=>Driver::all()]);
     }
 
     /**
@@ -23,7 +20,6 @@ class DriverController extends Controller
     {
         //
     }
-
     /**
      * Store a newly created resource in storage.
      */
@@ -31,7 +27,6 @@ class DriverController extends Controller
     {
         //
     }
-
     /**
      * Display the specified resource.
      */
@@ -39,7 +34,6 @@ class DriverController extends Controller
     {
         //
     }
-
     /**
      * Show the form for editing the specified resource.
      */
@@ -47,7 +41,6 @@ class DriverController extends Controller
     {
         //
     }
-
     /**
      * Update the specified resource in storage.
      */
@@ -55,7 +48,6 @@ class DriverController extends Controller
     {
         //
     }
-
     /**
      * Remove the specified resource from storage.
      */
