@@ -13,7 +13,7 @@ class DriverController extends Controller
      */
     public function index()
     {
-        //
+        return view('pages.driver.index', ['drivers'=>Driver::all()]);
     }
 
     /**

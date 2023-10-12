@@ -1,7 +1,7 @@
 <div>
     <h1>Página dos Vehicles</h1>
 
-    <h1>Listagem da tablea Vehicles</h1>
+    <h1>Listagem da tabela Vehicles</h1>
     @foreach($vehicles as $vehicle)
         <table>
             <tr>

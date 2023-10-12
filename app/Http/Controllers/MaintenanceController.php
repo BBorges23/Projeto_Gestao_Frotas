@@ -13,7 +13,7 @@ class MaintenanceController extends Controller
      */
     public function index()
     {
-        //
+        return view('pages.maintenance.index', ['maintenances'=>Maintenance::all()]);
     }
 
     /**

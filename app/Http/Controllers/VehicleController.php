@@ -24,8 +24,7 @@ class VehicleController extends Controller
      */
     public function index()
     {
-        return view('pages.vehicle.index',['vehicles' =>Vehicle::all()
-        ]);
+        return view('pages.vehicle.index',['vehicles' =>Vehicle::all()]);
     }
 
     /**
@@ -44,7 +43,7 @@ class VehicleController extends Controller
         $dados = $request->all();
         $vehicle = new Vehicle($dados);
         $vehicle->save();
-        return redirect()->route('admin.vehicles.index');
+        return redirect()->route('admin.vehicles.show', $vehicle);
     }
 
     /**
