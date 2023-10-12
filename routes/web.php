@@ -39,17 +39,6 @@ Route::prefix('/admin')->group(function (){
         Route::resource('travels', TravelController::class);
     });
 
-   Route::name('admin.')->group(function (){
-      Route::get('/index',[DashboardController::class,'admin'])->name('index');
-
-       Route::resource('vehicles',VehicleController::class);
-       Route::resource('brands', BrandController::class);
-       Route::resource('models', CarModelController::class);
-       Route::resource('drivers', DriverController::class);
-       Route::resource('maintenances', MaintenanceController::class);
-       Route::resource('travels', TravelController::class);
-   });
-
 });
 
 //-----Clientes-----//
