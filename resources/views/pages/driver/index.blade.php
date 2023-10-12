@@ -1,7 +1,9 @@
-<div>
-    <h1>Página dos Drivers</h1>
+@extends('index')
+@section('title','Drivers')
 
-    <h1>Listagem da tabela Drivers</h1>
+@section('content')
+<div>
+
     @foreach($drivers as $driver)
         <table>
             <tr>
@@ -34,3 +36,4 @@
         </table>
     @endforeach
 </div>
+@endsection

@@ -1,7 +1,10 @@
-<div>
-    <h1>Página dos Vehicles</h1>
+@extends('index')
+@section('title','Veículos')
 
-    <h1>Listagem da tabela Vehicles</h1>
+@section('content')
+
+<div>
+
     @foreach($vehicles as $vehicle)
         <table>
             <tr>
@@ -39,3 +42,5 @@
 </div>
 
 <a href="{{route('admin.vehicles.create')}}">Criar</a>
+
+@endsection

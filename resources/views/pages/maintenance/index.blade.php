@@ -1,7 +1,9 @@
-<div>
-    <h1>Página dos Maintenances</h1>
+@extends('index')
+@section('title','Manutenções')
 
-    <h1>Listagem da tabela Maintenances</h1>
+@section('content')
+<div>
+
     @foreach($maintenances as $maintenance)
         <table>
             <tr>
@@ -36,3 +38,4 @@
         </table>
     @endforeach
 </div>
+@endsection

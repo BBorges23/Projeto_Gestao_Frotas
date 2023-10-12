@@ -1,7 +1,10 @@
-<div>
-    <h1>Página dos Travels</h1>
+@extends('index')
+@section('title','Viagens')
 
-    <h1>Listagem da tabela Travels</h1>
+@section('content')
+
+<div>
+
     @foreach($travels as $travel)
         <table>
             <tr>
@@ -30,3 +33,4 @@
         </table>
     @endforeach
 </div>
+@endsection
