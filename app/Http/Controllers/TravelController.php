@@ -21,7 +21,7 @@ class TravelController extends Controller
      */
     public function create()
     {
-        //
+        //batatas
     }
 
     /**
