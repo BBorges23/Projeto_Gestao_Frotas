@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Driver;
 use App\Models\Travel;
 use App\Http\Controllers\Controller;
+use App\Models\Vehicle;
 use Illuminate\Http\Request;
 
 class TravelController extends Controller
@@ -21,7 +23,9 @@ class TravelController extends Controller
      */
     public function create()
     {
-        //
+        return view ('pages.travel.create',[
+            'drivers' => Driver::all(),
+            'vehicles' => Vehicle::all()]);
     }
 
     /**
@@ -29,7 +33,10 @@ class TravelController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        $travel = new Travel($data);
+        $travel->save();
+        return redirect()->route('admin.travels.show',$travel);
     }
 
     /**
@@ -37,7 +44,12 @@ class TravelController extends Controller
      */
     public function show(Travel $travel)
     {
-        //
+
+        return view('pages.travel.show', [
+            'travel' => $travel,
+            'driver'=>  $travel->driver,
+            'vehicle' => $travel->vehicle
+        ]);
     }
 
     /**
@@ -45,7 +57,10 @@ class TravelController extends Controller
      */
     public function edit(Travel $travel)
     {
-        //
+        return view('pages.travel.edit',[
+            'travel' => $travel,
+            'drivers' => Driver::all(),
+            'vehicles' => Vehicle::all()]);
     }
 
     /**
@@ -53,7 +68,10 @@ class TravelController extends Controller
      */
     public function update(Request $request, Travel $travel)
     {
-        //
+        $data = $request->all();
+        $travel->update($data);
+        $travel->save();
+        return redirect()->route('admin.travels.show', ['travel' => $travel]);
     }
 
     /**
@@ -61,6 +79,7 @@ class TravelController extends Controller
      */
     public function destroy(Travel $travel)
     {
-        //
+        $travel->delete();
+        return redirect()->route('admin.travels.index');
     }
 }

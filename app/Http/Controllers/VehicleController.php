@@ -7,14 +7,19 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 class VehicleController extends Controller
 {
+
     protected $msg = [
-        'required' => 'O nome do autor é obrigatório',
-        'min' => 'O nome do autor terá que possuir pelo menos 2 letra',
-        'max' => 'A biografia não pode conter mais que 500 caracteres'
+        'required' => 'Preencha todos os campos',
+        'min' => 'Insira um ano entre 1950-2023',
+        'max' => 'Insira um ano entre 1950-2023',
+        'regex'=> 'Formato invÃ¡lido para Matricula(AA-11-BB)'
     ];
     protected $rules = [
-        'nome' => 'required|min:2',
-        'bio' => 'nullable|max:500'
+        'model_id'=>'required',
+        'licence_plate' => 'required|regex:/^[A-Z]{2}-\d{2}-[A-Z]{2}$/',
+        'year'=>'required|min:4|max:4',
+        'date_buy'=>'required'
+
     ];
 
     /**
@@ -37,8 +42,8 @@ class VehicleController extends Controller
      */
     public function store(Request $request)
     {
-        $dados = $request->all();
-        $vehicle = new Vehicle($dados);
+        $data = $request->validate($this->rules,$this->msg);
+        $vehicle = new Vehicle($data);
         $vehicle->save();
         return redirect()->route('admin.vehicles.show', $vehicle);
     }
@@ -67,8 +72,8 @@ class VehicleController extends Controller
      */
     public function update(Request $request, Vehicle $vehicle)
     {
-        $dados = $request->all();
-        $vehicle->update($dados);
+        $data = $request->all();
+        $vehicle->update($data);
         $vehicle->save();
         return redirect()->route('admin.vehicles.show', ['vehicle'=>$vehicle]);
     }

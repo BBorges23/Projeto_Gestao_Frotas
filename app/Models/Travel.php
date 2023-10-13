@@ -11,6 +11,8 @@ class Travel extends Model
 {
     use HasFactory;
 
+    protected $guarded=[];
+
     protected $table = 'travels';
 
     public function driver(): BelongsTo
