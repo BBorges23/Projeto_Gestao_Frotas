@@ -27,7 +27,21 @@ class VehicleController extends Controller
      */
     public function index()
     {
-        return view('pages.vehicle.index',['vehicles' =>Vehicle::all()]);
+        $perPage = 16; // Número de veículos por página
+        $currentPage = request()->input('page', 1); // Obtém o número da página da URL ou usa 1 como padrão
+
+        $start = ($currentPage - 1) * $perPage;
+
+        $allVehicles = Vehicle::all();
+        $totalVehicles = count($allVehicles);
+
+        // Use array_slice para pegar os veículos da página atual
+        $paginatedVehicles = array_slice($allVehicles->all(), $start, $perPage);
+
+        // Calcula o total de páginas
+        $totalPages = ceil($totalVehicles / $perPage);//16 veiculos por página
+
+        return view('pages.vehicle.index', compact('paginatedVehicles', 'totalPages', 'currentPage'));
     }
 
     /**
@@ -82,11 +96,9 @@ class VehicleController extends Controller
      */
     public function destroy(Vehicle $vehicle)
     {
-
         $vehicle->maintenance()->delete();
         $vehicle->travel()->delete();
         $vehicle->delete();
         return redirect()->route('admin.vehicles.index');
-
     }
 }

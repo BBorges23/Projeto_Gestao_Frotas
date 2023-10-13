@@ -18,41 +18,53 @@ class DriverController extends Controller
      */
     public function create()
     {
-        //
+        return view ('pages.driver.create');
     }
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        $driver = new Driver($data);
+        $driver->save();
+        return redirect()->route('admin.drivers.index',$driver);
     }
     /**
      * Display the specified resource.
      */
     public function show(Driver $driver)
     {
-        //
+        return view('pages.driver.show',[
+            'driver' => $driver
+        ]);
     }
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(Driver $driver)
     {
-        //
+        return view('pages.driver.edit', [
+            'driver' => $driver
+        ]);
     }
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, Driver $driver)
     {
-        //
+        $data = $request->all();
+        $driver->update($data);
+        $driver->save();
+        return redirect()->route('admin.drivers.show', ['driver'=>$driver]);
+
     }
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(Driver $driver)
     {
-        //
+        $driver->delete();
+        return redirect()->route('admin.drivers.index');
     }
 }

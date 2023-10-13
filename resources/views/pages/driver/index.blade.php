@@ -26,7 +26,7 @@
 
             </tr>
             <form class="form-custom" method="POST"
-                  action="{{route('admin.drivers.index',['driver'=>$driver])}}" style="display: inline">
+                  action="{{route('admin.drivers.destroy',['driver'=>$driver])}}" style="display: inline">
                 @csrf
                 @method('DELETE')
                 <button type="submit" class="btn btn-danger"><i class="far fa-trash-alt">Aquii</i>
