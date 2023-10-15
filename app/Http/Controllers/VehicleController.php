@@ -12,14 +12,13 @@ class VehicleController extends Controller
         'required' => 'Preencha todos os campos',
         'min' => 'Insira um ano entre 1950-2023',
         'max' => 'Insira um ano entre 1950-2023',
-        'regex'=> 'Formato invÃ¡lido para Matricula(AA-11-BB)'
+        'regex'=> 'Formato inválido para Matrícula (AA-11-BB)'
     ];
     protected $rules = [
         'model_id'=>'required',
         'licence_plate' => 'required|regex:/^[A-Z]{2}-\d{2}-[A-Z]{2}$/',
         'year'=>'required|min:4|max:4',
         'date_buy'=>'required'
-
     ];
 
     /**
@@ -27,6 +26,8 @@ class VehicleController extends Controller
      */
     public function index()
     {
+        session(['pagina_index_veiculos'=> 'Veículos']);
+
         $perPage = 16; // Número de veículos por página
         $currentPage = request()->input('page', 1); // Obtém o número da página da URL ou usa 1 como padrão
 
@@ -56,7 +57,7 @@ class VehicleController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all();
+        $data = $request->validate($this->rules,$this->msg);
         $vehicle = new Vehicle($data);
         $vehicle->save();
         return redirect()->route('admin.vehicles.show', $vehicle);

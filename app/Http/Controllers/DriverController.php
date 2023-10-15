@@ -5,6 +5,20 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 class DriverController extends Controller
 {
+    protected $msg = [
+        'required' => 'Preencha todos os campos',
+        'name.min' => 'Nome tem de estar entre 3 e 255 carateres',
+        'name.max' => 'Nome tem de estar entre 3 e 255 carateres'
+
+    ];
+    protected $rules = [
+        'name'=>'required|min:3|max:255',
+        'nif' => 'required|regex:/^[A-Z]{2}-\d{2}-[A-Z]{2}$/',
+        'email'=>'required',
+        'contato'=>'required'
+
+    ];
+
     /**
      * Display a listing of the resource.
      */
@@ -25,7 +39,7 @@ class DriverController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all();
+        $data = $request->validate($this->rules,$this->msg);
         $driver = new Driver($data);
         $driver->save();
         return redirect()->route('admin.drivers.index',$driver);

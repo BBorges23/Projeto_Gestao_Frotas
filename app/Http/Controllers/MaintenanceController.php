@@ -37,7 +37,8 @@ class MaintenanceController extends Controller
     public function show(Maintenance $maintenance)
     {
         return view('pages.maintenance.show', [
-            'maintenance' => $maintenance
+            'maintenance' => $maintenance,
+            'vehicle' => $maintenance->vehicle
         ]);
     }
     /**
