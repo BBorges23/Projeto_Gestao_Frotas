@@ -11,10 +11,10 @@
             <tr>
                 <th>Modelo ID</th>
                 <td>
-                    <select name="model_id">
-                        @foreach($models as $model)
-                            <option value="{{ $model->id }}" {{ $vehicle->model_id == $model->id ? 'selected' : '' }}>
-                                {{ $model->name }}
+                    <select name="carmodel_id">
+                        @foreach($carmodels as $carmodel)
+                            <option value="{{ $carmodel->id }}" {{ $vehicle->carmodel_id == $carmodel->id ? 'selected' : '' }}>
+                                {{ $carmodel->name }}
                             </option>
                         @endforeach
                     </select>

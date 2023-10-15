@@ -49,14 +49,14 @@ class VehicleController extends Controller
      */
     public function create()
     {
-        return view('pages.vehicle.create', ['models'=>CarModel::all()]);
+        return view('pages.vehicle.create', ['carmodels'=>Carmodel::all()]);
     }
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        $data = $request->validate($this->rules,$this->msg);
+        $data = $request->all();
         $vehicle = new Vehicle($data);
         $vehicle->save();
         return redirect()->route('admin.vehicles.show', $vehicle);
@@ -78,7 +78,7 @@ class VehicleController extends Controller
     {
         return view('pages.vehicle.edit', [
             'vehicle' => $vehicle,
-            'models' => CarModel::all()
+            'carmodels' => Carmodel::all()
         ]);
     }
     /**

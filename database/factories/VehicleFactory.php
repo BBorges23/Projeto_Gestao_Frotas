@@ -18,7 +18,7 @@ class VehicleFactory extends Factory
     {
 
         return [
-            'model_id'=>fake()->numberBetween(1,25),
+            'carmodel_id'=>fake()->numberBetween(1,25),
             'licence_plate' => fake()->regexify('^[A-Z]{2}-\d{2}-[A-Z]{2}$'),
             'year'=>fake()->year,
             'date_buy'=>fake()->dateTime(now()),

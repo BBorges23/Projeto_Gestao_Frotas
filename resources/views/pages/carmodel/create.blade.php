@@ -1,7 +1,7 @@
 <div>
     <h1>Criar Novo Modelo</h1>
 
-    <form class="form-custom" method="POST" action="{{ route('admin.models.store') }}">
+    <form class="form-custom" method="POST" action="{{ route('admin.carmodels.store') }}">
         @csrf
 
         <label for="name">Nome do Modelo:</label>

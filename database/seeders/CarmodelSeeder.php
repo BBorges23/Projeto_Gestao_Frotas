@@ -6,14 +6,14 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class CarModelSeeder extends Seeder
+class CarmodelSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        $models = [
+        $carmodels = [
             'Mustang', 'F-150', 'Focus', 'Explorer',
             'Camry', 'Corolla', 'RAV4', 'Prius',
             'Civic', 'Accord', 'CR-V', 'Fit',
@@ -47,15 +47,15 @@ class CarModelSeeder extends Seeder
 
         $entries = [];
 
-        foreach ($models as $model) {
+        foreach ($carmodels as $carmodel) {
             $entries[] = [
-                'name' => $model,
+                'name' => $carmodel,
                 'created_at' => now(),
                 'brand_id'=>fake()->numberBetween(1,29),
                 'updated_at' => now(),
             ];
         }
 
-        DB::table('models')->insert($entries);
+        DB::table('carmodels')->insert($entries);
     }
 }

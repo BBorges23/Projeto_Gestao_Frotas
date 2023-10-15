@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Brand;
-use App\Models\CarModel;
-use App\Http\Controllers\Controller;
+use App\Models\Carmodel;
+use App\Http\Requests\StoreCarmodelRequest;
+use App\Http\Requests\UpdateCarmodelRequest;
 use Illuminate\Http\Request;
-class CarModelController extends Controller
+
+class CarmodelController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -32,37 +34,45 @@ class CarModelController extends Controller
         $dados=$request->all();
         $carmodel = new CarModel($dados);
         $carmodel->save();
-        return redirect()->route('admin.models.show', $carmodel);
+        return redirect()->route('admin.carmodels.show', $carmodel);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(CarModel $carModel)
+    public function show(Carmodel $carmodel)
     {
-
+        return view('pages.carmodel.show', ['carmodel'=>$carmodel]);
     }
-
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(CarModel $carModel)
+    public function edit(Carmodel $carmodel)
     {
-        //
+        return view('pages.carmodel.edit',[
+            'carmodel' => $carmodel,
+            'brands' => Brand::all()
+        ]);
     }
+
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, CarModel $carModel)
+    public function update(Request $request, Carmodel $carmodel)
     {
-        //
+        $data = $request->all();
+        $carmodel = new Carmodel($data);
+        $carmodel->save();
+        return view('pages.carmodel.show', ['carmodel' => $carmodel]);
     }
+
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(CarModel $carModel)
+    public function destroy(Carmodel $carmodel)
     {
-        //
+        $carmodel->delete();
+        return redirect()->route('admin.carmodels.index');
     }
 }

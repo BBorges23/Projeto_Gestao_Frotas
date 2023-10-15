@@ -25,9 +25,9 @@
             <tr>
                 <th>Modelo ID</th>
                 <td>
-                    <select name="model_id">
-                        @foreach($models as $model)
-                            <option value="{{ $model->id }}">{{ $model->name }}</option>
+                    <select name="carmodel_id">
+                        @foreach($carmodels as $carmodel)
+                            <option value="{{ $carmodel->id }}">{{ $carmodel->name }}</option>
                         @endforeach
                     </select>
                 </td>

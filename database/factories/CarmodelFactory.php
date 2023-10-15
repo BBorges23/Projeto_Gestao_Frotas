@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\CarModel>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Carmodel>
  */
-class CarModelFactory extends Factory
+class CarmodelFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,7 +17,7 @@ class CarModelFactory extends Factory
     public function definition(): array
     {
         return [
-
+            //
         ];
     }
 }

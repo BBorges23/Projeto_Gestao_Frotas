@@ -33,7 +33,7 @@ Route::prefix('/admin')->group(function (){
 
         Route::resource('vehicles',VehicleController::class);
         Route::resource('brands', BrandController::class);
-        Route::resource('models', CarModelController::class);
+        Route::resource('carmodels', CarmodelController::class);
         Route::resource('drivers', DriverController::class);
         Route::resource('maintenances', MaintenanceController::class);
         Route::resource('travels', TravelController::class);
@@ -53,7 +53,7 @@ Route::prefix('/cliente')->group(function (){
             ->only('show','index');
         Route::resource('brands', BrandController::class)
             ->only('show','index');
-        Route::resource('models', CarModelController::class)
+        Route::resource('carmodels', CarmodelController::class)
             ->only('show','index');
         Route::resource('drivers', DriverController::class)
             ->only('show','index');

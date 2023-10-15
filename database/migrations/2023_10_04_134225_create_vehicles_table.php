@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
 
             //chave estrangeira para models
-            $table->unsignedBigInteger('model_id');
-            $table->foreign('model_id')->references('id')->on('models');
+            $table->unsignedBigInteger('carmodel_id');
+            $table->foreign('carmodel_id')->references('id')->on('carmodels');
 
             $table->string('licence_plate',8)->unique();
             $table->year('year');
