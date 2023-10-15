@@ -11,7 +11,7 @@
                 <tr>
                     <th>Modelo ID</th>
                     <td>
-                        <select name="model_id">
+                        <select name="carmodel_id">
                             @foreach($carmodels as $model)
                                 <option value="{{ $model->id }}" {{ $vehicle->model_id == $model->id ? 'selected' : '' }}>
                                     {{ $model->name }}

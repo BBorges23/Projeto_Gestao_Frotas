@@ -15,7 +15,7 @@ class VehicleController extends Controller
         'regex'=> 'Formato inválido para Matrícula (AA-11-BB)'
     ];
     protected $rules = [
-        'model_id'=>'required',
+        'carmodel_id'=>'required',
         'licence_plate' => 'required|regex:/^[A-Z]{2}-\d{2}-[A-Z]{2}$/',
         'year'=>'required|min:4|max:4',
         'date_buy'=>'required'
