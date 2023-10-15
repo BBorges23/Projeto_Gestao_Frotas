@@ -7,6 +7,6 @@
         <i class="{{$icon}}"></i>
     </div>
     <a href="{{$link}}" class="small-box-footer">
-        More info <i class="fas fa-arrow-circle-right"></i>
+        Mais Informações <i class="fas fa-arrow-circle-right"></i>
     </a>
 </div>

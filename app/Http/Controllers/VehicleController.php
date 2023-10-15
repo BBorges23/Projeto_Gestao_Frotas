@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Models\Brand;
 use App\Models\CarModel;
 use App\Models\Vehicle;
 use App\Http\Controllers\Controller;
@@ -26,7 +27,7 @@ class VehicleController extends Controller
      */
     public function index()
     {
-        session(['pagina_index_veiculos'=> 'Veículos']);
+        session(['pagina_index_veiculos' => 'Veículos']);
 
         $perPage = 16; // Número de veículos por página
         $currentPage = request()->input('page', 1); // Obtém o número da página da URL ou usa 1 como padrão
@@ -40,9 +41,10 @@ class VehicleController extends Controller
         $paginatedVehicles = array_slice($allVehicles->all(), $start, $perPage);
 
         // Calcula o total de páginas
-        $totalPages = ceil($totalVehicles / $perPage);//16 veiculos por página
+        $totalPages = ceil($totalVehicles / $perPage); // 16 veículos por página
 
         return view('pages.vehicle.index', compact('paginatedVehicles', 'totalPages', 'currentPage'));
+
     }
 
     /**
