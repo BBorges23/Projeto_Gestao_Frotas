@@ -16,15 +16,22 @@ class DriverFactory extends Factory
      */
     public function definition(): array
     {
+
+        $isActive = $this->faker->boolean(50);
+        $isWorking = $this->faker->boolean(50);
+
+        if (!$isActive){
+            $isWorking = '0';
+        }
         return [
             'name'=>fake()->name,
             'nif'=>fake()->numerify('#########'),
             'email'=>fake()->email,
             'phone'=>fake()->phoneNumber,
-            'is_active'=>fake()->boolean(50),
-            'is_working'=>fake()->boolean(50),
-            'condition'=>fake()->randomElement(['EX_COLABORADOR', 'FERIAS', 'BAIXA', 'ATIVO'])
-
+            'is_active'=> $isActive ,
+            'is_working'=> $isWorking,
+            'condition'=> $isActive ? ($isWorking ? 'ATIVO' : $this->faker->randomElement(['BAIXA','FERIAS']
+            )): 'EX_COLABORADOR'
         ];
     }
 }

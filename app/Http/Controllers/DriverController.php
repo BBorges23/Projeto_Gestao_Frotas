@@ -5,26 +5,42 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 class DriverController extends Controller
 {
+    /*
     protected $msg = [
         'required' => 'Preencha todos os campos',
-        'name.min' => 'Nome tem de estar entre 3 e 255 carateres',
-        'name.max' => 'Nome tem de estar entre 3 e 255 carateres'
+        //'name.min' => 'Nome tem de estar entre 3 e 255 carateres',
+        //'name.max' => 'Nome tem de estar entre 3 e 255 carateres'
 
     ];
     protected $rules = [
         'name'=>'required|min:3|max:255',
-        'nif' => 'required|regex:/^[A-Z]{2}-\d{2}-[A-Z]{2}$/',
+        'nif' => 'required|regex:/^[0-9]+$/',
         'email'=>'required',
         'contato'=>'required'
 
     ];
-
+    */
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('pages.driver.index', ['drivers'=>Driver::all()]);
+        $perPage = 16;
+        $currentPage = request()->input('page', 1);
+
+        $start = ($currentPage - 1) * $perPage;
+
+        $alldrivers = Driver::all();
+        $totalDrivers = count($alldrivers);
+
+        // Use array_slice para pegar os veículos da página atual
+        $paginatedDrivers = array_slice($alldrivers->all(), $start, $perPage);
+
+        // Calcula o total de páginas
+        $totalPages = ceil($totalDrivers / $perPage);
+
+
+        return view('pages.driver.index', compact('paginatedDrivers', 'totalPages', 'currentPage'));
     }
 
     /**
@@ -39,7 +55,8 @@ class DriverController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->validate($this->rules,$this->msg);
+       // $data = $request->validate($this->rules,$this->msg);
+        $data = $request->all();
         $driver = new Driver($data);
         $driver->save();
         return redirect()->route('admin.drivers.index',$driver);

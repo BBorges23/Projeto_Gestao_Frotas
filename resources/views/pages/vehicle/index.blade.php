@@ -8,10 +8,10 @@
             <div class="col-sm-3">
                 @component('components.small-box',[
                 'bg' => 'bg-info',
-                'valor'=> $vehicle->model->name,
-                'titulo' => 'modelo',
+                'valor'=> $vehicle->model->brand->name,
+                'titulo' => $vehicle->model->name,
                 'icon'=>'fa-solid fa-car-side',
-                'link'=>route('admin.vehicles.create')
+                'link'=>route('admin.vehicles.show',$vehicle->id)
                 ])
                 @endcomponent
             </div>
@@ -28,4 +28,6 @@
             @endfor
         </ul>
     </div>
+
+    <a class="btn btn-warning" href="{{ route('admin.vehicles.create',$vehicle->id) }}">Criar</a><br />
 @endsection

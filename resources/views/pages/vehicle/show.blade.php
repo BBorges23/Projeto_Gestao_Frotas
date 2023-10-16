@@ -1,5 +1,5 @@
 @extends('index')
-@section('title', 'Mostrar veículo')
+@section('title', 'Detalhes veículo')
 
 @section('content')
     <div class="container">
@@ -25,8 +25,14 @@
                 </tr>
             </table>
         </div>
-
         <a class="btn btn-warning" href="{{ route('admin.vehicles.edit',$vehicle->id) }}">Editar</a><br />
+        <form class="form-custom" method="POST"
+              action="{{route('admin.vehicles.destroy',$vehicle->id)}}" style="display: inline">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn btn-danger">Eliminar
+            </button><br />
+        </form>
         <a class="btn btn-primary" href="{{ route('admin.vehicles.index') }}">Voltar para a lista de veículos</a>
     </div>
 @endsection
