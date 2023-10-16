@@ -32,8 +32,9 @@
                     <th>Date Buy</th>
                     <td><input type="date" name="date_buy" value="{{ $vehicle->date_buy }}"></td>
                 </tr>
-            </table>
-            <button type="submit" class="btn btn-primary">Editar Veículo</button>
+            </table><br />
+            <button type="submit" class="btn btn-primary">Editar Veículo</button><br />
+            <a class="btn btn-secondary" href="{{ route('admin.vehicles.show',$vehicle->id) }}">Cancelar</a><br />
         </form>
     </div>
 @endsection
