@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Models\Brand;
 use App\Models\CarModel;
 use App\Models\Vehicle;
 use App\Http\Controllers\Controller;
@@ -42,7 +43,7 @@ class VehicleController extends Controller
         // Calcula o total de páginas
         $totalPages = ceil($totalVehicles / $perPage);//16 veiculos por página
 
-        return view('pages.vehicle.index', compact('paginatedVehicles', 'totalPages', 'currentPage'));
+        return view('pages.vehicle.index', compact('paginatedVehicles', 'totalPages', 'currentPage'), ['brands'=>Brand::all()]);
     }
 
     /**

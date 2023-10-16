@@ -22,6 +22,9 @@ class VehicleFactory extends Factory
             'licence_plate' => fake()->regexify('^[A-Z]{2}-\d{2}-[A-Z]{2}$'),
             'year'=>fake()->year,
             'date_buy'=>fake()->dateTime(now()),
+            'is_active'=>fake()->boolean(50),
+            'is_driving'=>fake()->boolean(50),
+            'condition'=>fake()->randomElement(['VENDIDO', 'PERDA_TOTAL'])
         ];
     }
 }

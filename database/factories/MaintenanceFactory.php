@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Faker\Generator as Faker;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Maintenance>
@@ -16,12 +17,16 @@ class MaintenanceFactory extends Factory
      */
     public function definition(): array
     {
+
+        $isActive = $this->faker->boolean(50);
+
         return [
-            'state'=>fake()->boolean(50),
             'vehicle_id'=>fake()->numberBetween(1,10),
             'motive'=>fake()->text,
             'date_entry'=>fake()->dateTime(now()),
-            'date_exit'=>fake()->dateTimeBetween('now','+2 week')
+            'date_exit'=>fake()->dateTimeBetween('now','+2 week'),
+            'is_active'=>$isActive,
+            'state' => $isActive ? $this->faker->randomElement(['PROCESSANDO']) : $this->faker->randomElement(['CONCLUIDO', 'CANCELADO']),
         ];
     }
 }

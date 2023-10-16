@@ -17,6 +17,10 @@ return new class extends Migration
             $table->foreign('vehicle_id')->references('id')->on('vehicles');
             $table->unsignedBigInteger('driver_id');
             $table->foreign('driver_id')->references('id')->on('drivers');
+            $table->string('coords_origem', '50');
+            $table->string('coords_destino', '50');
+            $table->boolean('is_traveling');
+            $table->enum('state', ['CANCELADO', 'CONCLUIDO', 'PROCESSANDO']);
             $table->timestamps();
         });
     }

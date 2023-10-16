@@ -21,6 +21,9 @@ return new class extends Migration
             $table->string('licence_plate',8)->unique();
             $table->year('year');
             $table->date('date_buy');
+            $table->boolean('is_active');
+            $table->boolean('is_driving');
+            $table->enum('condition', ['VENDIDO', 'PERDA_TOTAL']);
             $table->timestamps();
         });
     }

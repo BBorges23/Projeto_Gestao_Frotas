@@ -20,7 +20,11 @@ class DriverFactory extends Factory
             'name'=>fake()->name,
             'nif'=>fake()->numerify('#########'),
             'email'=>fake()->email,
-            'phone'=>fake()->phoneNumber
+            'phone'=>fake()->phoneNumber,
+            'is_active'=>fake()->boolean(50),
+            'is_working'=>fake()->boolean(50),
+            'condition'=>fake()->randomElement(['EX_COLABORADOR', 'FERIAS', 'BAIXA', 'ATIVO'])
+
         ];
     }
 }

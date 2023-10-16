@@ -14,10 +14,12 @@ return new class extends Migration
         Schema::create('drivers', function (Blueprint $table) {
             $table->id();
             $table->string('name',100);
-            $table->unsignedInteger('nif');
-            $table->string('email',100);
+            $table->string('nif', '9')->unique();
+            $table->string('email',100)->unique();
             $table->string('phone',50);
-            //$table->unsignedInteger('numero_viagens');
+            $table->boolean('is_active');
+            $table->boolean('is_working');
+            $table->enum('condition', ['EX_COLABORADOR', 'FERIAS', 'BAIXA', 'ATIVO']);
             $table->timestamps();
         });
     }

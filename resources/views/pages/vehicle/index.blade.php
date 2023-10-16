@@ -9,7 +9,7 @@
                 @component('components.small-box',[
                 'bg' => 'bg-info',
                 'valor'=> $vehicle->model->name,
-                'titulo' => 'modelo',
+                'titulo' => $vehicle->model->brand->name,
                 'icon'=>'fa-solid fa-car-side',
                 'link'=>route('admin.vehicles.create')
                 ])
