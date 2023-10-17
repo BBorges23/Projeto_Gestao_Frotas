@@ -32,7 +32,8 @@ class DatabaseSeeder extends Seeder
             VehicleSeeder::class,
             DriverSeeder::class,
             MaintenanceSeeder::class,
-            TravelSeeder::class
+            TravelSeeder::class,
+            RolesSeeder::class
         ]);
     }
 }
