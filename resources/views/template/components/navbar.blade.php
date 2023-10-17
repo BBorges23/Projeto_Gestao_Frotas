@@ -11,11 +11,15 @@
                 <input type="hidden" name="_token" value="shUnWPbTPSOqlLQNdcSov4k0UQmkOUDnwfjdZXw9"> </form>
             <ul class="navbar-nav  justify-content-end">
                 <li class="nav-item d-flex align-items-center">
-                    <a href="javascript:;" class="nav-link text-body font-weight-bold px-0">
-                        <i class="fa fa-user me-sm-1" aria-hidden="true"></i>
-                        <span class="d-sm-inline d-none" onclick="event.preventDefault();document.getElementById('logout-form').submit();">Sign
-Out</span>
-                    </a>
+                    @auth()
+                        <form method="POST" action="{{route('logout')}}">
+                            @csrf
+                            <button class="nav-link" href="{{route('logout')}}">
+                                <div class="sb-nav-link-icon"><i class="fa-solid fa-right-to-bracket"></i></div>
+                                Logout
+                            </button>
+                        </form>
+                    @endauth
                 </li>
             </ul>
         </div>
