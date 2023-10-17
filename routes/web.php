@@ -39,7 +39,7 @@ Route::post('/logout',[LoginController::class,'logout'])->name('logout')->middle
 Route::get('/home',[DashboardController::class,'autenticado'])->name('home');
 
 /**
- * Admin
+ * Admin permissões
  */
 Route::middleware('role:admin')->group(function (){
     Route::prefix('/admin')->group(function (){
@@ -55,9 +55,8 @@ Route::middleware('role:admin')->group(function (){
     });
 });
 
-//-----Clientes-----//
 /**
- * Vehicle
+ * Gestor permissões
  */
 Route::middleware('role:gestor')->group(function (){
     Route::prefix('/gestor')->group(function (){
@@ -82,5 +81,24 @@ Route::middleware('role:gestor')->group(function (){
 
 
 /**
- * Drivers
+ * Driver permissões
  */
+Route::middleware('role:driver')->group(function (){
+    Route::prefix('/driver')->group(function (){
+        Route::name('driver.')->group(function (){
+
+            Route::resource('vehicles',VehicleController::class)
+                ->only('show');
+            Route::resource('brands', BrandController::class)
+                ->only('show');
+            Route::resource('carmodels', CarmodelController::class)
+                ->only('show');
+            Route::resource('drivers', DriverController::class)
+                ->only('show');
+            Route::resource('maintenances', MaintenanceController::class)
+                ->only('show');
+            Route::resource('travels', TravelController::class)
+                ->only('show');
+        });
+    });
+});

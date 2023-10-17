@@ -11,8 +11,4 @@ class DashboardController extends Controller
     public function autenticado(){
         return view('home');
     }
-
-    public function cliente(){
-        return "Dashboard do cliente";
-    }
 }

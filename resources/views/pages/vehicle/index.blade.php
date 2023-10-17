@@ -28,6 +28,7 @@
             @endfor
         </ul>
     </div>
-
+    @role('admin')
     <a class="btn btn-warning" href="{{ route('admin.vehicles.create',$vehicle->id) }}">Criar</a><br />
+    @endrole
 @endsection
