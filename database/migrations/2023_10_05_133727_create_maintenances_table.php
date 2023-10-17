@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('motive',250);
             $table->date('date_entry');
             $table->date('date_exit');
+            $table->softDeletes();
             $table->boolean('is_active');
             $table->enum('state', ['CANCELADO', 'CONCLUIDO', 'PROCESSANDO']);
             $table->timestamps();

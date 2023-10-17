@@ -16,8 +16,8 @@
             </tr>
             <tr>
                 <td>{{$travel->id}}</td>
-                <td>{{$travel->vehicle->id}}</td>
-                <td>{{$travel->driver->name}}</td>
+                <td>{{$travel->vehicle_id}}</td>
+                <td>{{ optional($travel->driver)->name }}</td>
                 <td>{{$travel->created_at}}</td>
                 <td>{{$travel->updated_at}}</td>
 

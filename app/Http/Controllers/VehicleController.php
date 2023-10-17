@@ -97,8 +97,8 @@ class VehicleController extends Controller
      */
     public function destroy(Vehicle $vehicle)
     {
-        $vehicle->maintenance()->delete();
-        $vehicle->travel()->delete();
+        //$vehicle->maintenance()->delete();
+        //$vehicle->travel()->delete();
         $vehicle->delete();
         return redirect()->route('admin.vehicles.index');
     }

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreign('driver_id')->references('id')->on('drivers');
             $table->string('coords_origem', '50');
             $table->string('coords_destino', '50');
+            $table->softDeletes();
             $table->boolean('is_traveling');
             $table->enum('state', ['CANCELADO', 'CONCLUIDO', 'PROCESSANDO']);
             $table->timestamps();

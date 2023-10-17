@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('nif', '9')->unique();
             $table->string('email',100)->unique();
             $table->string('phone',50);
-            $table->boolean('is_active');
+            $table->softDeletes();
             $table->boolean('is_working');
             $table->enum('condition', ['EX_COLABORADOR', 'FERIAS', 'BAIXA', 'ATIVO']);
             $table->timestamps();

@@ -8,10 +8,11 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Driver extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $guarded=[];
     public function travel(): HasMany
