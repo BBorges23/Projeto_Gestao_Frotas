@@ -8,6 +8,7 @@ use App\Http\Controllers\CarModelController;
 use App\Http\Controllers\DriverController;
 use App\Http\Controllers\MaintenanceController;
 use App\Http\Controllers\TravelController;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,50 +21,64 @@ use App\Http\Controllers\TravelController;
 |
 */
 
-Route::get('/models' ,[BrandController::class, 'index'])->name('models.index');
-Route::get('/', function () { return view('index'); });
+
+/**
+ * Zona para guest - Users não autenticados
+ */
+Route::get('/', function () {
+    return view('auth.login');
+})->name('landing');
+
+Route::get('/login',[LoginController::class, 'showLogin'])->name('login');
+Route::post('/login',[LoginController::class,'login']);
+
+/**
+ * Só users autenticados
+ */
+Route::post('/logout',[LoginController::class,'logout'])->name('logout')->middleware('auth');
+Route::get('/home',[DashboardController::class,'autenticado'])->name('home');
 
 /**
  * Admin
  */
-Route::prefix('/admin')->group(function (){
+Route::middleware('role:admin')->group(function (){
+    Route::prefix('/admin')->group(function (){
 
-    Route::name('admin.')->group(function (){
-        Route::get('/index',[DashboardController::class,'admin'])->name('index');
-
-        Route::resource('vehicles',VehicleController::class);
-        Route::resource('brands', BrandController::class);
-        Route::resource('carmodels', CarmodelController::class);
-        Route::resource('drivers', DriverController::class);
-        Route::resource('maintenances', MaintenanceController::class);
-        Route::resource('travels', TravelController::class);
+        Route::name('admin.')->group(function (){
+            Route::resource('vehicles',VehicleController::class);
+            Route::resource('brands', BrandController::class);
+            Route::resource('carmodels', CarmodelController::class);
+            Route::resource('drivers', DriverController::class);
+            Route::resource('maintenances', MaintenanceController::class);
+            Route::resource('travels', TravelController::class);
+        });
     });
-
 });
 
 //-----Clientes-----//
 /**
  * Vehicle
  */
-Route::prefix('/cliente')->group(function (){
-    Route::name('vehicle.')->group(function (){
-        Route::get('/home',[VehicleController::class,'index'])->name('home');
+Route::middleware('role:gestor')->group(function (){
+    Route::prefix('/gestor')->group(function (){
+        Route::name('gestor.')->group(function (){
 
-        Route::resource('vehicles',VehicleController::class)
-            ->only('show','index');
-        Route::resource('brands', BrandController::class)
-            ->only('show','index');
-        Route::resource('carmodels', CarmodelController::class)
-            ->only('show','index');
-        Route::resource('drivers', DriverController::class)
-            ->only('show','index');
-        Route::resource('maintenances', MaintenanceController::class)
-            ->only('show','index');
-        Route::resource('travels', TravelController::class)
-            ->only('show','index');
+            Route::resource('vehicles',VehicleController::class)
+                ->only('show','index');
+            Route::resource('brands', BrandController::class)
+                ->only('show','index');
+            Route::resource('carmodels', CarmodelController::class)
+                ->only('show','index');
+            Route::resource('drivers', DriverController::class)
+                ->only('show','index');
+            Route::resource('maintenances', MaintenanceController::class)
+                ->only('create','show','index');
+            Route::resource('travels', TravelController::class)
+                ->only('create','show','index');
+        });
     });
-
 });
+
 
 
 /**

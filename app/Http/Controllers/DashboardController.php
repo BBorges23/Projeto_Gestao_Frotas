@@ -8,10 +8,8 @@ use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
-    public function admin(){
-
-
-        return view('dashboard.index');
+    public function autenticado(){
+        return view('home');
     }
 
     public function cliente(){
