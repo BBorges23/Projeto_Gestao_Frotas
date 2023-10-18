@@ -20,26 +20,26 @@ class UserSeeder extends Seeder
        User::factory(5)->create();
 
         DB::table('users')->insert([
-            'name' => 'Barnabe',
-            'email' => 'barnabe@teste.pt',
+            'name' => 'admin',
+            'email' => 'admin@teste.pt',
             'email_verified_at' => now(),
-            'password'=>Hash::make('password'),
+            'password'=>Hash::make('123'),
             'remember_token' => Str::random(10),
         ]);
 
         DB::table('users')->insert([
-            'name' => 'Gertrudes',
-            'email' => 'gertrudes@teste.pt',
+            'name' => 'gestor',
+            'email' => 'gestor@teste.pt',
             'email_verified_at' => now(),
-            'password'=>Hash::make('password'),
+            'password'=>Hash::make('123'),
             'remember_token' => Str::random(10),
         ]);
 
         DB::table('users')->insert([
-            'name' => 'Sebastiao',
-            'email' => 'sebastiao@teste.pt',
+            'name' => 'driver',
+            'email' => 'driver@teste.pt',
             'email_verified_at' => now(),
-            'password'=>Hash::make('password'),
+            'password'=>Hash::make('123'),
             'remember_token' => Str::random(10),
         ]);
 
