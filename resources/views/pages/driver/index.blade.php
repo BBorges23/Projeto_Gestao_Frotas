@@ -8,7 +8,7 @@
         @foreach($paginatedDrivers as $driver)
             <div class="col-sm-3">
                 @component('components.small-box',[
-                'bg' => 'bg-info',
+                'bg' => 'bg-success ',
                 'valor'=> $driver->name,
                 'titulo' => $driver->phone,
                 'icon'=>'fa-solid fa-user',
