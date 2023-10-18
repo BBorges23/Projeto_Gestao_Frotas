@@ -19,37 +19,52 @@ class VehicleSeeder extends Seeder
         DB::table('vehicles')->insert([
             'carmodel_id' => '1',
             'licence_plate' => 'AA-AA-AA',
-            'year' => '2020-12-19',
+            'year' => '2020',
+            'date_buy' => '2020-12-19',
             'is_driving'=> '1',
-            'condition' => 'ATIVO'
+            'condition' => 'ATIVO',
+            'created_at'=>now(),
+            'updated_at'=>now()
         ]);
         DB::table('vehicles')->insert([
             'carmodel_id' => '2',
             'licence_plate' => 'BB-BB-BB',
-            'year' => '2023-12-19',
+            'year' => '2023',
+            'date_buy' => '2023-12-19',
             'is_driving'=> '1',
-            'condition' => 'ATIVO'
+            'condition' => 'ATIVO',
+            'created_at'=>now(),
+            'updated_at'=>now()
         ]);
         DB::table('vehicles')->insert([
             'carmodel_id' => '3',
             'licence_plate' => 'CC-CC-CC',
-            'year' => '2021-12-19',
+            'year' => '2021',
+            'date_buy' => '2021-12-19',
             'is_driving'=> '1',
-            'condition' => 'ATIVO'
+            'condition' => 'ATIVO',
+            'created_at'=>now(),
+            'updated_at'=>now()
         ]);
         DB::table('vehicles')->insert([
             'carmodel_id' => '4',
             'licence_plate' => 'DD-DD-DD',
-            'year' => '2019-12-19',
+            'year' => '2019',
+            'date_buy' => '2019-12-19',
             'is_driving'=> '1',
-            'condition' => 'ATIVO'
+            'condition' => 'ATIVO',
+            'created_at'=>now(),
+            'updated_at'=>now()
         ]);
         DB::table('vehicles')->insert([
             'carmodel_id' => '5',
             'licence_plate' => 'EE-EE-EE',
-            'year' => '2000-12-19',
+            'year' => '2000',
+            'date_buy' => '2000-12-19',
             'is_driving'=> '1',
-            'condition' => 'ATIVO'
+            'condition' => 'ATIVO',
+            'created_at'=>now(),
+            'updated_at'=>now()
         ]);
     }
 }

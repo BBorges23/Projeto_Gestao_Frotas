@@ -22,7 +22,9 @@ class DriverSeeder extends Seeder
             'email' => 'ruben@gmail.com',
             'phone'=>'911234567',
             'is_working' =>'1',
-            'condition' => 'ATIVO'
+            'condition' => 'ATIVO',
+            'created_at'=>now(),
+            'updated_at'=>now()
         ]);
 
         DB::table('drivers')->insert([
@@ -31,7 +33,9 @@ class DriverSeeder extends Seeder
             'email' => 'bruno@gmail.com',
             'phone'=>'926789012',
             'is_working' =>'1',
-            'condition' => 'ATIVO'
+            'condition' => 'ATIVO',
+            'created_at'=>now(),
+            'updated_at'=>now()
         ]);
 
         DB::table('drivers')->insert([
@@ -40,7 +44,9 @@ class DriverSeeder extends Seeder
             'email' => 'miguel@gmail.com',
             'phone'=>'939456789',
             'is_working' =>'1',
-            'condition' => 'ATIVO'
+            'condition' => 'ATIVO',
+            'created_at'=>now(),
+            'updated_at'=>now()
         ]);
 
         DB::table('drivers')->insert([
@@ -49,7 +55,9 @@ class DriverSeeder extends Seeder
             'email' => 'rui@gmail.com',
             'phone'=>'968123456',
             'is_working' =>'1',
-            'condition' => 'ATIVO'
+            'condition' => 'ATIVO',
+            'created_at'=>now(),
+            'updated_at'=>now()
         ]);
 
         DB::table('drivers')->insert([
@@ -58,7 +66,9 @@ class DriverSeeder extends Seeder
             'email' => 'jaquim@gmail.com',
             'phone'=>'920987654',
             'is_working' =>'1',
-            'condition' => 'ATIVO'
+            'condition' => 'ATIVO',
+            'created_at'=>now(),
+            'updated_at'=>now()
         ]);
 
         DB::table('drivers')->insert([
@@ -67,7 +77,9 @@ class DriverSeeder extends Seeder
             'email' => 'sebastiao@gmail.com',
             'phone'=>'935345678',
             'is_working' =>'1',
-            'condition' => 'ATIVO'
+            'condition' => 'ATIVO',
+            'created_at'=>now(),
+            'updated_at'=>now()
         ]);
 
         DB::table('drivers')->insert([
@@ -76,7 +88,9 @@ class DriverSeeder extends Seeder
             'email' => 'gertrudes@gmail.com',
             'phone'=>'961234567',
             'is_working' =>'1',
-            'condition' => 'ATIVO'
+            'condition' => 'ATIVO',
+            'created_at'=>now(),
+            'updated_at'=>now()
         ]);
 
     }

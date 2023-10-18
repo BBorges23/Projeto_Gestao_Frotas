@@ -18,7 +18,7 @@
                 ])
                 @endcomponent
             </div>
-            @endrole 
+            @endrole
 
             <!-- SÓ PARA GESTOR -->
             @role('gestor')

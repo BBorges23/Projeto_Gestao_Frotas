@@ -23,7 +23,9 @@ class TravelSeeder extends Seeder
             'coords_origem' => 'Palmela',
             'coords_destino'=> 'Lisboa',
             'is_traveling' => '1',
-            'state' => 'PROCESSANDO'
+            'state' => 'PROCESSANDO',
+            'created_at'=>now(),
+            'updated_at'=>now()
         ]);
         DB::table('travels')->insert([
             'vehicle_id' => '2',
@@ -31,7 +33,9 @@ class TravelSeeder extends Seeder
             'coords_origem' => 'Palmela',
             'coords_destino'=> 'Lisboa',
             'is_traveling' => '1',
-            'state' => 'PROCESSANDO'
+            'state' => 'PROCESSANDO',
+            'created_at'=>now(),
+            'updated_at'=>now()
         ]);
         DB::table('travels')->insert([
             'vehicle_id' => '3',
@@ -39,7 +43,9 @@ class TravelSeeder extends Seeder
             'coords_origem' => 'Palmela',
             'coords_destino'=> 'Lisboa',
             'is_traveling' => '1',
-            'state' => 'PROCESSANDO'
+            'state' => 'PROCESSANDO',
+            'created_at'=>now(),
+            'updated_at'=>now()
         ]);
         DB::table('travels')->insert([
             'vehicle_id' => '4',
@@ -47,7 +53,9 @@ class TravelSeeder extends Seeder
             'coords_origem' => 'Palmela',
             'coords_destino'=> 'Lisboa',
             'is_traveling' => '1',
-            'state' => 'PROCESSANDO'
+            'state' => 'PROCESSANDO',
+            'created_at'=>now(),
+            'updated_at'=>now()
         ]);
         DB::table('travels')->insert([
             'vehicle_id' => '5',
@@ -55,7 +63,9 @@ class TravelSeeder extends Seeder
             'coords_origem' => 'Palmela',
             'coords_destino'=> 'Lisboa',
             'is_traveling' => '1',
-            'state' => 'PROCESSANDO'
+            'state' => 'PROCESSANDO',
+            'created_at'=>now(),
+            'updated_at'=>now()
         ]);
     }
 }
