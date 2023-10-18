@@ -38,14 +38,14 @@
                     <td>{{$travel->created_at}}</td>
                     <td>{{$travel->updated_at}}</td>
 
-            </tr>
-            <form class="form-custom" method="POST"
-                  action="{{route('admin.travels.destroy',['travel'=>$travel])}}" style="display: inline">
-                @csrf
-                @method('DELETE')
-                <button type="submit" class="btn btn-danger"><i class="far fa-trash-alt">Aquii</i>
-                </button>
-            </form>
+                </tr>
+                <form class="form-custom" method="POST"
+                      action="{{route('admin.travels.destroy',['travel'=>$travel])}}" style="display: inline">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger"><i class="far fa-trash-alt">Aquii</i>
+                    </button>
+                </form>
 
             </table>
         @endforeach

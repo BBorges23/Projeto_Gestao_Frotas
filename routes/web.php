@@ -87,18 +87,10 @@ Route::middleware('role:driver')->group(function (){
     Route::prefix('/driver')->group(function (){
         Route::name('driver.')->group(function (){
 
-            Route::resource('vehicles',VehicleController::class)
-                ->only('show');
-            Route::resource('brands', BrandController::class)
-                ->only('show');
-            Route::resource('carmodels', CarmodelController::class)
-                ->only('show');
-            Route::resource('drivers', DriverController::class)
-                ->only('show');
             Route::resource('maintenances', MaintenanceController::class)
-                ->only('show');
+                ->only('index','show');
             Route::resource('travels', TravelController::class)
-                ->only('show');
+                ->only('index','show');
         });
     });
 });
