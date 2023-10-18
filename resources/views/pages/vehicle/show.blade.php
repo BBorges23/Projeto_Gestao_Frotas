@@ -1,10 +1,8 @@
 @extends('index')
-@section('title', 'Detalhes veículo')
+@section('title', 'Detalhes do veículo')
 
 @section('content')
     <div class="container">
-        <h1 class="page-title">Detalhes do Veículo</h1>
-
         <div class="vehicle-details">
             <table class="table">
                 <tr>
@@ -25,6 +23,8 @@
                 </tr>
             </table>
         </div>
+        @role('admin')
+        <a class="btn btn-success" href="{{ route('admin.vehicles.create',$vehicle->id) }}">Criar</a><br />
         <a class="btn btn-warning" href="{{ route('admin.vehicles.edit',$vehicle->id) }}">Editar</a><br />
         <form class="form-custom" method="POST"
               action="{{route('admin.vehicles.destroy',$vehicle->id)}}" style="display: inline">
@@ -34,5 +34,6 @@
             </button><br />
         </form>
         <a class="btn btn-primary" href="{{ route('admin.vehicles.index') }}">Voltar para a lista de veículos</a>
+        @endrole
     </div>
 @endsection

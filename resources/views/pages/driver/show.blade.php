@@ -1,10 +1,8 @@
 @extends('index')
-@section('title', 'Detalhes Motorista')
+@section('title', 'Detalhes do Motorista')
 
 @section('content')
     <div class="container">
-        <h1 class="page-title">Detalhes do Motorista</h1>
-
         <div class="driver-details">
             <table class="table">
                 <tr>
@@ -25,7 +23,8 @@
                 </tr>
             </table>
         </div>
-
+        @role('admin')
+        <a class="btn btn-success" href="{{ route('admin.drivers.create',$driver->id) }}">Criar</a><br />
         <a class="btn btn-warning" href="{{ route('admin.drivers.edit',$driver->id) }}">Editar</a><br />
         <form class="form-custom" method="POST"
               action="{{route('admin.drivers.destroy',$driver->id)}}" style="display: inline">
@@ -35,5 +34,6 @@
             </button><br />
         </form>
         <a class="btn btn-primary" href="{{ route('admin.drivers.index') }}">Voltar para a lista de Motoristas</a>
+        @endrole
     </div>
 @endsection

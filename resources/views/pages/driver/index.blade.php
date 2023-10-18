@@ -1,5 +1,5 @@
 @extends('index')
-@section('title','Drivers')
+@section('title','Motoristas')
 
 @section('content')
 

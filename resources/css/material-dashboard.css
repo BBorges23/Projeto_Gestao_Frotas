@@ -13571,7 +13571,8 @@ body.dark-version {
     display: flex;
     align-items: center;
     background-size: cover;
-    background-position: 50%; }
+    background-position: 50%;
+}
 .page-header .container {
     z-index: 1; }
 .page-header video {

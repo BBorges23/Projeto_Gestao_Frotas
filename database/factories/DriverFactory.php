@@ -20,6 +20,10 @@ class DriverFactory extends Factory
         $isActive = $this->faker->boolean(50);
         $isWorking = $this->faker->boolean(50);
 
+        if (!$isActive){
+            $isWorking = '0';
+        }
+
         return [
             'name'=>fake()->name,
             'nif'=>fake()->numerify('#########'),

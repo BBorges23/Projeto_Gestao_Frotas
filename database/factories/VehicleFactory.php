@@ -20,6 +20,10 @@ class VehicleFactory extends Factory
         $isActive = $this->faker->boolean(50);
         $isDriving = $this->faker->boolean(50);
 
+        if (!$isActive){
+            $isDriving = '0';
+        }
+
         return [
             'carmodel_id'=>fake()->numberBetween(1,25),
             'licence_plate' => fake()->regexify('^[A-Z]{2}-\d{2}-[A-Z]{2}$'),
