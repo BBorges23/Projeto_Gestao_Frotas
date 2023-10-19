@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CarModel;
+use App\Models\Travel;
 use App\Models\Vehicle;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -28,21 +29,10 @@ class VehicleController extends Controller
     {
         session(['pagina_index_veiculos'=> 'Veículos']);
 
-        $perPage = 16; // Número de veículos por página
-        $currentPage = request()->input('page', 1); // Obtém o número da página da URL ou usa 1 como padrão
+        $vehicles = Vehicle::paginate(3);
 
-        $start = ($currentPage - 1) * $perPage;
-
-        $allVehicles = Vehicle::all();
-        $totalVehicles = count($allVehicles);
-
-        // Use array_slice para pegar os veículos da página atual
-        $paginatedVehicles = array_slice($allVehicles->all(), $start, $perPage);
-
-        // Calcula o total de páginas
-        $totalPages = ceil($totalVehicles / $perPage);//16 veiculos por página
-
-        return view('pages.vehicle.index', compact('paginatedVehicles', 'totalPages', 'currentPage'));
+        return view ('pages.vehicle.index',
+            ['vehicles' => $vehicles ]);
     }
 
     /**

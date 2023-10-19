@@ -24,11 +24,16 @@ class TravelController extends Controller
         // Armazene as viagens na sessão
         session(['travels' => $travel, 'driver' => $driver]);
 
-        return view('pages.travel.index', [
-            'travels'=> Travel::all(),
 
-        ]);
+        $travels = Travel::paginate(3);
+
+
+
+        return view('pages.travel.index',
+            ['travels'=> $travels]);
+
     }
+
 
     /**
      * Show the form for creating a new resource.

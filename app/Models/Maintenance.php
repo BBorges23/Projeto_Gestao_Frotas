@@ -14,6 +14,8 @@ class Maintenance extends Model
 
     protected $guarded=[];
 
+    protected $dateFormat = 'U';
+
     public function vehicle(): BelongsTo
     {
         return $this->belongsTo(Vehicle::class);

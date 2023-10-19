@@ -4,7 +4,7 @@
 @section('content')
 
     <div class="row">
-        @foreach($paginatedVehicles as $vehicle)
+        @foreach($vehicles as $vehicle)
 
             <!-- SÓ PARA ADMIN -->
             @role('admin')
@@ -38,13 +38,7 @@
 
     <!-- Adicione os links de paginação manualmente -->
     <div class="d-flex justify-content-center">
-        <ul class="pagination">
-            @for ($i = 1; $i <= $totalPages; $i++)
-                <li class="page-item {{ ($i == $currentPage) ? 'active' : '' }}">
-                    <a class="page-link" href="{{ route('admin.vehicles.index', ['page' => $i]) }}">{{ $i }}</a>
-                </li>
-            @endfor
-        </ul>
+        {{$vehicles->links()}}
     </div>
     @role('admin')
     <a class="btn btn-warning" href="{{ route('admin.vehicles.create',$vehicle->id) }}">Criar</a><br />

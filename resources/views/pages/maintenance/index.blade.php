@@ -4,62 +4,22 @@
 {{ $maintenance_mot = session('maintenance') }}
 
 @section('content')
-    <div>
-
-        @role('admin')
+    <div class="row">
         @foreach($maintenances as $maintenance)
-            <table>
-                <tr>
-                    <th>ID</th>
-                    <th>State</th>
-                    <th>Vehicle Id</th>
-                    <th>Motive</th>
-                    <th>Date Entry</th>
-                    <th>Date Exit</th>
-                    <th>Created AT</th>
-                    <th>Updated AT</th>
-                </tr>
-                <tr>
-                    <td>{{$maintenance->id}}</td>
-                    <td>{{$maintenance->state}}</td>
-                    <td>{{$maintenance->vehicle_id}}</td>
-                    <td>{{$maintenance->motive}}</td>
-                    <td>{{$maintenance->date_entry}}</td>
-                    <td>{{$maintenance->date_exit}}</td>
-                    <td>{{$maintenance->created_at}}</td>
-                    <td>{{$maintenance->updated_at}}</td>
-                </tr>
-            </table>
+            <div class="col-sm-3">
+                @component('components.small-box',[
+                'bg' => 'bg-secondary bg-gradient',
+                'icon_label' => 'fa-solid fa-gear',
+                'label'=> $maintenance->id. ' - '.$maintenance->vehicle->licence_plate,
+                'titulo' =>  $maintenance->motive,
+                'icon_titulo' => 'fa-solid fa-oil-can',
+                'sub_titulo' =>  $maintenance->date_entry. ' - '.$maintenance->date_exit,
+                'icon'=>'fa-solid fa-screwdriver-wrench',
+                'link'=>route('admin.maintenances.show',$maintenance->id)
+                ])
+                @endcomponent
+            </div>
         @endforeach
-        @endrole
-
-
-        @role('gestor')
-        @foreach($maintenances as $maintenance)
-            <table>
-                <tr>
-                    <th>ID</th>
-                    <th>State</th>
-                    <th>Vehicle Id</th>
-                    <th>Motive</th>
-                    <th>Date Entry</th>
-                    <th>Date Exit</th>
-                    <th>Created AT</th>
-                    <th>Updated AT</th>
-                </tr>
-                <tr>
-                    <td>{{$maintenance->id}}</td>
-                    <td>{{$maintenance->state}}</td>
-                    <td>{{$maintenance->vehicle_id}}</td>
-                    <td>{{$maintenance->motive}}</td>
-                    <td>{{$maintenance->date_entry}}</td>
-                    <td>{{$maintenance->date_exit}}</td>
-                    <td>{{$maintenance->created_at}}</td>
-                    <td>{{$maintenance->updated_at}}</td>
-                </tr>
-            </table>
-        @endforeach
-        @endrole
 
         @role('driver')
         @if ($maintenance_mot)
@@ -90,4 +50,11 @@
         @endrole
 
     </div>
+    <!-- Adicione os links de paginação manualmente -->
+    <div class="d-flex justify-content-center">
+        {{$maintenances->links()}}
+    </div>
+
+
+
 @endsection

@@ -5,7 +5,7 @@
 
 
     <div class="row">
-        @foreach($paginatedDrivers as $driver)
+        @foreach($drivers as $driver)
             @role('admin')
             <div class="col-sm-3">
                 @component('components.small-box',[
@@ -37,13 +37,7 @@
 
     <!-- Adicione os links de paginação manualmente -->
     <div class="d-flex justify-content-center">
-        <ul class="pagination">
-            @for ($i = 1; $i <= $totalPages; $i++)
-                <li class="page-item {{ ($i == $currentPage) ? 'active' : '' }}">
-                    <a class="page-link" href="{{ route('admin.drivers.index', ['page' => $i]) }}">{{ $i }}</a>
-                </li>
-            @endfor
-        </ul>
+        {{$drivers->links()}}
     </div>
 
     <a class="btn btn-warning" href="{{ route('admin.drivers.create',$driver->id) }}">Criar</a><br />

@@ -25,22 +25,10 @@ class DriverController extends Controller
      */
     public function index()
     {
-        $perPage = 16;
-        $currentPage = request()->input('page', 1);
+        $drivers = Driver::paginate(3);
 
-        $start = ($currentPage - 1) * $perPage;
-
-        $alldrivers = Driver::all();
-        $totalDrivers = count($alldrivers);
-
-        // Use array_slice para pegar os veículos da página atual
-        $paginatedDrivers = array_slice($alldrivers->all(), $start, $perPage);
-
-        // Calcula o total de páginas
-        $totalPages = ceil($totalDrivers / $perPage);
-
-
-        return view('pages.driver.index', compact('paginatedDrivers', 'totalPages', 'currentPage'));
+        return view('pages.driver.index',
+        ['drivers' => $drivers]);
     }
 
     /**

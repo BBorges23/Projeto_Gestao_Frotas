@@ -14,14 +14,14 @@ class MaintenanceController extends Controller
         // Recupere o motorista atualmente autenticado
         $driver = auth()->user();
 
-        // Recupere as viagens associadas a esse motorista
+        // Recupere as manutenções associadas a esse motorista
         $maintenance = $driver->maintenance;
 
-        // Armazene as viagens na sessão
+        // Armazene as manutenções na sessão
         session(['maintenance' => $maintenance, 'driver' => $driver]);
 
-
-        return view('pages.maintenance.index', ['maintenances'=>Maintenance::all()]);
+        $maintenances = Maintenance::paginate(3);
+        return view('pages.maintenance.index', ['maintenances'=>$maintenances]);
     }
 
     /**
