@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('email',100)->unique();
             $table->string('phone',50);
             $table->softDeletes();
-            $table->boolean('is_working');
-            $table->enum('condition', ['EX_COLABORADOR', 'FERIAS', 'BAIXA', 'ATIVO']);
+            $table->boolean('is_working')->default(true);
+            $table->enum('condition', ['ATIVO', 'EX_COLABORADOR', 'FERIAS', 'BAIXA']);
             $table->timestamps();
         });
     }

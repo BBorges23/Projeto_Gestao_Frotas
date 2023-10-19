@@ -5,6 +5,17 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 class BrandController extends Controller
 {
+    protected $msg = [
+        'required' => 'Preencha todos os campos',
+        'min' => 'Marca tem de estar entre 3 e 255 carateres',
+        'max' => 'Marca tem de estar entre 3 e 255 carateres'
+
+    ];
+
+    protected $rules = [
+        'name'=>'required|min:3|max:255',
+    ];
+
     /**
      * Display a listing of the resource.
      */
@@ -26,7 +37,7 @@ class BrandController extends Controller
      */
     public function store(Request $request)
     {
-        $dados=$request->all();
+        $dados=$request->validate($this->rules, $this->msg);
         $brand = new Brand($dados);
         $brand->save();
         return redirect()->route('admin.brands.show', $brand);
@@ -54,7 +65,7 @@ class BrandController extends Controller
      */
     public function update(Request $request, Brand $brand)
     {
-        $dados = $request->all();
+        $dados = $request->validate($this->rules, $this->msg);
         $brand->update($dados);
         $brand->save();
         return redirect()->route('admin.brands.show',['brand'=>$brand]);

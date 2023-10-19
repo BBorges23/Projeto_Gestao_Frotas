@@ -10,6 +10,27 @@ use Illuminate\Http\Request;
 
 class TravelController extends Controller
 {
+    protected $msg = [
+        'required' => 'Preencha todos os campos',
+        'max' => 'Coordenadas tem de estar entre 3 e 255 carateres'
+
+    ];
+
+    protected $rules_create = [
+        'vehicle_id' => 'required',
+        'driver_id' => 'required',
+        'coords_origem'=>'required|max:255',
+        'coords_destino' => 'required|max:255',
+    ];
+
+    protected $rules_update = [
+        'vehicle_id' => 'required',
+        'driver_id' => 'required',
+        'coords_origem'=>'required|max:255',
+        'coords_destino' => 'required|max:255',
+        'state' => 'required'
+    ];
+
     /**
      * Display a listing of the resource.
      */
@@ -50,7 +71,7 @@ class TravelController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all();
+        $data = $request->validate($this->rules_create, $this->msg);
         $travel = new Travel($data);
         $travel->save();
         return redirect()->route('admin.travels.show',$travel);
@@ -85,7 +106,19 @@ class TravelController extends Controller
      */
     public function update(Request $request, Travel $travel)
     {
-        $data = $request->all();
+        $newState = $request->input('state');
+
+        if ($newState === 'CANCELADO') {
+            $travel->is_traveling = 0;
+        }
+        elseif ($newState === 'CONCLUIDO')
+        {
+            $travel->is_traveling = 0;
+        }
+        else
+            $travel->is_traveling = 1;
+
+        $data = $request->validate($this->rules_update,$this->msg);
         $travel->update($data);
         $travel->save();
         return redirect()->route('admin.travels.show', ['travel' => $travel]);
@@ -96,6 +129,9 @@ class TravelController extends Controller
      */
     public function destroy(Travel $travel)
     {
+        $travel->update(['is_traveling' => 0]);
+        $travel->state = 'CANCELADO';
+        $travel->save();
         $travel->delete();
         return redirect()->route('admin.travels.index');
     }

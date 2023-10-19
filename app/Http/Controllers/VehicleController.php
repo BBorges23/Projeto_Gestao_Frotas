@@ -77,7 +77,7 @@ class VehicleController extends Controller
      */
     public function update(Request $request, Vehicle $vehicle)
     {
-        $data = $request->all();
+        $data = $request->validate($this->rules, $this->msg);
         $vehicle->update($data);
         $vehicle->save();
         return redirect()->route('admin.vehicles.show', ['vehicle'=>$vehicle]);

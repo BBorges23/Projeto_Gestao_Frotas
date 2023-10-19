@@ -6,6 +6,23 @@ use App\Models\Vehicle;
 use Illuminate\Http\Request;
 class MaintenanceController extends Controller
 {
+    protected $msg = [
+        'required' => 'Preencha todos os campos'
+    ];
+
+    protected  $rules_create = [
+        'vehicle_id' => 'required',
+        'motive' => 'required',
+        'date_entry' => 'required'
+    ];
+
+    protected  $rules_update = [
+        'vehicle_id' => 'required',
+        'motive' => 'required',
+        'date_entry' => 'required',
+        'date_exit' => 'required'
+    ];
+
     /**
      * Display a listing of the resource.
      */
@@ -36,7 +53,7 @@ class MaintenanceController extends Controller
      */
     public function store(Request $request)
     {
-        $data=$request->all();
+        $data=$request->validate($this->rules_create, $this->msg);
         $maintenance = new Maintenance($data);
         $maintenance->save();
         return redirect()->route('admin.maintenances.show', $maintenance);
@@ -66,7 +83,7 @@ class MaintenanceController extends Controller
      */
     public function update(Request $request, Maintenance $maintenance)
     {
-        $data=$request->all();
+        $data=$request->validate($this->rules_update, $this->msg);
         $maintenance->update($data);
         $maintenance->save();
         return view('pages.maintenance.show', ['maintenance' => $maintenance]);

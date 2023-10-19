@@ -10,6 +10,18 @@ use Illuminate\Http\Request;
 
 class CarmodelController extends Controller
 {
+    protected $msg = [
+        'required' => 'Preencha todos os campos',
+        'min' => 'Modelo tem de estar entre 3 e 255 carateres',
+        'max' => 'Modelo tem de estar entre 3 e 255 carateres'
+
+    ];
+
+    protected $rules = [
+        'name'=>'required|min:3|max:255',
+        'brand_id' => 'required'
+    ];
+
     /**
      * Display a listing of the resource.
      */
@@ -31,7 +43,7 @@ class CarmodelController extends Controller
      */
     public function store(Request $request)
     {
-        $dados=$request->all();
+        $dados=$request->validate($this->rules, $this->msg);
         $carmodel = new CarModel($dados);
         $carmodel->save();
         return redirect()->route('admin.carmodels.show', $carmodel);
@@ -61,7 +73,7 @@ class CarmodelController extends Controller
      */
     public function update(Request $request, Carmodel $carmodel)
     {
-        $data = $request->all();
+        $data = $request->validate($this->rules, $this->msg);
         $carmodel = new Carmodel($data);
         $carmodel->save();
         return view('pages.carmodel.show', ['carmodel' => $carmodel]);
