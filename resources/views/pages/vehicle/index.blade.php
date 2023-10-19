@@ -11,7 +11,7 @@
             <div class="col-sm-3">
                 @component('components.small-box',[
                 'bg' => 'bg-info',
-                'valor'=> $vehicle->model->brand->name,
+                'label'=> $vehicle->model->brand->name,
                 'titulo' => $vehicle->model->name,
                 'icon'=>'fa-solid fa-car-side',
                 'link'=>route('admin.vehicles.show',$vehicle->id)

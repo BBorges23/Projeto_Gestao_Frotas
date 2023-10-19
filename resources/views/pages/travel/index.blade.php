@@ -7,9 +7,6 @@
     <div class="row">
 
         @foreach($travels as $travel)
-
-            <!-- SÓ PARA ADMIN -->
-            @role('admin')
             <div class="col-sm-3">
                 @component('components.small-box',[
                 'bg' => 'bg-warning',
@@ -23,34 +20,15 @@
                 ])
                 @endcomponent
             </div>
-            @endrole
-            <table>
-                <tr>
-                    <th>ID</th>
-                    <th>Vehicle ID</th>
-                    <th>Driver Name</th>
-                    <th>Created AT</th>
-                    <th>Updated AT</th>
-                </tr>
-                <tr>
-                    <td>{{$travel->id}}</td>
-                    <td>{{$travel->vehicle_id}}</td>
-                    <td>{{ optional($travel->driver)->name }}</td>
-                    <td>{{$travel->created_at}}</td>
-                    <td>{{$travel->updated_at}}</td>
-
-                </tr>
-                <form class="form-custom" method="POST"
-                      action="{{route('admin.travels.destroy',['travel'=>$travel])}}" style="display: inline">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn btn-danger"><i class="far fa-trash-alt">Aquii</i>
-                    </button>
-                </form>
-
-            </table>
         @endforeach
 
+{{--        <form class="form-custom" method="POST"--}}
+{{--              action="{{route('admin.travels.destroy',['travel'=>$travel])}}" style="display: inline">--}}
+{{--            @csrf--}}
+{{--            @method('DELETE')--}}
+{{--            <button type="submit" class="btn btn-danger"><i class="far fa-trash-alt">Aquii</i>--}}
+{{--            </button>--}}
+{{--        </form>--}}
 
         @role('driver')
         @if ($travels_mot)

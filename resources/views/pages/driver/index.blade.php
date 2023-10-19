@@ -10,7 +10,7 @@
             <div class="col-sm-3">
                 @component('components.small-box',[
                 'bg' => 'bg-success ',
-                'valor'=> $driver->name,
+                'label'=> $driver->name,
                 'titulo' => $driver->phone,
                 'icon'=>'fa-solid fa-user',
                 'link'=>route('admin.drivers.show',$driver->id)
