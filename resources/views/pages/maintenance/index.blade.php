@@ -13,7 +13,7 @@
                 'label'=> $maintenance->id. ' - '.$maintenance->vehicle->licence_plate,
                 'titulo' =>  $maintenance->motive,
                 'icon_titulo' => 'fa-solid fa-oil-can',
-                'sub_titulo' =>  $maintenance->date_entry. ' - '.$maintenance->date_exit,
+                'sub_titulo' => date('d-m-Y', strtotime($maintenance->date_entry)) . ' - ' . date('d-m-Y', strtotime($maintenance->date_exit)),
                 'icon'=>'fa-solid fa-screwdriver-wrench',
                 'link'=>route('admin.maintenances.show',$maintenance->id)
                 ])
