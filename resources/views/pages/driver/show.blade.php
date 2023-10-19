@@ -24,7 +24,6 @@
             </table>
         </div>
         @role('admin')
-        <a class="btn btn-success" href="{{ route('admin.drivers.create',$driver->id) }}">Criar</a><br />
         <a class="btn btn-warning" href="{{ route('admin.drivers.edit',$driver->id) }}">Editar</a><br />
         <form class="form-custom" method="POST"
               action="{{route('admin.drivers.destroy',$driver->id)}}" style="display: inline">

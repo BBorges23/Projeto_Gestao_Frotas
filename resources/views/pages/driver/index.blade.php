@@ -40,5 +40,5 @@
         {{$drivers->links()}}
     </div>
 
-    <a class="btn btn-warning" href="{{ route('admin.drivers.create',$driver->id) }}">Criar</a><br />
+    <a class="btn btn-success" href="{{ route('admin.drivers.create',$driver->id) }}">Criar</a><br />
 @endsection

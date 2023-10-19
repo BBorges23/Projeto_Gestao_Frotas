@@ -24,7 +24,6 @@
             </table>
         </div>
         @role('admin')
-        <a class="btn btn-success" href="{{ route('admin.vehicles.create',$vehicle->id) }}">Criar</a><br />
         <a class="btn btn-warning" href="{{ route('admin.vehicles.edit',$vehicle->id) }}">Editar</a><br />
         <form class="form-custom" method="POST"
               action="{{route('admin.vehicles.destroy',$vehicle->id)}}" style="display: inline">

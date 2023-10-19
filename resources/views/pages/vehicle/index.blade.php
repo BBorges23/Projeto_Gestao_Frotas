@@ -41,6 +41,6 @@
         {{$vehicles->links()}}
     </div>
     @role('admin')
-    <a class="btn btn-warning" href="{{ route('admin.vehicles.create',$vehicle->id) }}">Criar</a><br />
+    <a class="btn btn-success" href="{{ route('admin.vehicles.create',$vehicle->id) }}">Criar</a><br />
     @endrole
 @endsection
