@@ -29,7 +29,7 @@ class VehicleController extends Controller
     {
         session(['pagina_index_veiculos'=> 'Veículos']);
 
-        $vehicles = Vehicle::paginate(3);
+        $vehicles = Vehicle::paginate(16);
 
         return view ('pages.vehicle.index',
             ['vehicles' => $vehicles ]);

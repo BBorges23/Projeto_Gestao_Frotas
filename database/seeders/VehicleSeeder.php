@@ -14,8 +14,9 @@ class VehicleSeeder extends Seeder
      */
     public function run(): void
     {
-        //Vehicle::factory(100)->create();
+        Vehicle::factory(50)->create();
 
+/*
         DB::table('vehicles')->insert([
             'carmodel_id' => '1',
             'licence_plate' => 'AA-AA-AA',
@@ -66,5 +67,86 @@ class VehicleSeeder extends Seeder
             'created_at'=>now(),
             'updated_at'=>now()
         ]);
+        DB::table('vehicles')->insert([
+            'carmodel_id' => '5',
+            'licence_plate' => 'EF-EE-EE',
+            'year' => '2000',
+            'date_buy' => '2000-12-19',
+            'is_driving'=> '1',
+            'condition' => 'ATIVO',
+            'created_at'=>now(),
+            'updated_at'=>now()
+        ]);
+        DB::table('vehicles')->insert([
+            'carmodel_id' => '5',
+            'licence_plate' => 'EG-EE-EE',
+            'year' => '2000',
+            'date_buy' => '2000-12-19',
+            'is_driving'=> '1',
+            'condition' => 'ATIVO',
+            'created_at'=>now(),
+            'updated_at'=>now()
+        ]);
+        DB::table('vehicles')->insert([
+            'carmodel_id' => '5',
+            'licence_plate' => 'EH-EE-EE',
+            'year' => '2000',
+            'date_buy' => '2000-12-19',
+            'is_driving'=> '1',
+            'condition' => 'ATIVO',
+            'created_at'=>now(),
+            'updated_at'=>now()
+        ]);
+        DB::table('vehicles')->insert([
+            'carmodel_id' => '5',
+            'licence_plate' => 'EI-EE-EE',
+            'year' => '2000',
+            'date_buy' => '2000-12-19',
+            'is_driving'=> '1',
+            'condition' => 'ATIVO',
+            'created_at'=>now(),
+            'updated_at'=>now()
+        ]);
+        DB::table('vehicles')->insert([
+            'carmodel_id' => '5',
+            'licence_plate' => 'EJ-EE-EE',
+            'year' => '2000',
+            'date_buy' => '2000-12-19',
+            'is_driving'=> '1',
+            'condition' => 'ATIVO',
+            'created_at'=>now(),
+            'updated_at'=>now()
+        ]);
+        DB::table('vehicles')->insert([
+            'carmodel_id' => '5',
+            'licence_plate' => 'EL-EE-EE',
+            'year' => '2000',
+            'date_buy' => '2000-12-19',
+            'is_driving'=> '1',
+            'condition' => 'ATIVO',
+            'created_at'=>now(),
+            'updated_at'=>now()
+        ]);
+        DB::table('vehicles')->insert([
+            'carmodel_id' => '5',
+            'licence_plate' => 'EM-EE-EE',
+            'year' => '2000',
+            'date_buy' => '2000-12-19',
+            'is_driving'=> '1',
+            'condition' => 'ATIVO',
+            'created_at'=>now(),
+            'updated_at'=>now()
+        ]);
+        DB::table('vehicles')->insert([
+            'carmodel_id' => '5',
+            'licence_plate' => 'EN-EE-EE',
+            'year' => '2000',
+            'date_buy' => '2000-12-19',
+            'is_driving'=> '1',
+            'condition' => 'ATIVO',
+            'created_at'=>now(),
+            'updated_at'=>now()
+        ]);
+        */
     }
 }

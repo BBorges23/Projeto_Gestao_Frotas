@@ -46,7 +46,7 @@ class TravelController extends Controller
         session(['travels' => $travel, 'driver' => $driver]);
 
 
-        $travels = Travel::paginate(3);
+        $travels = Travel::paginate(16);
 
 
 

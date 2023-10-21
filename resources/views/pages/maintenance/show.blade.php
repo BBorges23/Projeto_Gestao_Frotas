@@ -33,5 +33,14 @@
         </table>
 
         <a href="{{ route('admin.maintenances.index') }}">Voltar para a lista de manutenções</a>
+
+
+        <form class="form-custom" method="POST"
+              action="{{route('admin.maintenances.destroy',$maintenance->id)}}" style="display: inline">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn btn-danger">Eliminar
+            </button><br />
+        </form>
     </div>
 @endsection

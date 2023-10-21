@@ -34,7 +34,7 @@ class DriverController extends Controller
      */
     public function index()
     {
-        $drivers = Driver::paginate(3);
+        $drivers = Driver::paginate(16);
 
         return view('pages.driver.index',
         ['drivers' => $drivers]);
