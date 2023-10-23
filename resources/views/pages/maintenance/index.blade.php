@@ -50,6 +50,8 @@
         @endrole
 
     </div>
+    <a class="btn btn-success" href="{{ route('admin.maintenances.create',$maintenance->id) }}">Criar</a><br />
+
     <!-- Adicione os links de paginação manualmente -->
     <div class="d-flex justify-content-center">
         {{$maintenances->links()}}

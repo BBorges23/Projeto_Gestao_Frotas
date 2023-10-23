@@ -22,14 +22,6 @@
             </div>
         @endforeach
 
-{{--        <form class="form-custom" method="POST"--}}
-{{--              action="{{route('admin.travels.destroy',['travel'=>$travel])}}" style="display: inline">--}}
-{{--            @csrf--}}
-{{--            @method('DELETE')--}}
-{{--            <button type="submit" class="btn btn-danger"><i class="far fa-trash-alt">Aquii</i>--}}
-{{--            </button>--}}
-{{--        </form>--}}
-
         @role('driver')
         @if ($travels_mot)
             @foreach($travels_mot as $travel)
@@ -56,7 +48,10 @@
             <p>Nenhuma viagem encontrada para este motorista.</p>
         @endif
         @endrole
+
     </div>
+    <a class="btn btn-success" href="{{ route('admin.travels.create',$travel->id) }}">Criar</a><br />
+
     <!-- Adicione os links de paginação manualmente -->
     <div class="d-flex justify-content-center">
         {{$travels->links()}}
