@@ -11,7 +11,7 @@
                 </tr>
                 <tr>
                     <th>Motorista: </th>
-                    <td>{{$driver->name }}</td>
+                    <td>{{$driver->user->name }}</td>
                 </tr>
                 <tr>
                     <th>Matricula: </th>

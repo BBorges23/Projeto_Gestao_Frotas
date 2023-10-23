@@ -3,7 +3,7 @@ namespace App\Http\Controllers;
 use App\Models\Brand;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-class BrandController extends Controller
+class  BrandController extends Controller
 {
     protected $msg = [
         'required' => 'Preencha todos os campos',

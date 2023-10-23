@@ -2,7 +2,14 @@
 @section('title','Manutenções')
 
 {{ $maintenance_mot = session('maintenance') }}
+@section('plus_button')
+    @component('components.plus_button',[
+    'colorBTN'=> 'btn-secondary',
+    'itens'=>['Criar Manutenção']
+])
+    @endcomponent()
 
+@endsection
 @section('content')
     <div class="row">
         @foreach($maintenances as $maintenance)

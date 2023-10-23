@@ -7,7 +7,7 @@
             <table class="table">
                 <tr>
                     <th>Nome</th>
-                    <td>{{ $driver->name }}</td>
+                    <td>{{ $driver->user->name }}</td>
                 </tr>
                 <tr>
                     <th>NIF</th>
@@ -15,7 +15,7 @@
                 </tr>
                 <tr>
                     <th>E-mail</th>
-                    <td>{{ $driver->email }}</td>
+                    <td>{{ $driver->user->email }}</td>
                 </tr>
                 <tr>
                     <th>Contato</th>

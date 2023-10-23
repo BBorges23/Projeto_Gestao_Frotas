@@ -10,10 +10,19 @@
     @include('template.components.navbar')
 
     <div class="container-fluid py-4">
+
         <div class="row min-vh-80 h-100">
-            <div class="col-12">
-                <h1>@yield('title')</h1>
+            <div class="col-12 ">
+
+                <div class="d-flex justify-content-between mb-2">
+                    <h1>@yield('title')</h1>
+                    @yield('plus_button')
+
+                </div>
+
+
                 @yield('content')
+
             </div>
         </div>
     </div>

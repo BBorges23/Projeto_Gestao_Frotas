@@ -20,7 +20,7 @@
             <table>
                 <tr>
                     <th>Nome</th>
-                    <td><input type="text" name="name" value="{{ $driver->name }}"></td>
+                    <td><input type="text" name="name" value="{{ $driver->user->name }} " disabled></td>
                     <div class="invalid-feedback"> @error('name') {{$message}} @enderror</div>
                 </tr>
                 <tr>
@@ -30,7 +30,7 @@
                 </tr>
                 <tr>
                     <th>E-mail</th>
-                    <td><input type="text" name="email" value="{{ $driver->email }}"></td>
+                    <td><input type="text" name="email" value="{{ $driver->user->email }} " disabled></td>
                     <div class="invalid-feedback"> @error('email') {{$message}} @enderror</div>
                 </tr>
                 <tr>

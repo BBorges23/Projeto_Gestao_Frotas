@@ -37,7 +37,9 @@ class DriverController extends Controller
         $drivers = Driver::paginate(16);
 
         return view('pages.driver.index',
-        ['drivers' => $drivers]);
+        ['drivers' => $drivers,
+            'colorBTN'=> 'btn-success'
+        ]);
     }
 
     /**

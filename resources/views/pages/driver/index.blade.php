@@ -3,6 +3,13 @@
 
 @section('content')
 
+    @section('plus_button')
+        @component('components.plus_button',[
+    'colorBTN' => 'bg-success',
+    'itens' => ['Criar Motorista']
+])
+        @endcomponent()
+    @endsection
 
     <div class="row">
         @foreach($drivers as $driver)
@@ -10,7 +17,7 @@
             <div class="col-sm-3">
                 @component('components.small-box',[
                 'bg' => 'bg-success ',
-                'label'=> $driver->name,
+                'label'=> $driver->user->name,
                 'titulo' => $driver->phone,
                 'icon'=>'fa-solid fa-user',
                 'link'=>route('admin.drivers.show',$driver->id)
@@ -23,7 +30,7 @@
             <div class="col-sm-3">
                 @component('components.small-box',[
                 'bg' => 'bg-success ',
-                'valor'=> $driver->name,
+                'valor'=> $driver->user->name,
                 'titulo' => $driver->phone,
                 'icon'=>'fa-solid fa-user',
                 'link'=>route('gestor.drivers.show',$driver->id)

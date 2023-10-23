@@ -3,6 +3,16 @@
 
 @section('content')
 
+    @section('plus_button')
+        @component('components.plus_button',[
+        'colorBTN'=> 'btn-info',
+         'itens' =>  ['item'=> ['criar veiculos', 'criar modelos'], 'link'=> ['admin.vehicles.create', 'admin.carmodels.create']]  ,
+         ])
+
+        @endcomponent
+
+    @endsection
+
     <div class="row">
         @foreach($vehicles as $vehicle)
 
@@ -41,10 +51,8 @@
         {{$vehicles->links()}}
     </div>
     @role('admin')
-    <a class="btn btn-success" href="{{ route('admin.vehicles.create',$vehicle->id) }}">Criar Veiculo</a><br />
-    <a class="btn btn-success" href="{{ route('admin.brands.create',$vehicle->model->brand->brand_id) }}">Criar Marca</a><br />
-    <a class="btn btn-success" href="{{ route('admin.carmodels.create',$vehicle->model->carmodel_id) }}">Criar Modelo</a><br />
-    <a class="btn btn-success" href="{{ route('admin.brands.index') }}">Listagem Marcas</a><br />
-    <a class="btn btn-success" href="{{ route('admin.carmodels.index') }}">Listagem Modelo</a><br />
+    <a class="btn btn-success" href="{{ route('admin.vehicles.create',$vehicle->id) }}">Criar Veiculo</a><br/>
+    <a class="btn btn-success" href="{{ route('admin.brands.index') }}">Listagem Marcas</a><br/>
+    <a class="btn btn-success" href="{{ route('admin.carmodels.index') }}">Listagem Modelos</a><br/>
     @endrole
 @endsection

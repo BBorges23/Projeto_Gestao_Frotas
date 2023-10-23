@@ -25,9 +25,11 @@ use App\Http\Controllers\LoginController;
 /**
  * Zona para guest - Users não autenticados
  */
-Route::get('/', function () {
+Route::get('/', static function () {
+    if(auth()->check()) {return view('index');}
+
     return view('auth.login');
-})->name('landing');
+});
 
 Route::get('/login',[LoginController::class, 'showLogin'])->name('login');
 Route::post('/login',[LoginController::class,'login']);
