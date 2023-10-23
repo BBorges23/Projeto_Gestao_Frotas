@@ -6,7 +6,7 @@
         <div class="vehicle-details">
             <table class="table">
                 <tr>
-                    <th>Modelo ID</th>
+                    <th>Modelo</th>
                     <td>{{ $model->name }}</td>
                 </tr>
                 <tr>
