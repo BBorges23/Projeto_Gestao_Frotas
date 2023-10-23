@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('drivers', function (Blueprint $table) {
             $table->id();
-            $table->string('name',100);
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->string('nif', '9')->unique();
-            $table->string('email',100)->unique();
             $table->string('phone',50);
-            $table->softDeletes();
             $table->boolean('is_working')->default(true);
             $table->enum('condition', ['ATIVO', 'EX_COLABORADOR', 'FERIAS', 'BAIXA']);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

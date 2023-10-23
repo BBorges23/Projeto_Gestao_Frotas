@@ -46,7 +46,8 @@ class MaintenanceController extends Controller
      */
     public function create()
     {
-        return view('pages.maintenance.create', ['vehicles'=>Vehicle::all()]);
+        return view('pages.maintenance.create', [
+            'vehicles'=>Vehicle::all()]);
     }
     /**
      * Store a newly created resource in storage.

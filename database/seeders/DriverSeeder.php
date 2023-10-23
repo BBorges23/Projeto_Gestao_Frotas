@@ -17,9 +17,8 @@ class DriverSeeder extends Seeder
         //Driver::factory(100)->create();
 
         DB::table('drivers')->insert([
-            'name' => 'Ruben',
+            'user_id'=> '1',
             'nif' => '123456789',
-            'email' => 'ruben@gmail.com',
             'phone'=>'911234567',
             'is_working' =>'1',
             'condition' => 'ATIVO',
@@ -28,9 +27,8 @@ class DriverSeeder extends Seeder
         ]);
 
         DB::table('drivers')->insert([
-            'name' => 'Bruno',
+            'user_id'=> '2',
             'nif' => '987654321',
-            'email' => 'bruno@gmail.com',
             'phone'=>'926789012',
             'is_working' =>'1',
             'condition' => 'ATIVO',
@@ -39,9 +37,8 @@ class DriverSeeder extends Seeder
         ]);
 
         DB::table('drivers')->insert([
-            'name' => 'Miguel',
+            'user_id'=> '3',
             'nif' => '654321789',
-            'email' => 'miguel@gmail.com',
             'phone'=>'939456789',
             'is_working' =>'1',
             'condition' => 'ATIVO',
@@ -50,9 +47,8 @@ class DriverSeeder extends Seeder
         ]);
 
         DB::table('drivers')->insert([
-            'name' => 'Rui',
+            'user_id'=> '4',
             'nif' => '987123456',
-            'email' => 'rui@gmail.com',
             'phone'=>'968123456',
             'is_working' =>'1',
             'condition' => 'ATIVO',
@@ -61,9 +57,8 @@ class DriverSeeder extends Seeder
         ]);
 
         DB::table('drivers')->insert([
-            'name' => 'Jaquim',
+            'user_id'=> '5',
             'nif' => '321654987',
-            'email' => 'jaquim@gmail.com',
             'phone'=>'920987654',
             'is_working' =>'1',
             'condition' => 'ATIVO',
@@ -72,9 +67,8 @@ class DriverSeeder extends Seeder
         ]);
 
         DB::table('drivers')->insert([
-            'name' => 'Sebastiao',
+            'user_id'=> '6',
             'nif' => '456789123',
-            'email' => 'sebastiao@gmail.com',
             'phone'=>'935345678',
             'is_working' =>'1',
             'condition' => 'ATIVO',
@@ -83,9 +77,8 @@ class DriverSeeder extends Seeder
         ]);
 
         DB::table('drivers')->insert([
-            'name' => 'gertrudes',
+            'user_id'=> '7',
             'nif' => '789123654',
-            'email' => 'gertrudes@gmail.com',
             'phone'=>'961234567',
             'is_working' =>'1',
             'condition' => 'ATIVO',

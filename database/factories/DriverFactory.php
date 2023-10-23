@@ -25,9 +25,7 @@ class DriverFactory extends Factory
         }
 
         return [
-            'name'=>fake()->name,
             'nif'=>fake()->numerify('#########'),
-            'email'=>fake()->email,
             'phone'=>fake()->phoneNumber,
             'deleted_at'=> $isActive ? null : $this->faker->dateTimeThisDecade('-1 year'),
             'is_working'=> $isWorking,
