@@ -4,7 +4,8 @@
             @if(isset($icon_label))
                 <i class="{{ $icon_label }}"></i>
             @endif
-            {{$label}}</h3>
+            {{$label}}
+        </h3>
         <p>
             @if(isset($icon_titulo))
                 <i class="{{ $icon_titulo }}"></i>

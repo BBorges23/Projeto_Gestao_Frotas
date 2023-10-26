@@ -49,4 +49,9 @@ class User extends Authenticatable
     public function driver(): HasOne{
         return $this->hasOne(Driver::class);
     }
+
+    public function getTypeUser()
+    {
+        return auth()->user()['roles'][0]['name'];
+    }
 }

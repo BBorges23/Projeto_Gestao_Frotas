@@ -37,8 +37,10 @@ class MaintenanceController extends Controller
         // Armazene as manutenções na sessão
         session(['maintenance' => $maintenance, 'driver' => $driver]);
 
+
         $maintenances = Maintenance::paginate(16);
-        return view('pages.maintenance.index', ['maintenances'=>$maintenances]);
+        return view('pages.maintenance.index', [
+            'maintenances'=>$maintenances]);
     }
 
     /**

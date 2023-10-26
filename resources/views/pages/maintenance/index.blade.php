@@ -22,7 +22,7 @@
                 'icon_titulo' => 'fa-solid fa-oil-can',
                 'sub_titulo' => date('d-m-Y', strtotime($maintenance->date_entry)) . ' - ' . date('d-m-Y', strtotime($maintenance->date_exit)),
                 'icon'=>'fa-solid fa-screwdriver-wrench',
-                'link'=>route('admin.maintenances.show',$maintenance->id)
+                'link'=>route(auth()->user()->getTypeUser() . '.maintenances.show',$maintenance->id)
                 ])
                 @endcomponent
             </div>
@@ -61,9 +61,6 @@
 
     <!-- Adicione os links de paginação manualmente -->
     <div class="d-flex justify-content-center">
-        {{$maintenances->links()}}
+{{--        {{$maintenances->links()}}--}}
     </div>
-
-
-
 @endsection

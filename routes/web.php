@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashBoardDriverController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\VehicleController;
 use App\Http\Controllers\DashboardController;
@@ -54,6 +55,7 @@ Route::middleware('role:admin')->group(function (){
             Route::resource('maintenances', MaintenanceController::class);
             Route::resource('travels', TravelController::class);
         });
+
     });
 });
 

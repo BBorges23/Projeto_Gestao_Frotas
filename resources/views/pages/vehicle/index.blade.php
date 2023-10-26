@@ -13,38 +13,47 @@
 
     @endsection
 
-    <div class="row">
-        @foreach($vehicles as $vehicle)
+    <form action="{{ route('vehicles.pesquisa') }}" method="post">
+        @csrf
+        <input type="text" name="campo_de_pesquisa" placeholder="Pesquisar...">
+        <button type="submit">Pesquisar</button>
+    </form>
 
-            <!-- SÓ PARA ADMIN -->
-            @role('admin')
-            <div class="col-sm-3">
-                @component('components.small-box',[
-                'bg' => 'bg-info',
-                'label'=> $vehicle->model->brand->name,
-                'titulo' => $vehicle->model->name,
-                'icon'=>'fa-solid fa-car-side',
-                'link'=>route('admin.vehicles.show',$vehicle->id)
-                ])
-                @endcomponent
-            </div>
-            @endrole
+    @if(isset($resultados))
+        <div class="row">
+            @foreach ($resultados as $vehicle)
+                <div class="col-sm-3">
+                    @component('components.small-box',[
+                    'bg' => 'bg-info',
+                    'label'=> $vehicle->model->brand->name,
+                    'titulo' => $vehicle->model->name.' - '.$vehicle->year,
+                    'icon'=>'fa-solid fa-car-side',
+                    'sub_titulo' => $vehicle->licence_plate,
+                    'link'=>route(auth()->user()->getTypeUser().'.vehicles.show',$vehicle->id)
+                    ])
+                    @endcomponent
+                </div>
+            @endforeach
+        </div>
 
-            <!-- SÓ PARA GESTOR -->
-            @role('gestor')
-            <div class="col-sm-3">
-                @component('components.small-box',[
-                'bg' => 'bg-info',
-                'valor'=> $vehicle->model->brand->name,
-                'titulo' => $vehicle->model->name,
-                'icon'=>'fa-solid fa-car-side',
-                'link'=>route('gestor.vehicles.show',$vehicle->id)
-                ])
-                @endcomponent
-            </div>
-            @endrole
-        @endforeach
-    </div>
+    @else
+        <div class="row">
+            @foreach ($vehicles as $vehicle)
+                <div class="col-sm-3">
+                    @component('components.small-box',[
+                    'bg' => 'bg-info',
+                    'label'=> $vehicle->model->brand->name,
+                    'titulo' => $vehicle->model->name.' - '.$vehicle->year,
+                    'icon'=>'fa-solid fa-car-side',
+                    'sub_titulo' => $vehicle->licence_plate,
+                    'link'=>route(auth()->user()->getTypeUser().'.vehicles.show',$vehicle->id)
+                    ])
+                    @endcomponent
+                </div>
+            @endforeach
+        </div>
+
+    @endif
 
     <!-- Adicione os links de paginação manualmente -->
     <div class="d-flex justify-content-center">

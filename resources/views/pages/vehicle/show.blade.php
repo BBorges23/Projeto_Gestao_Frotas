@@ -1,6 +1,6 @@
 @extends('index')
-@section('title', 'Detalhes do veículo')
-
+@section('title', 'Veículos')
+@section('subtitle', ' -> Detalhes')
 @section('content')
     <div class="container">
         <div class="vehicle-details">

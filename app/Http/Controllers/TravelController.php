@@ -51,7 +51,8 @@ class TravelController extends Controller
 
 
         return view('pages.travel.index',
-            ['travels'=> $travels]);
+            ['travels'=> $travels
+            ]);
 
     }
 

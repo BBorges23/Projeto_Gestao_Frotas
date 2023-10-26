@@ -28,7 +28,7 @@
                 'icon_titulo' => 'fa-solid fa-clipboard-user',
                 'sub_titulo' => $travel->coords_origem.' -> '.$travel->coords_destino,
                 'icon'=>'fa-solid fa-route',
-                'link'=>route('admin.travels.show',$travel->id)
+                'link'=>route(auth()->user()->getTypeUser() . '.travels.show',$travel->id)
                 ])
                 @endcomponent
             </div>
@@ -63,6 +63,7 @@
 
     </div>
     <a class="btn btn-success" href="{{ route('admin.travels.create',$travel->id) }}">Criar</a><br />
+
 
     <!-- Adicione os links de paginação manualmente -->
     <div class="d-flex justify-content-center">

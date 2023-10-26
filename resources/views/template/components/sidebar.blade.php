@@ -18,28 +18,26 @@
 
         <ul class="navbar-nav">
 
-            <li class="nav-item">
-                <a class="nav-link text-white " href="{{route('admin.vehicles.index')}}">
+            @if(auth()->user()->getTypeUser() !== 'driver')
+                <li class="nav-item">
+                    <a class="nav-link text-white " href="{{route(auth()->user()->getTypeUser().'.vehicles.index')}}">
+                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="fa-solid fa-car fa-xl"></i>
+                        </div>
 
-                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="fa-solid fa-car fa-xl"></i>
-                    </div>
+                        <span class="nav-link-text ms-1">Veículos</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white " href="{{route(auth()->user()->getTypeUser().'.drivers.index')}}">
 
-                    <span class="nav-link-text ms-1">Veículos</span>
-                </a>
-            </li>
-
-
-            <li class="nav-item">
-                <a class="nav-link text-white " href="{{route('admin.drivers.index')}}">
-
-                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="fa-solid fa-clipboard-user fa-xl"></i>
-                    </div>
-
-                    <span class="nav-link-text ms-1">Motoristas</span>
-                </a>
-            </li>
+                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="fa-solid fa-clipboard-user fa-xl"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Motoristas</span>
+                    </a>
+                </li>
+            @endif
 
             <li class="nav-item">
                 <a class="nav-link text-white " href="{{route('admin.travels.index')}}">
