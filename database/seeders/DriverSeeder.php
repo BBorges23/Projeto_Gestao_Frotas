@@ -86,5 +86,14 @@ class DriverSeeder extends Seeder
             'updated_at'=>now()
         ]);
 
+        DB::table('drivers')->insert([
+            'user_id'=> '8',
+            'nif' => '989123654',
+            'phone'=>'961234568',
+            'is_working' =>'1',
+            'condition' => 'ATIVO',
+            'created_at'=>now(),
+            'updated_at'=>now()
+        ]);
     }
 }

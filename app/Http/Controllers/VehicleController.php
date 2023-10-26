@@ -22,6 +22,19 @@ class VehicleController extends Controller
         'date_buy'=>'required'
     ];
 
+    public function pesquisar(Request $request){
+        $pesquisa = $request->input('campo_de_pesquisa');
+
+        if (empty($pesquisa)) {
+            return redirect()->route('admin.vehicles.index');
+        }
+
+        $resultados = Vehicle::where('year', 'like', '%'.$pesquisa.'%')
+            ->orWhere('licence_plate', 'like', '%'.$pesquisa.'%')->get();
+
+        return view('pages.vehicle.index', compact('resultados'));
+    }
+
     /**
      * Display a listing of the resource.
      */

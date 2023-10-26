@@ -57,11 +57,22 @@
 
     <!-- Adicione os links de paginação manualmente -->
     <div class="d-flex justify-content-center">
-        {{$vehicles->links()}}
+        @if(isset($resultados))
+            @if ($resultados instanceof \Illuminate\Pagination\LengthAwarePaginator)
+                {{ $resultados->links() }}
+            @endif
+        @else
+            @if ($vehicles instanceof \Illuminate\Pagination\LengthAwarePaginator)
+                {{ $vehicles->links() }}
+            @endif
+        @endif
     </div>
-    @role('admin')
-    <a class="btn btn-success" href="{{ route('admin.vehicles.create',$vehicle->id) }}">Criar Veiculo</a><br/>
-    <a class="btn btn-success" href="{{ route('admin.brands.index') }}">Listagem Marcas</a><br/>
-    <a class="btn btn-success" href="{{ route('admin.carmodels.index') }}">Listagem Modelos</a><br/>
-    @endrole
+    @if(isset($vehicles))
+        @role('admin')
+        <div class="row">
+            <a class="btn btn-success" href="{{ route('admin.brands.index') }}">Listagem Marcas</a><br/>
+            <a class="btn btn-success" href="{{ route('admin.carmodels.index') }}">Listagem Modelos</a><br/>
+        </div>
+        @endrole
+    @endif
 @endsection

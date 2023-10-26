@@ -67,5 +67,27 @@ class TravelSeeder extends Seeder
             'created_at'=>now(),
             'updated_at'=>now()
         ]);
+
+        DB::table('travels')->insert([
+            'vehicle_id' => '5',
+            'driver_id' => '8',
+            'coords_origem' => 'Palmela',
+            'coords_destino'=> 'Lisboa',
+            'is_traveling' => '1',
+            'state' => 'PROCESSANDO',
+            'created_at'=>now(),
+            'updated_at'=>now()
+        ]);
+
+        DB::table('travels')->insert([
+            'vehicle_id' => '5',
+            'driver_id' => '8',
+            'coords_origem' => 'Porto',
+            'coords_destino'=> 'Viana',
+            'is_traveling' => '1',
+            'state' => 'PROCESSANDO',
+            'created_at'=>now(),
+            'updated_at'=>now()
+        ]);
     }
 }

@@ -10,6 +10,7 @@ use App\Http\Controllers\DriverController;
 use App\Http\Controllers\MaintenanceController;
 use App\Http\Controllers\TravelController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\DriverHomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,6 +41,8 @@ Route::post('/login',[LoginController::class,'login']);
  */
 Route::post('/logout',[LoginController::class,'logout'])->name('logout')->middleware('auth');
 Route::get('/home',[DashboardController::class,'autenticado'])->name('home');
+
+Route::post('vehicles/pesquisa', 'App\Http\Controllers\VehicleController@pesquisar')->name('vehicles.pesquisa');
 
 /**
  * Admin permissões
