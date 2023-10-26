@@ -1,6 +1,6 @@
 @extends('index')
-@section('title', 'Detalhes de Manutenção')
-
+@section('title', 'Manutenção')
+@section('subtitle', ' -> Detalhes')
 @section('content')
 
     <div class="container">
@@ -42,7 +42,7 @@
             <button type="submit" class="btn btn-danger">Eliminar
             </button><br />
         </form>
-        <a class="btn btn-primary" href="{{ route('admin.maintenances.index') }}">Voltar para a lista de manutenções</a>
         @endrole
+        <a class="btn btn-primary" href="{{route(auth()->user()->getTypeUser().'.maintenances.index') }}">Voltar para a lista de manutenções</a>
     </div>
 @endsection

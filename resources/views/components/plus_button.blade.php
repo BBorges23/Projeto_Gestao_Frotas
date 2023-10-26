@@ -6,17 +6,9 @@
     </button>
 
     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-
-
-{{--        @foreach($itens['item'] as $key => $item )--}}
-
-
-{{--            <li><a class="dropdown-item" href="{{route($itens['link'][$key])}}">{{$item}} </a></li>--}}
-
-
-{{--        @endforeach--}}
-
-
+        @foreach($itens['item'] as $key => $item )
+            <li><a class="dropdown-item" href="{{route($itens['link'][$key])}}">{{$item}} </a></li>
+        @endforeach
     </ul>
 </div>
 

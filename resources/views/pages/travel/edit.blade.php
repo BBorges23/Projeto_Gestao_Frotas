@@ -1,6 +1,6 @@
 @extends('index')
-
-@section('title','Editar Viagens')
+@section('title','Viagem')
+@section('subtitle', ' -> Editar')
 @section('content')
     <div>
 

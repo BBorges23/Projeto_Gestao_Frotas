@@ -14,15 +14,10 @@
         <div class="row min-vh-80 h-100">
             <div class="col-12 ">
 
-                <div class="d-flex justify-content-between mb-2">
-                    <h1>@yield('title')</h1>
+                <div class="d-flex justify-content-end mb-2">
                     @yield('plus_button')
-
                 </div>
-
-
                 @yield('content')
-
             </div>
         </div>
     </div>

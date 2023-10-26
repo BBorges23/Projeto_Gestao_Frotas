@@ -1,11 +1,11 @@
 @extends('index')
 @section('title','Manutenções')
+@section('subtitle', ' -> Listagem')
 
-{{ $maintenance_mot = session('maintenance') }}
 @section('plus_button')
     @component('components.plus_button',[
     'colorBTN'=> 'btn-secondary',
-    'itens'=>['Criar Manutenção']
+    'itens'=>['item' => ['Criar Manutenção'], 'link' => ['admin.maintenances.create']]
 ])
     @endcomponent()
 
@@ -28,7 +28,6 @@
             </div>
         @endforeach
     </div>
-    <a class="btn btn-success" href="{{ route('admin.maintenances.create',$maintenance->id) }}">Criar</a><br />
 
     <!-- Adicione os links de paginação manualmente -->
     <div class="d-flex justify-content-center">

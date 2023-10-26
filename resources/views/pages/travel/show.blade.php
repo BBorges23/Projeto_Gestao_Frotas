@@ -1,6 +1,6 @@
 @extends('index')
-@section('title','Detalhes de Viagens')
-
+@section('title', 'Viagem')
+@section('subtitle', ' -> Detalhes')
 @section('content')
     <div class="container">
         <div class="driver-details">
@@ -36,7 +36,7 @@
             <button type="submit" class="btn btn-danger">Eliminar
             </button><br />
         </form>
-        <a class="btn btn-primary" href="{{ route('admin.travels.index') }}">Voltar para a lista de Viagens</a>
         @endrole
+        <a class="btn btn-primary" href="{{route(auth()->user()->getTypeUser().'.travels.index') }}">Voltar para a lista de Motoristas</a>
     </div>
 @endsection

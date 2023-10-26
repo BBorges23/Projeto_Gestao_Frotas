@@ -32,7 +32,8 @@
             <button type="submit" class="btn btn-danger">Eliminar
             </button><br />
         </form>
-        <a class="btn btn-primary" href="{{ route('admin.vehicles.index') }}">Voltar para a lista de veículos</a>
         @endrole
+        <a class="btn btn-primary" href="{{route(auth()->user()->getTypeUser().'.vehicles.index') }}">Voltar para a lista de Motoristas</a>
+
     </div>
 @endsection

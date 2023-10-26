@@ -1,6 +1,6 @@
 @extends('index')
-
-@section('title','Criar viagem')
+@section('title', 'Viagem')
+@section('subtitle', ' -> Criar')
 @section('content')
 
     <div>
@@ -21,7 +21,7 @@
                     <td>
                         <select name="driver_id">
                             @foreach($drivers as $driver)
-                                <option value="{{ $driver->id }}">{{ $driver->name }}</option>
+                                <option value="{{ $driver->id }}">{{ $driver->user->name }}</option>
                             @endforeach
                         </select>
                     </td>

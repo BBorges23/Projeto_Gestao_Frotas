@@ -45,9 +45,7 @@ class VehicleController extends Controller
         $vehicles = Vehicle::paginate(16);
 
         return view ('pages.vehicle.index',
-            ['vehicles' => $vehicles,
-
-            ]);
+            ['vehicles' => $vehicles]);
     }
 
     /**

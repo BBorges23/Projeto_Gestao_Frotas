@@ -13,9 +13,6 @@
 
     <div class="collapse navbar-collapse w-auto ps ps--active-x ps--active-y" id="sidenav-collapse-main">
 
-        {{-- Sidebar para Admins --}}
-        @role('admin')
-
         <ul class="navbar-nav">
 
             @if(auth()->user()->getTypeUser() !== 'driver')
@@ -40,96 +37,24 @@
             @endif
 
             <li class="nav-item">
-                <a class="nav-link text-white " href="{{route('admin.travels.index')}}">
+                <a class="nav-link text-white " href="{{route(auth()->user()->getTypeUser().'.travels.index')}}">
 
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="fa-solid fa-route fa-xl"></i>
                     </div>
-
                     <span class="nav-link-text ms-1">Viagens</span>
                 </a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link text-white " href="{{route('admin.maintenances.index')}}">
+                <a class="nav-link text-white " href="{{route(auth()->user()->getTypeUser().'.maintenances.index')}}">
 
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="fa-solid fa-screwdriver-wrench fa-xl"></i>
                     </div>
-
                     <span class="nav-link-text ms-1">Manutenções</span>
                 </a>
             </li>
-
-
-            <li class="nav-item mt-3">
-                <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Utilizador</h6>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link text-white " href="./profile.html">
-
-                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="fa-solid fa-user fa-xl"></i>
-                    </div>
-
-                    <span class="nav-link-text ms-1">Perfil</span>
-                </a>
-            </li>
-
-
-        </ul>
-        @endrole
-
-        {{-- Sidebar para Gestores --}}
-        @role('gestor')
-        <ul class="navbar-nav">
-
-            <li class="nav-item">
-                <a class="nav-link text-white " href="{{route('gestor.vehicles.index')}}">
-
-                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="fa-solid fa-car fa-xl"></i>
-                    </div>
-
-                    <span class="nav-link-text ms-1">Veículos</span>
-                </a>
-            </li>
-
-
-            <li class="nav-item">
-                <a class="nav-link text-white " href="{{route('gestor.drivers.index')}}">
-
-                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="fa-solid fa-clipboard-user fa-xl"></i>
-                    </div>
-
-                    <span class="nav-link-text ms-1">Motoristas</span>
-                </a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link text-white " href="{{route('gestor.travels.index')}}">
-
-                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="fa-solid fa-route fa-xl"></i>
-                    </div>
-
-                    <span class="nav-link-text ms-1">Viagens</span>
-                </a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link text-white " href="{{route('gestor.maintenances.index')}}">
-
-                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="fa-solid fa-screwdriver-wrench fa-xl"></i>
-                    </div>
-
-                    <span class="nav-link-text ms-1">Manutenções</span>
-                </a>
-            </li>
-
 
             <li class="nav-item mt-3">
                 <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Utilizador</h6>
@@ -146,33 +71,6 @@
                 </a>
             </li>
         </ul>
-        @endrole
-
-        {{-- Sidebar para Drivers --}}
-        @role('driver')
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link text-white " href="{{route('driver.maintenances.index')}}">
-
-                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="fa-solid fa-clipboard-user fa-xl"></i>
-                    </div>
-                    <span class="nav-link-text ms-1">Manutenção</span>
-                </a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link text-white " href="{{route('driver.travels.index')}}">
-
-                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="fa-solid fa-route fa-xl"></i>
-                    </div>
-
-                    <span class="nav-link-text ms-1">Viagens</span>
-                </a>
-            </li>
-        </ul>
-        @endrole
 
         <div class="ps__rail-x" style="width: 250px; left: 0px; bottom: 0px;"><div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 214px;"></div></div><div class="ps__rail-y" style="top: 0px; height: 419px; right: 0px;"><div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 359px;"></div></div></div>
 
