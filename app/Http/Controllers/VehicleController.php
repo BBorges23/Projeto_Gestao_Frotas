@@ -40,10 +40,14 @@ class VehicleController extends Controller
      */
     public function index()
     {
+
         $vehicles = Vehicle::paginate(16);
 
+
         return view ('pages.vehicle.index',
-            ['vehicles' => $vehicles]);
+            ['vehicles' => $vehicles,
+
+                ]);
     }
 
     /**
