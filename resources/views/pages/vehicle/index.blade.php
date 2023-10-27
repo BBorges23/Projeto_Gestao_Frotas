@@ -5,9 +5,18 @@
 @section('content')
     @role('admin')
         @section('plus_button')
+            <div class="dropdown pe-3">
+                <button class="btn btn-info border rounded-circle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fa-solid fa-list"></i>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+                    <li><a class="dropdown-item" href="{{ route('admin.brands.index') }}">Listagem Marcas</a></li>
+                    <li><a class="dropdown-item" href="{{ route('admin.carmodels.index') }}">Listagem Modelos</a></li>
+                </ul>
+            </div>
             @component('components.plus_button',[
             'colorBTN'=> 'btn-info',
-             'itens' =>  ['item'=> ['criar veiculos', 'criar modelos'], 'link'=> ['admin.vehicles.create', 'admin.carmodels.create']]  ,
+             'itens' =>  ['item'=> ['Criar Veículos', 'Criar Modelos', 'Criar Marca'], 'link'=> ['admin.vehicles.create', 'admin.carmodels.create','admin.brands.create']]  ,
              ])
             @endcomponent
         @endsection

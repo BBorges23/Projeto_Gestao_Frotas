@@ -38,12 +38,9 @@ class TravelController extends Controller
     {
         $travels = Travel::paginate(16);
 
-
-
         return view('pages.travel.index',
             ['travels'=> $travels
             ]);
-
     }
 
 

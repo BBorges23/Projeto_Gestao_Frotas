@@ -1,5 +1,4 @@
 @extends('index')
-@section('title', 'Detalhes do Motorista')
 @section('title', 'Motoristas')
 @section('subtitle', ' -> Detalhes')
 @section('content')

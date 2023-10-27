@@ -1,5 +1,5 @@
 @extends('index')
-@section('title','Manutenção')
+@section('title','Manutenções')
 @section('subtitle', ' -> Editar')
 
 @section('content')
