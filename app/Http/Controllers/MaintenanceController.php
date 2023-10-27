@@ -23,9 +23,26 @@ class MaintenanceController extends Controller
         'date_exit' => 'required'
     ];
 
+
+    public function pesquisar(Request $request){
+        $pesquisa = $request->input('campo_de_pesquisa');
+
+        if (empty($pesquisa)) {
+            return redirect()->route(auth()->user()->getTypeUser().'.maintenances.index');
+        }
+
+        $resultados = Maintenance::join('vehicles', 'maintenances.vehicle_id', '=','vehicles.id')
+            ->where('maintenances.motive', 'like', '%' . $pesquisa . '%')
+            ->orWhere('vehicles.licence_plate', 'like', '%' . $pesquisa . '%')
+            ->get();
+
+        return view('pages.maintenance.index', compact('resultados'));
+    }
+
     /**
      * Display a listing of the resource.
      */
+
     public function index()
     {
         $maintenances = Maintenance::paginate(16);

@@ -2,7 +2,10 @@
 namespace App\Http\Controllers;
 use App\Models\Driver;
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Route;
+
 class DriverController extends Controller
 {
     protected $msg = [
@@ -28,6 +31,25 @@ class DriverController extends Controller
         'phone'=>'required|regex:/^\d{9}$/',
         'condition'=>'required'
     ];
+
+
+
+    public function pesquisar(Request $request){
+        $pesquisa = $request->input('campo_de_pesquisa');
+
+
+
+        if (empty($pesquisa)) {
+            return redirect()->route(auth()->user()->getTypeUser().'.drivers.index');
+        }
+
+        $resultados = Driver::join('users', 'drivers.user_id', '=', 'users.id')
+                        ->where('drivers.nif', 'like', '%' . $pesquisa . '%')
+                        ->orWhere('users.name', 'like', '%' . $pesquisa . '%')
+                        ->get();
+
+        return view('pages.driver.index', compact('resultados'));
+    }
 
     /**
      * Display a listing of the resource.

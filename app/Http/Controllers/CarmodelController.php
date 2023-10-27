@@ -22,6 +22,20 @@ class CarmodelController extends Controller
         'brand_id' => 'required'
     ];
 
+
+
+    public function pesquisar(Request $request){
+        $pesquisa = $request->input('campo_de_pesquisa');
+
+        if (empty($pesquisa)) {
+            return redirect()->route(auth()->user()->getTypeUser().'.carmodels.index');
+        }
+
+        $resultados = Carmodel::where('name', 'like', '%'.$pesquisa.'%')->get();
+
+        return view('pages.carmodel.index', compact('resultados'));
+    }
+
     /**
      * Display a listing of the resource.
      */

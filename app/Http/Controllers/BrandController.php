@@ -16,6 +16,20 @@ class  BrandController extends Controller
         'name'=>'required|min:3|max:255',
     ];
 
+
+
+    public function pesquisar(Request $request){
+        $pesquisa = $request->input('campo_de_pesquisa');
+
+        if (empty($pesquisa)) {
+            return redirect()->route(auth()->user()->getTypeUser().'.brands.index');
+        }
+
+        $resultados = Brand::where('name', 'like', '%'.$pesquisa.'%')->get();
+
+        return view('pages.brand.index', compact('resultados'));
+    }
+
     /**
      * Display a listing of the resource.
      */
