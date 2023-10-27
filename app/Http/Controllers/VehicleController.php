@@ -40,8 +40,6 @@ class VehicleController extends Controller
      */
     public function index()
     {
-        session(['pagina_index_veiculos'=> 'Veículos']);
-
         $vehicles = Vehicle::paginate(16);
 
         return view ('pages.vehicle.index',

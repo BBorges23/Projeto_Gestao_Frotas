@@ -28,12 +28,12 @@
                     @component('components.small-box',[
                     'bg' => 'bg-warning',
                     'icon_label' => 'fa-solid fa-road',
-                    'label'=> $travel->vehicle->licence_plate,
+                    'label'=> $travel->id,
                     'titulo' => $travel->driver->user->name,
                     'icon_titulo' => 'fa-solid fa-clipboard-user',
                     'sub_titulo' => $travel->coords_origem.' -> '.$travel->coords_destino,
                     'icon'=>'fa-solid fa-route',
-                    'link'=>route('home')
+                    'link'=>route('admin.travels.show',$travel->id)
                     ])
                     @endcomponent
                 </div>

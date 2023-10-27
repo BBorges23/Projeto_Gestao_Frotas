@@ -36,16 +36,6 @@ class TravelController extends Controller
      */
     public function index()
     {
-        // Recupere o motorista atualmente autenticado
-        $driver = auth()->user();
-
-        // Recupere as viagens associadas a esse motorista
-        $travel = $driver->travels;
-
-        // Armazene as viagens na sessão
-        session(['travels' => $travel, 'driver' => $driver]);
-
-
         $travels = Travel::paginate(16);
 
 

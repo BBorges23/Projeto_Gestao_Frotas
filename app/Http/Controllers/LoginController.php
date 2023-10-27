@@ -24,6 +24,9 @@ class LoginController extends Controller
         if (Auth::attempt($credentials)){
             $request->session()->regenerate();
 
+            if(auth()->user()->getTypeUser() == 'driver')
+                return redirect()->intended(route('driver.home.index'));
+
             return redirect()->intended(route('home'));
         }
         return back()->withErrors([

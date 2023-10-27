@@ -85,7 +85,6 @@ Route::middleware('role:gestor')->group(function (){
 });
 
 
-
 /**
  * Driver permissões
  */
