@@ -21,7 +21,9 @@ class  BrandController extends Controller
      */
     public function index()
     {
-        return view('pages.brand.index', ['brands'=>Brand::all()]);
+        $brands = Brand::paginate(16);
+
+        return view('pages.brand.index', ['brands'=>$brands]);
     }
 
     /**
@@ -48,6 +50,7 @@ class  BrandController extends Controller
      */
     public function show(Brand $brand)
     {
+
         return view('pages.brand.show', ['brand' => $brand]);
 
     }

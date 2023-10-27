@@ -17,7 +17,7 @@
             @csrf
             <table>
                 <tr>
-                    <th>Modelo ID</th>
+                    <th>Modelo:</th>
                     <td>
                         <select name="carmodel_id">
                             @foreach($carmodels as $model)
@@ -27,17 +27,17 @@
                     </td>
                 </tr>
                 <tr>
-                    <th>Licence Plate</th>
+                    <th>Matricula:</th>
                     <td><input type="text" name="licence_plate" value="{{ old('licence_plate') }}"></td>
                     <div class="invalid-feedback">@error('licence_plate') {{$message}} @enderror</div>
                 </tr>
                 <tr>
-                    <th>Year</th>
+                    <th>Ano:</th>
                     <td><input type="text" name="year" value="{{ old('year') }}"></td>
                     <div class="invalid-feedback">@error('year') {{$message}} @enderror</div>
                 </tr>
                 <tr>
-                    <th>Date Buy</th>
+                    <th>Data de Compra:</th>
                     <td><input type="date" name="date_buy" value="{{ old('date_buy') }}"></td>
                     <div class="invalid-feedback">@error('date_buy') {{$message}} @enderror</div>
                 </tr>

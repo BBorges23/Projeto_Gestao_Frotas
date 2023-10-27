@@ -3,7 +3,6 @@
 @section('subtitle', ' -> Listagem')
 @section('content')
 
-    {{ $travels_mot = session('travels') }}
     @section('plus_button')
 
         @component('components.plus_button',[

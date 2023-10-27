@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\DashBoardDriverController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\VehicleController;
 use App\Http\Controllers\DashboardController;
@@ -10,7 +9,7 @@ use App\Http\Controllers\DriverController;
 use App\Http\Controllers\MaintenanceController;
 use App\Http\Controllers\TravelController;
 use App\Http\Controllers\LoginController;
-use App\Http\Controllers\DriverHomeController;
+use App\Http\Controllers\DriverDashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -98,6 +97,8 @@ Route::middleware('role:driver')->group(function (){
                 ->only('index','show');
             Route::resource('travels', TravelController::class)
                 ->only('index','show');
+            Route::resource('home', DriverDashboardController::class)
+                ->only('index', 'show');
         });
     });
 });

@@ -27,7 +27,9 @@ class CarmodelController extends Controller
      */
     public function index()
     {
-        return view('pages.carmodel.index', ['carmodel'=>CarModel::all()]);
+        $carmodels = Carmodel::paginate(16);
+
+        return view('pages.carmodel.index', ['carmodel'=>$carmodels]);
     }
 
     /**

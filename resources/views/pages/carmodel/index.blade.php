@@ -1,5 +1,6 @@
 @extends('index')
-@section('title','Listagem de Modelos')
+@section('title','Modelos')
+@section('subtitle', ' -> Listagem')
 
 @section('content')
     <div class="row">
@@ -17,4 +18,9 @@
         @endforeach
     </div>
     <a class="btn btn-success" href="{{ route('admin.carmodels.create',$model->id) }}">Criar Modelo</a><br />
+
+    <!-- Adicione os links de paginação manualmente -->
+    <div class="d-flex justify-content-center">
+        {{$carmodel->links()}}
+    </div>
 @endsection

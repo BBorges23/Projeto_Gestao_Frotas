@@ -1,6 +1,7 @@
 @extends('index')
 @section('title', 'Veículos')
 @section('subtitle', ' -> Listagem')
+
 @section('content')
     @role('admin')
         @section('plus_button')
@@ -12,22 +13,13 @@
         @endsection
     @endrole
 
-    <div class="dropdown">
-        <button class="btn btn-info border rounded-circle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="fa-solid fa-list"></i>
-        </button>
-
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
-            <li><a class="dropdown-item" href="{{ route('admin.brands.index') }}">Listagem Marcas</a></li>
-            <li><a class="dropdown-item" href="{{ route('admin.carmodels.index') }}">Listagem Modelos</a></li>
-        </ul>
-    </div>
-
-    <form action="{{ route('vehicles.pesquisa') }}" method="post">
-        @csrf
-        <input type="text" name="campo_de_pesquisa" placeholder="Pesquisar...">
-        <button type="submit">Pesquisar</button>
-    </form>
+    @section('search_bar')
+        @component('components.search-bar',[
+            'rota' => 'vehicles',
+            'placeholder' => 'Matricula / Ano'
+            ])
+        @endcomponent
+    @endsection
 
     @if(isset($resultados))
         <div class="row">
@@ -77,12 +69,4 @@
             @endif
         @endif
     </div>
-    @if(isset($vehicles))
-        @role('admin')
-        <div class="row">
-            <a class="btn btn-success" href="{{ route('admin.brands.index') }}">Listagem Marcas</a><br/>
-            <a class="btn btn-success" href="{{ route('admin.carmodels.index') }}">Listagem Modelos</a><br/>
-        </div>
-        @endrole
-    @endif
 @endsection

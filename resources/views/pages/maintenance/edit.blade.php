@@ -1,6 +1,7 @@
 @extends('index')
 @section('title','Manutenção')
 @section('subtitle', ' -> Editar')
+
 @section('content')
     <div>
 

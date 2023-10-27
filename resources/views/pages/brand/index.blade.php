@@ -1,5 +1,6 @@
 @extends('index')
-@section('title','Lista de Marcas')
+@section('title','Marcas')
+@section('subtitle', ' -> Listagem')
 
 @section('content')
     <div class="row">
@@ -17,4 +18,9 @@
         @endforeach
     </div>
     <a class="btn btn-success" href="{{ route('admin.brands.create',$brand->id) }}">Criar Marca</a><br />
+
+    <!-- Adicione os links de paginação manualmente -->
+    <div class="d-flex justify-content-center">
+        {{$brands->links()}}
+    </div>
 @endsection

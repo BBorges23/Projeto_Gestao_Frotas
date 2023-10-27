@@ -1,5 +1,6 @@
 @extends('index')
-@section('title','Criar Nova Marca')
+@section('title','Marcas')
+@section('subtitle', ' -> Criar')
 
 @section('content')
     <div>
