@@ -31,6 +31,24 @@ class TravelController extends Controller
         'state' => 'required'
     ];
 
+    public function pesquisar(Request $request){
+        $pesquisa = $request->input('campo_de_pesquisa');
+
+        if (empty($pesquisa)) {
+            return redirect()->route(auth()->user()->getTypeUser().'.travels.index');
+        }
+
+        $resultados = Travel::join('vehicles','travels.vehicle_id','=','vehicles.id')
+            ->join('drivers','travels.driver_id','=','drivers.id')
+            ->join('users','drivers.id','=','users.id')
+            ->where('vehicles.licence_plate','like', '%'.$pesquisa.'%')
+            ->orWhere('users.name', 'like', '%'.$pesquisa.'%')
+            ->orWhere('coords_origem', 'like', '%'.$pesquisa.'%')
+            ->orWhere('coords_destino', 'like', '%'.$pesquisa.'%')->get();
+
+        return view('pages.travel.index', compact('resultados'));
+    }
+
     /**
      * Display a listing of the resource.
      */

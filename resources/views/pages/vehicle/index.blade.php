@@ -46,7 +46,6 @@
                 </div>
             @endforeach
         </div>
-
     @else
         <div class="row">
             @foreach ($vehicles as $vehicle)
@@ -63,8 +62,10 @@
                 </div>
             @endforeach
         </div>
-
     @endif
+    @empty($vehicle)
+        <h4>Não há veiculos que correspondam à pesquisa</h4>
+    @endempty
 
     <!-- Adicione os links de paginação manualmente -->
     <div class="d-flex justify-content-center">
