@@ -22,7 +22,7 @@
         @endsection
     @endrole
 
-    @section('search_bar')
+    @section('search-bar')
         @component('components.search-bar',[
             'rota' => 'vehicles',
             'placeholder' => 'Matricula / Ano'

@@ -26,7 +26,7 @@ class VehicleController extends Controller
         $pesquisa = $request->input('campo_de_pesquisa');
 
         if (empty($pesquisa)) {
-            return redirect()->route('admin.vehicles.index');
+            return redirect()->route(auth()->user()->getTypeUser().'.vehicles.index');
         }
 
         $resultados = Vehicle::where('year', 'like', '%'.$pesquisa.'%')

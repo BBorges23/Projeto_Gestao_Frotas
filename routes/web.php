@@ -41,6 +41,14 @@ Route::post('/login',[LoginController::class,'login']);
 Route::post('/logout',[LoginController::class,'logout'])->name('logout')->middleware('auth');
 Route::get('/home',[DashboardController::class,'autenticado'])->name('home');
 
+/**
+ * Pesquisas
+ */
+Route::post('brands/pesquisa', 'App\Http\Controllers\BrandController@pesquisar')->name('brands.pesquisa');
+Route::post('carmodels/pesquisa', 'App\Http\Controllers\CarmodelController@pesquisar')->name('carmodels.pesquisa');
+Route::post('drivers/pesquisa', 'App\Http\Controllers\DriverController@pesquisar')->name('drivers.pesquisa');
+Route::post('maintenances/pesquisa', 'App\Http\Controllers\MaintenanceController@pesquisar')->name('maintenances.pesquisa');
+Route::post('travels/pesquisa', 'App\Http\Controllers\TravelController@pesquisar')->name('travels.pesquisa');
 Route::post('vehicles/pesquisa', 'App\Http\Controllers\VehicleController@pesquisar')->name('vehicles.pesquisa');
 
 /**
