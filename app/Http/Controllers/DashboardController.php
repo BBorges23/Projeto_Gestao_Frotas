@@ -10,9 +10,10 @@ use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
-    public function autenticado(){
+    public function autenticado()
+    {
+        return view('home');
 
-        //
     }
 
 }

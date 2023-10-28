@@ -1,5 +1,9 @@
 @extends('index')
 @section('title','Manutenções')
+@if(request()->routeIs('*.pesquisa'))
+    @section('subtitle', ' -> Pesquisa')
+
+@endif
 @section('subtitle', ' -> Listagem')
 
 @section('content')

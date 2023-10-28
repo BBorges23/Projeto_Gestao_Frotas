@@ -2,6 +2,11 @@
 @section('title','Modelos')
 @section('subtitle', ' -> Listagem')
 
+@if(request()->routeIs('*.pesquisa'))
+    @section('subtitle', ' -> Pesquisa')
+
+@endif
+
 @section('content')
 
     @section('search-bar')

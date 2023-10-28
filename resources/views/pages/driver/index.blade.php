@@ -1,6 +1,11 @@
 @extends('index')
 @section('title','Motoristas')
+@if(request()->routeIs('*.pesquisa'))
+    @section('subtitle', ' -> Pesquisa')
+
+@endif
 @section('subtitle', ' -> Listagem')
+
 @section('content')
     @role('admin')
         @section('plus_button')

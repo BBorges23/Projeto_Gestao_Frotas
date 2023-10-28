@@ -2,6 +2,11 @@
 @section('title','Marcas')
 @section('subtitle', ' -> Listagem')
 
+@if(request()->routeIs('*.pesquisa'))
+    @section('subtitle', ' -> Pesquisa')
+
+@endif
+
 @section('search-bar')
     @component('components.search-bar',[
         'rota' => 'brands',

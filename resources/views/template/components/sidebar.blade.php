@@ -14,16 +14,15 @@
         </a>
     </div>
 
+    <hr class="horizontal light mt-4 mb-2">
 
-    <hr class="horizontal light mt-0 mb-2">
-
-    <div class="collapse navbar-collapse w-auto ps ps--active-x ps--active-y" id="sidenav-collapse-main">
+    <div class="collapse navbar-collapse w-auto ps ps--active-x ps--active-y pt-3" id="sidenav-collapse-main">
 
         <ul class="navbar-nav">
 
             @if(auth()->user()->getTypeUser() !== 'driver')
                 <li class="nav-item">
-                    <a class="nav-link text-white " href="{{route(auth()->user()->getTypeUser().'.vehicles.index')}}">
+                    <a class="nav-link fs-5 text-white" href="{{route(auth()->user()->getTypeUser().'.vehicles.index')}}">
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="fa-solid fa-car fa-xl"></i>
                         </div>
@@ -32,7 +31,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white " href="{{route(auth()->user()->getTypeUser().'.drivers.index')}}">
+                    <a class="nav-link fs-5 text-white " href="{{route(auth()->user()->getTypeUser().'.drivers.index')}}">
 
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="fa-solid fa-clipboard-user fa-xl"></i>
@@ -43,7 +42,7 @@
             @endif
 
             <li class="nav-item">
-                <a class="nav-link text-white " href="{{route(auth()->user()->getTypeUser().'.travels.index')}}">
+                <a class="nav-link fs-5 text-white " href="{{route(auth()->user()->getTypeUser().'.travels.index')}}">
 
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="fa-solid fa-route fa-xl"></i>
@@ -53,7 +52,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link text-white " href="{{route(auth()->user()->getTypeUser().'.maintenances.index')}}">
+                <a class="nav-link fs-5 text-white " href="{{route(auth()->user()->getTypeUser().'.maintenances.index')}}">
 
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="fa-solid fa-screwdriver-wrench fa-xl"></i>
@@ -62,12 +61,12 @@
                 </a>
             </li>
 
-            <li class="nav-item mt-3">
-                <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Utilizador</h6>
+            <li class="nav-item mt-3 pt-3">
+                <h6 class="ps-4 fs-6 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Utilizador</h6>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link text-white " href="./profile.html">
+                <a class="nav-link text-white fs-5" href="./profile.html">
 
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="fa-solid fa-user fa-xl"></i>
@@ -80,5 +79,4 @@
         <div class="sidenav-footer position-absolute w-100 bottom-0 "></div>
     </div>
 
-    <div class="ps__rail-x" style="left: 0px; bottom: 0px;"><div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps__rail-y" style="top: 0px; right: 0px;"><div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 0px;"></div></div>
 </aside>

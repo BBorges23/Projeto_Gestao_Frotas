@@ -2,11 +2,13 @@
     <div class="container-fluid py-1 px-3 ">
         <nav aria-label="breadcrumb">
             <h5>
-{{--                @if(request()->routeIs('*.pesquisa'))--}}
-{{--                    <a href="{{route(request()->route()->getName())}}">@yield('titulo')</a--}}
-{{--                @else--}}
-                    <a href="{{route(preg_replace('/\.\w+$/', '', request()->route()->getName()) .".index")   }}">@yield('title')</a>
-{{--                @endif--}}
+                @if(request()->routeIs('*.pesquisa'))
+                    <a href="{{route(auth()->user()->getTypeUser().'.'.preg_replace('/\.pesquisa$/', '', request()->route()->getName()).".index")}}" class="link_navbar">@yield('title')</a>
+                @elseif(request()->routeIs('home'))
+                    <a href="{{route('home')}}" class="link_navbar">@yield('title')</a>
+                @else
+                    <a href="{{route(preg_replace('/\.\w+$/', '', request()->route()->getName()) .".index")   }}" class="link_navbar">@yield('title')</a>
+                @endif
                 @yield('subtitle')
             </h5>
         </nav>
