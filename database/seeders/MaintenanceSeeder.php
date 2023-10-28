@@ -116,5 +116,27 @@ class MaintenanceSeeder extends Seeder
             'created_at'=>now(),
             'updated_at'=>now()
         ]);
+
+        DB::table('maintenances')->insert([
+            'vehicle_id' => '8',
+            'motive' => 'Componente Electrico',
+            'date_entry' => '2023-10-11',
+            'date_exit'=> '2023-10-16',
+            'is_active' => '1',
+            'state' => 'PROCESSANDO',
+            'created_at'=>now(),
+            'updated_at'=>now()
+        ]);
+
+        DB::table('maintenances')->insert([
+            'vehicle_id' => '8',
+            'motive' => 'Componente Electrico',
+            'date_entry' => '2023-10-11',
+            'date_exit'=> '2023-10-16',
+            'is_active' => '1',
+            'state' => 'PROCESSANDO',
+            'created_at'=>now(),
+            'updated_at'=>now()
+        ]);
     }
 }

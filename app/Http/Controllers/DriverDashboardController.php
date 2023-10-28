@@ -24,7 +24,7 @@ class DriverDashboardController extends Controller
         $vehicleIds = $vehicles->pluck('id')->toArray();
         $maintenances = Maintenance::whereIn('vehicle_id', $vehicleIds)->get();
 
-        return view('home', [
+        return view('pages.driverdashboard.index', [
             'driver' => $driver,
             'maintenances' => $maintenances,
             'travels' => $travels
@@ -52,7 +52,7 @@ class DriverDashboardController extends Controller
      */
     public function show(string $id)
     {
-        //
+        return view('pages.driverdashboard.show');
     }
 
     /**

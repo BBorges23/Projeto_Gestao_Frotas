@@ -69,7 +69,7 @@ class TravelSeeder extends Seeder
         ]);
 
         DB::table('travels')->insert([
-            'vehicle_id' => '5',
+            'vehicle_id' => '8',
             'driver_id' => '8',
             'coords_origem' => 'Palmela',
             'coords_destino'=> 'Lisboa',
@@ -80,7 +80,7 @@ class TravelSeeder extends Seeder
         ]);
 
         DB::table('travels')->insert([
-            'vehicle_id' => '5',
+            'vehicle_id' => '8',
             'driver_id' => '8',
             'coords_origem' => 'Porto',
             'coords_destino'=> 'Viana',
@@ -91,7 +91,7 @@ class TravelSeeder extends Seeder
         ]);
 
         DB::table('travels')->insert([
-            'vehicle_id' => '5',
+            'vehicle_id' => '8',
             'driver_id' => '8',
             'coords_origem' => 'Sevilha',
             'coords_destino'=> 'Moita',
@@ -102,7 +102,7 @@ class TravelSeeder extends Seeder
         ]);
 
         DB::table('travels')->insert([
-            'vehicle_id' => '5',
+            'vehicle_id' => '8',
             'driver_id' => '8',
             'coords_origem' => 'Cascais',
             'coords_destino'=> 'Paris',

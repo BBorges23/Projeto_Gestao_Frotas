@@ -44,12 +44,14 @@ Route::get('/home',[DashboardController::class,'autenticado'])->name('home');
 /**
  * Pesquisas
  */
-Route::post('brands/pesquisa', 'App\Http\Controllers\BrandController@pesquisar')->name('brands.pesquisa');
-Route::post('carmodels/pesquisa', 'App\Http\Controllers\CarmodelController@pesquisar')->name('carmodels.pesquisa');
-Route::post('drivers/pesquisa', 'App\Http\Controllers\DriverController@pesquisar')->name('drivers.pesquisa');
-Route::post('maintenances/pesquisa', 'App\Http\Controllers\MaintenanceController@pesquisar')->name('maintenances.pesquisa');
-Route::post('travels/pesquisa', 'App\Http\Controllers\TravelController@pesquisar')->name('travels.pesquisa');
-Route::post('vehicles/pesquisa', 'App\Http\Controllers\VehicleController@pesquisar')->name('vehicles.pesquisa');
+Route::middleware('auth')->group(function (){
+    Route::post('brands/pesquisa', 'App\Http\Controllers\BrandController@pesquisar')->name('brands.pesquisa');
+    Route::post('carmodels/pesquisa', 'App\Http\Controllers\CarmodelController@pesquisar')->name('carmodels.pesquisa');
+    Route::post('drivers/pesquisa', 'App\Http\Controllers\DriverController@pesquisar')->name('drivers.pesquisa');
+    Route::post('maintenances/pesquisa', 'App\Http\Controllers\MaintenanceController@pesquisar')->name('maintenances.pesquisa');
+    Route::post('travels/pesquisa', 'App\Http\Controllers\TravelController@pesquisar')->name('travels.pesquisa');
+    Route::post('vehicles/pesquisa', 'App\Http\Controllers\VehicleController@pesquisar')->name('vehicles.pesquisa');
+});
 
 /**
  * Admin permissões
@@ -65,7 +67,6 @@ Route::middleware('role:admin')->group(function (){
             Route::resource('maintenances', MaintenanceController::class);
             Route::resource('travels', TravelController::class);
         });
-
     });
 });
 

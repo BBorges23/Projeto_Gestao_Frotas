@@ -2,7 +2,13 @@
 
     <div class="sidenav-header">
         <i class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
-        <a class="navbar-brand m-0" href="#" target="_blank">
+        @if(auth()->user()->getTypeUser() === 'driver')
+            <a class="navbar-brand m-0 fs-2" href="{{route('driver.home.index')}}">
+                <img src="{{asset('images/logo.png')}}" class="navbar-brand-img h-100" alt="main_logo">
+                <span class="ms-1 font-weight-bold text-white">Frotas</span>
+            </a>
+        @else       @endif
+        <a class="navbar-brand m-0 fs-2" href="{{route('home')}}">
             <img src="{{asset('images/logo.png')}}" class="navbar-brand-img h-100" alt="main_logo">
             <span class="ms-1 font-weight-bold text-white">Frotas</span>
         </a>
@@ -71,11 +77,7 @@
                 </a>
             </li>
         </ul>
-
-        <div class="ps__rail-x" style="width: 250px; left: 0px; bottom: 0px;"><div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 214px;"></div></div><div class="ps__rail-y" style="top: 0px; height: 419px; right: 0px;"><div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 359px;"></div></div></div>
-
-    <div class="sidenav-footer position-absolute w-100 bottom-0 ">
-
+        <div class="sidenav-footer position-absolute w-100 bottom-0 "></div>
     </div>
 
     <div class="ps__rail-x" style="left: 0px; bottom: 0px;"><div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps__rail-y" style="top: 0px; right: 0px;"><div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 0px;"></div></div>
