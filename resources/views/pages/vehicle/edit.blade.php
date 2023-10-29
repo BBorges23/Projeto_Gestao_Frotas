@@ -2,7 +2,14 @@
 @section('title', 'Veículos')
 @section('subtitle', ' -> Editar')
 @section('content')
-    <div>
+
+    @foreach($carmodels as $model)
+        
+    @endforeach
+
+
+
+{{--    <div>--}}
 
         @if($errors->any())
             {{--Mensagem de erro do topo--}}

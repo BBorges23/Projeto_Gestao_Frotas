@@ -2,41 +2,25 @@
 @section('title', 'Viagens')
 @section('subtitle', ' -> Detalhes')
 @section('content')
-    <div class="container">
-        <div class="driver-details">
-            <table class="table">
-                <tr>
-                    <th>ID: </th>
-                    <td>{{ $travel->id }}</td>
-                </tr>
-                <tr>
-                    <th>Motorista: </th>
-                    <td>{{$driver->user->name }}</td>
-                </tr>
-                <tr>
-                    <th>Matricula: </th>
-                    <td>{{$vehicle->licence_plate}}</td>
-                </tr>
-                <tr>
-                    <th>Origem: </th>
-                    <td>{{$travel->coords_origem}}</td>
-                </tr>
-                <tr>
-                    <th>Destino: </th>
-                    <td>{{$travel->coords_destino}}</td>
-                </tr>
-            </table>
-        </div>
-        @role('admin')
-        <a class="btn btn-warning" href="{{ route('admin.travels.edit',$travel->id) }}">Editar</a><br />
-        <form class="form-custom" method="POST"
-              action="{{route('admin.travels.destroy',$travel->id)}}" style="display: inline">
-            @csrf
-            @method('DELETE')
-            <button type="submit" class="btn btn-danger">Eliminar
-            </button><br />
-        </form>
-        @endrole
-        <a class="btn btn-primary" href="{{route(auth()->user()->getTypeUser().'.travels.index') }}">Voltar para a lista de Motoristas</a>
-    </div>
+
+    @component('components.show_details', [
+    'cor' => 'bg-warning',
+    'imagem' => 'images/mapa.png',
+    'nome' => 'Motorista',
+    'descricao' => $driver->user->name,
+    'titulo1' => 'ID',
+    'informacao1' => $travel->id,
+    'titulo2' => 'Matricula',
+    'informacao2' => $vehicle->licence_plate,
+    'titulo3' => 'Origem',
+    'informacao3' => $travel->coords_origem,
+    'titulo4' => 'Destino',
+    'informacao4' => $travel->coords_destino,
+    'id' => $travel->id,
+    'route1' => auth()->user()->getTypeUser().'.travels.index',
+    'route2' => 'admin.travels.edit',
+    'route3' => 'admin.travels.destroy'
+    ])
+    @endcomponent
+
 @endsection

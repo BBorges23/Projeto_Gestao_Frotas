@@ -3,46 +3,24 @@
 @section('subtitle', ' -> Detalhes')
 @section('content')
 
-    <div class="container">
-        <div class="driver-details">
-            <table class="table">
-                <tr>
-                    <th>Estado</th>
-                    <td>@if(!$maintenance->state)
-                            Concluída
-                        @else
-                            Em Aberto
-                        @endif
-                    </td>
-                </tr>
-                <tr>
-                    <th>Veiculo</th>
-                    <td>{{ $maintenance->vehicle->licence_plate }}</td>
-                </tr>
-                <tr>
-                    <th>Motivo</th>
-                    <td>{{ $maintenance->motive }}</td>
-                </tr>
-                <tr>
-                    <th>Data de Entrada</th>
-                    <td>{{ $maintenance->date_entry }}</td>
-                </tr>
-                <tr>
-                    <th>Data de Saída</th>
-                    <td>{{ $maintenance->date_exit }}</td>
-                </tr>
-            </table>
-        </div>
-        @role('admin')
-        <a class="btn btn-warning" href="{{ route('admin.maintenances.edit',$maintenance->id) }}">Editar</a><br />
-        <form class="form-custom" method="POST"
-              action="{{route('admin.maintenances.destroy',$maintenance->id)}}" style="display: inline">
-            @csrf
-            @method('DELETE')
-            <button type="submit" class="btn btn-danger">Eliminar
-            </button><br />
-        </form>
-        @endrole
-        <a class="btn btn-primary" href="{{route(auth()->user()->getTypeUser().'.maintenances.index') }}">Voltar para a lista de manutenções</a>
-    </div>
+    @component('components.show_details', [
+    'cor' => 'bg-secondary',
+    'imagem' => 'images/maintenance.png',
+    'nome' => 'Estado',
+    'descricao' => !$maintenance->state ? 'Concluída' : 'Em Aberto',
+    'titulo1' => 'Veiculo',
+    'informacao1' => $maintenance->vehicle->licence_plate,
+    'titulo2' => 'Motivo',
+    'informacao2' => $maintenance->motive,
+    'titulo3' => 'Data de Entrada',
+    'informacao3' => $maintenance->date_entry,
+    'titulo4' => 'Data de Saida',
+    'informacao4' => $maintenance->date_exit,
+    'id' => $maintenance->id,
+    'route1' => auth()->user()->getTypeUser().'.maintenances.index',
+    'route2' => 'admin.maintenances.edit',
+    'route3' => 'admin.maintenances.destroy'
+    ])
+    @endcomponent
+
 @endsection
