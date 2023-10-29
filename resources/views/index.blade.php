@@ -12,8 +12,7 @@
     <div class="container-fluid py-4">
 
         <div class="row min-vh-80 h-100">
-            <div class="col-12 ">
-
+            <div class="col-12">
                 <div class="d-flex justify-content-end mb-2">
                     @yield('plus_button')
                 </div>

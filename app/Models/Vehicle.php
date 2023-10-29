@@ -19,7 +19,7 @@ class Vehicle extends Model
 
     public function model(): BelongsTo
     {
-        return $this->BelongsTo(Carmodel::class, 'carmodel_id');
+        return $this->BelongsTo(Carmodel::class, 'carmodel_id')->withTrashed();
     }
 
     public function travel(): HasMany

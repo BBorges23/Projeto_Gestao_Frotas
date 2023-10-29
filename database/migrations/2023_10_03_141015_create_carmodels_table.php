@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name',50)->unique();
             $table->unsignedBigInteger('brand_id');
             $table->foreign('brand_id')->references('id')->on('brands');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

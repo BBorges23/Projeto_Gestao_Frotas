@@ -7,16 +7,17 @@
                 <img src="{{asset('images/logo.png')}}" class="navbar-brand-img h-100" alt="main_logo">
                 <span class="ms-1 font-weight-bold text-white">Frotas</span>
             </a>
-        @else       @endif
+        @else
         <a class="navbar-brand m-0 fs-2" href="{{route('home')}}">
             <img src="{{asset('images/logo.png')}}" class="navbar-brand-img h-100" alt="main_logo">
             <span class="ms-1 font-weight-bold text-white">Frotas</span>
         </a>
+        @endif
     </div>
 
     <hr class="horizontal light mt-4 mb-2">
 
-    <div class="collapse navbar-collapse w-auto ps ps--active-x ps--active-y pt-3" id="sidenav-collapse-main">
+    <div class="collapse navbar-collapse w-100 h-100 pt-3" id="sidenav-collapse-main">
 
         <ul class="navbar-nav">
 
