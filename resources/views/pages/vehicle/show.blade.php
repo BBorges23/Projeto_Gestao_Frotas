@@ -2,38 +2,22 @@
 @section('title', 'Veículos')
 @section('subtitle', ' -> Detalhes')
 @section('content')
-    <div class="container">
-        <div class="vehicle-details">
-            <table class="table">
-                <tr>
-                    <th>Modelo</th>
-                    <td>{{ $model->name }}</td>
-                </tr>
-                <tr>
-                    <th>Placa</th>
-                    <td>{{ $vehicle->licence_plate }}</td>
-                </tr>
-                <tr>
-                    <th>Ano</th>
-                    <td>{{ $vehicle->year }}</td>
-                </tr>
-                <tr>
-                    <th>Data de Compra</th>
-                    <td>{{ $vehicle->date_buy }}</td>
-                </tr>
-            </table>
-        </div>
-        @role('admin')
-        <a class="btn btn-warning" href="{{ route('admin.vehicles.edit',$vehicle->id) }}">Editar</a><br />
-        <form class="form-custom" method="POST"
-              action="{{route('admin.vehicles.destroy',$vehicle->id)}}" style="display: inline">
-            @csrf
-            @method('DELETE')
-            <button type="submit" class="btn btn-danger">Eliminar
-            </button><br />
-        </form>
-        @endrole
-        <a class="btn btn-primary" href="{{route(auth()->user()->getTypeUser().'.vehicles.index') }}">Voltar para a lista de Motoristas</a>
 
-    </div>
+    @component('components.show_details', [
+    'cor' => 'bg-info',
+    'imagem' => 'images/vehicle.png',
+    'nome' => $model->brand->name,
+    'descricao' => $model->name,
+    'titulo1' => 'Matricula',
+    'informacao1' => $vehicle->licence_plate,
+    'titulo2' => 'Ano',
+    'informacao2' => $vehicle->year,
+    'titulo3' => 'Data de Compra',
+    'informacao3' => $vehicle->date_buy,
+    'id' => $vehicle->id,
+    'route1' => auth()->user()->getTypeUser().'.vehicles.index',
+    'route2' => 'admin.vehicles.edit',
+    'route3' => 'admin.vehicles.destroy'
+    ])
+    @endcomponent
 @endsection
