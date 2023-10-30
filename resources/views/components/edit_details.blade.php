@@ -1,8 +1,17 @@
+@if($errors->any())
+    Mensagem de erro do topo
+    <div class="row p-2">
+        <div class="alert alert-danger" role="alert">
+            Verifique os dados inseridos
+        </div>
+    </div>
+@endif
+
 <form class="form-custom" method="POST" action="{{route($route_update, $id)}}">
+    @csrf
+    @method('PUT')
     <section class="vh-100">
         <div class="container py-4 h-100">
-            @csrf
-            @method()
             <div class="row d-flex justify-content-center h-100">
                 <div class="col col-lg-9 mb-4 mb-lg-0">
                     <div class="card mb-3" style="border-radius: .5rem;">
@@ -26,14 +35,14 @@
                                     <div class="row pt-1">
                                         <div class="col-6 mb-3">
                                             <h5>{{$titulo1}}</h5>
-                                            <input type="text" name="{{$input_nome1}}" value="{{ old($input_nome1) }}">
-                                            <div class="invalid-feedback">@error($input_nome1) {{$message}} @enderror</div>
+                                            <input type="text" name="{{$nome1}}" value="{{($input1) }}">
+                                            <div class="invalid-feedback">@error($nome1) {{$message}} @enderror</div>
                                         </div>
                                         @if(isset($titulo2))
                                             <div class="col-6 mb-3">
                                                 <h6>{{$titulo2}}</h6>
-                                                <input type="text" name="{{$input_nome2}}" value="{{ old($input_nome2) }}">
-                                                <div class="invalid-feedback">@error($input_nome2) {{$message}} @enderror</div>
+                                                <input type="text" name="{{$nome2}}" value="{{($input2) }}">
+                                                <div class="invalid-feedback">@error($nome2) {{$message}} @enderror</div>
                                             </div>
                                         @endif
                                     </div>
@@ -45,15 +54,17 @@
                                                 <h6>{{$titulo3}}</h6>
                                                 <select name="{{$select1}}">
                                                     @foreach($array1 as $option)
-                                                        <option value="{{ $option->id }}">{{ $option->name }}</option>
+                                                        <option value="{{ $option->id }} {{ $selected == $option->id ? 'selected' : '' }}">
+                                                            {{ $option->name }}
+                                                        </option>
                                                     @endforeach
                                                 </select>
                                             </div>
                                             <div class="col-6 mb-3">
                                                 @if(isset($titulo4))
                                                     <h6>{{$titulo4}}</h6>
-                                                    <input type="{{$tipo}}" name="{{$input_nome3}}" value="{{ old($input_nome3) }}">
-                                                    <div class="invalid-feedback">@error($input_nome3) {{$message}} @enderror</div>
+                                                    <input type="{{$tipo}}" name="{{$nome3}}" value="{{($input3) }}">
+                                                    <div class="invalid-feedback">@error($nome3) {{$message}} @enderror</div>
                                                 @endif
                                             </div>
                                         </div
@@ -73,8 +84,10 @@
                                         </div>
                                     @endif
                                     <div class="d-flex justify-content-start gap-2 ">
-                                        <button type="submit" class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i></button><br />--}}
-                                        <a class="btn btn-secondary" href="{{ route($rota_show ,$id) }}"><i class="fa-solid fa-ban"></i></a><br />
+
+                                        <button type="submit" class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i></button>
+
+                                        <a class="btn btn-danger" href="{{ route($route_show ,$id) }}"><i class="fa-solid fa-ban"></i></a><br />
                                     </div>
                                 </div>
                             </div>

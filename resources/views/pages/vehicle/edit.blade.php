@@ -3,16 +3,11 @@
 @section('subtitle', ' -> Editar')
 @section('content')
 
-    @foreach($carmodels as $model)
-        
-    @endforeach
-
-
 
 {{--    <div>--}}
 
 {{--        @if($errors->any())--}}
-{{--            --}}{{--Mensagem de erro do topo--}}
+{{--            Mensagem de erro do topo--}}
 {{--            <div class="row p-2">--}}
 {{--                <div class="alert alert-danger" role="alert">--}}
 {{--                    Verifique os dados inseridos--}}
@@ -30,7 +25,7 @@
 {{--                    <td>--}}
 {{--                        <select name="carmodel_id">--}}
 {{--                            @foreach($carmodels as $model)--}}
-{{--                                <option value="{{ $model->id }}" {{ $vehicle->model_id == $model->id ? 'selected' : '' }}>--}}
+{{--                                <option value="{{ $model->id }}" {{$vehicle->model->id == $model->id ? 'selected' : '' }}>--}}
 {{--                                    {{ $model->name }}--}}
 {{--                                </option>--}}
 {{--                            @endforeach--}}
@@ -58,25 +53,32 @@
 {{--        </form>--}}
 {{--    </div>--}}
 
+@foreach($carmodels as $model)
 @component('components.edit_details', [
-    'route_update' => 'admin.vehicles.update',
-    'id' => $veh,
-    'cor' => 'bg-info',
-    'imagem'=> 'images/vehicle.png',
-    'nome' => 'Editar Veículo',
-    'titulo1' => 'Matricula',
-    'input_nome1' => 'licence_plate',
-    'titulo2' => 'Ano',
-    'input_nome2' => 'year',
-    'titulo3' => 'Modelo',
-    'select1' => 'carmodel_id',
-    'array1' => $carmodels,
-    'option' => $model,
-    'cancelar' => 'admin.vehicles.index',
-    'titulo4' => 'Data de compra',
-    'tipo' => 'date',
-    'input_nome3' => 'date_buy'
-])
+        'route_update' => 'admin.vehicles.update',
+        'id' => $vehicle->id,
+        'cor' => 'bg-info',
+        'imagem'=> 'images/vehicle.png',
+        'nome' => 'Editar Veículo',
+        'titulo1' => 'Matricula',
+        'nome1' => 'licence_plate',
+        'input1' => $vehicle->licence_plate,
+        'titulo2' => 'Ano',
+        'nome2' => 'year',
+        'input2' => $vehicle->year,
+        'titulo3' => 'Modelo',
+        'select1' => 'carmodel_id',
+        'array1' => $carmodels,
+        'option' => $model,
+        'cancelar' => 'admin.vehicles.index',
+        'titulo4' => 'Data de compra',
+        'tipo' => 'date',
+        'nome3' => 'date_buy',
+        'input3' => $vehicle->date_buy,
+        'route_show' => 'admin.vehicles.show',
+        'selected' => $vehicle->model->id
+        ])
 @endcomponent
+@endforeach
 
 @endsection

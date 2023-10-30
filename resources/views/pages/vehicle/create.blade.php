@@ -4,9 +4,6 @@
 @section('content')
 
 
-    {{-- TEMOS QUE REVER A MANEIRA DE PASSAR A INFO DE $MODEL--}}
-    @foreach($carmodels as $model)
-    @endforeach
 
 
     {{--        @if($errors->any())--}}
@@ -50,6 +47,9 @@
     {{--            <button type="submit" class="btn btn-primary">Criar Veículo</button>--}}
     {{--        </form>--}}
     {{--    </div>--}}
+
+    {{-- TEMOS QUE REVER A MANEIRA DE PASSAR A INFO DE $MODEL--}}
+    @foreach($carmodels as $model)
     @component('components.create_form', [
     'route_create' => 'admin.vehicles.store',
     'cor' => 'bg-info',
@@ -62,13 +62,14 @@
     'titulo3' => 'Modelo',
     'select1' => 'carmodel_id',
     'array1' => $carmodels,
-    'model' => $model,
+    'option' => $model,
     'cancelar' => 'admin.vehicles.index',
     'titulo4' => 'Data de compra',
     'tipo' => 'date',
     'input_nome3' => 'date_buy'
 ])
     @endcomponent
+    @endforeach
 
 @endsection
 
