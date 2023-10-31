@@ -19,7 +19,8 @@
     'id' => $maintenance->id,
     'route1' => auth()->user()->getTypeUser().'.maintenances.index',
     'route2' => 'admin.maintenances.edit',
-    'route3' => 'admin.maintenances.destroy'
+    'route3' => 'admin.maintenances.destroy',
+    'status_driver' => $maintenance->comments ?: "N/A",
     ])
     @endcomponent
 
