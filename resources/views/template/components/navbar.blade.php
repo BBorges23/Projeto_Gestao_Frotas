@@ -1,4 +1,4 @@
-<nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl border border-5 position-sticky blur shadow-blur mt-4 left-auto top-1 z-index-sticky " id="navbarBlur" navbar-scroll="true">
+<nav class="navbar navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl border border-5 position-sticky blur shadow-blur mt-4 left-auto top-1 z-index-sticky " id="navbarBlur" navbar-scroll="true">
     <div class="container-fluid py-1 px-3 ">
         <nav aria-label="breadcrumb">
             <h5>
@@ -13,15 +13,26 @@
             </h5>
         </nav>
 
-        <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
-            <div class="ms-md-auto pe-md-3 d-flex align-items-center " >
-                @yield('search-bar')
-            </div>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fa-solid fa-bars"></i>
+        </button>
 
-            <form method="POST" action="https://material-dashboard-laravel.creative-tim.com/sign-out" class="d-none" id="logout-form">
+        <div class="collapse navbar-collapse justify-content-end" id="navbar">
+            <hr>
+            <ul class="list-group navbar-toggler my-4">
+                @if(auth()->user()->getTypeUser() != 'driver')
+                    <a class="link_navbar text-center py-2" href="{{route(auth()->user()->getTypeUser() .'.vehicles.index')}}"><i class="fa-solid fa-car" style="color: #17a2b8;"></i>  Veículos</a>
+                    <a class="link_navbar text-center py-2" href="{{route(auth()->user()->getTypeUser() .'.drivers.index')}}"><i class="fa-solid fa-clipboard-user" style="color: #28a745;"></i> Motoristas</a>
+                @endif
+                <a class="link_navbar text-center py-2" href="{{route(auth()->user()->getTypeUser() .'.travels.index')}}"><i class="fa-solid fa-route" style="color: #ffc107;"></i> Viagens</a>
+                <a class="link_navbar text-center py-2" href="{{route(auth()->user()->getTypeUser() .'.maintenances.index')}}"><i class="fa-solid fa-screwdriver-wrench" style="color: #6c757d;"></i> Manutenções</a>
+            </ul>
+                @yield('search-bar')
+            <br>
+            <form method="POST" action="https://material-dashboard-laravel.creative-tim.com/sign-out" class="d-none " id="logout-form">
                 <input type="hidden" name="_token" value="shUnWPbTPSOqlLQNdcSov4k0UQmkOUDnwfjdZXw9"> </form>
             <ul class="navbar-nav  justify-content-end">
-                <li class="nav-item d-flex align-items-center">
+                <li class="nav-item d-flex justify-content-center align-content-center">
                     @auth()
                         <form method="POST" action="{{route('logout')}}">
                             @csrf

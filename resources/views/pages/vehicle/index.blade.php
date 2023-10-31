@@ -37,7 +37,7 @@
     @if(isset($resultados))
         <div class="row">
             @foreach ($resultados as $vehicle)
-                <div class="col-sm-3">
+                <div class="col-md-3 ">
                     @component('components.small-box',[
                     'bg' => 'bg-info',
                     'label'=> $vehicle->model->brand->name,

@@ -1,22 +1,21 @@
 <form class="form-custom" method="POST" action="{{route($route_update, $id)}}">
     @csrf
     @method('PUT')
-    <section class="vh-100">
-        <div class="container py-4 h-100">
-            <div class="row d-flex justify-content-center h-100">
-                <div class="col col-lg-9 mb-4 mb-lg-0">
-                    <div class="card mb-3" style="border-radius: .5rem;">
-                        <div class="row g-0">
-                            <div class="col-md-4 text-center text-white {{$cor}}"
-                                 style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
-                                <img src="{{asset($imagem)}}"
-                                     alt="Avatar" class="img-fluid my-5" style="width: 200px;" />
-                                @if(isset($nome))
-                                    <h4>{{$nome}}</h4>
-                                @endif
-                                @if(isset($descricao))
-                                    <h5 class="pb-2">{{$descricao}}</h5>
-                                @endif
+    <div class="container ">
+        <div class="row d-flex justify-content-center ">
+            <div class="col-9 ">
+                <div class="card " style="border-radius: .5rem;">
+                    <div class="row g-0">
+                        <div class="col-md-4 text-center text-white {{$cor}}"
+                             style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
+                            <img src="{{asset($imagem)}}"
+                                 alt="Avatar" class="img-fluid my-5" style="width: 200px;" />
+                            @if(isset($nome))
+                                <h4>{{$nome}}</h4>
+                            @endif
+                            @if(isset($descricao))
+                                <h5 class="pb-2">{{$descricao}}</h5>
+                            @endif
 
                         </div>
                         <div class="col-md-8">
