@@ -9,6 +9,16 @@
 
 @section('content')
 
+    @role('admin')
+    @section('plus_button')
+        @component('components.plus_button',[
+        'colorBTN'=> 'btn-info',
+         'itens' =>  ['item'=> ['Criar Modelos'], 'link'=> ['admin.carmodels.create']
+         ]])
+        @endcomponent
+    @endsection
+    @endrole
+
     @section('search-bar')
         @component('components.search-bar',[
             'rota' => 'carmodels',
@@ -47,7 +57,6 @@
                 </div>
             @endforeach
         </div>
-        <a class="btn btn-success" href="{{ route('admin.carmodels.create',$model->id) }}">Criar Modelo</a><br />
     @endif
     @empty($model)
         <h4>Não há modelos que correspondam à pesquisa</h4>

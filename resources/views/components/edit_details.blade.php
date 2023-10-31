@@ -1,12 +1,3 @@
-@if($errors->any())
-    Mensagem de erro do topo
-    <div class="row p-2">
-        <div class="alert alert-danger" role="alert">
-            Verifique os dados inseridos
-        </div>
-    </div>
-@endif
-
 <form class="form-custom" method="POST" action="{{route($route_update, $id)}}">
     @csrf
     @method('PUT')
@@ -27,68 +18,121 @@
                                     <h5 class="pb-2">{{$descricao}}</h5>
                                 @endif
 
-                            </div>
-                            <div class="col-md-8">
-                                <div class="card-body p-4">
-                                    <h6>Informações</h6>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body p-4">
+                                <h6>Informações</h6>
+                                <hr class="mt-0 mb-4">
+                                <div class="row pt-1">
+                                    <div class="col-6 mb-3">
+                                        <h6>{{$titulo1}}</h6>
+                                        <input type="{{$tipo1}}" name="{{$nome1}}" value="{{($input1) }}" {{$disabled1}}>
+                                        <div class="invalid-feedback">@error($nome1) {{$message}} @enderror</div>
+                                    </div>
+                                    @if(isset($titulo2))
+                                        <div class="col-6 mb-3">
+                                            <h6>{{$titulo2}}</h6>
+                                            <input type={{$tipo2}} name="{{$nome2}}" value="{{($input2) }}">
+                                            <div class="invalid-feedback">@error($nome2) {{$message}} @enderror</div>
+                                        </div>
+                                    @endif
+                                </div>
+                                <hr class="mt-0 mb-4">
+                                <div class="row pt-1">
+                                    @if(isset($titulo3))
+                                        <div class="col-6 mb-3">
+                                            <h6>{{$titulo3}}</h6>
+                                            <select name="{{$select1}}">
+                                                @foreach($array1 as $option1)
+                                                    <option value="{{$option1->id}}" {{$selected1 == $option1->id ? 'selected' : ''}}>
+                                                        {{ $option1->name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    @endif
+                                    @if(isset($titulo4))
+                                        <div class="col-6 mb-3">
+                                            <h6>{{$titulo4}}</h6>
+                                            <select name="{{$select2}}">
+                                                @foreach($array2 as $option2)
+                                                    <option value="{{ $option2->id }}" {{ $selected2 ==$option2->id ? 'selected' : ''}}>
+                                                        {{ $option2->licence_plate }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    @endif
+                                    @if(isset($titulo5))
+                                        <div class="col-6 mb-3">
+                                            <h6>{{$titulo5}}</h6>
+                                            <select name="{{$select3}}">
+                                                @foreach($array3 as $option3)
+                                                    <option value="{{ $option3->id }}" {{ $selected3 ==$option3->id ? 'selected' : ''}}>
+                                                        {{ $option3->user->name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    @endif
+                                    @if(isset($titulo6))
+                                        <div class="col-6 mb-3">
+                                            <h6>{{$titulo6}}</h6>
+                                            <input type="{{$tipo3}}" name="{{$nome3}}" value="{{($input3) }}" {{$disabled2}}>
+                                            <div class="invalid-feedback">@error($nome3) {{$message}} @enderror</div>
+                                        </div>
+                                    @endif
+                                    @if(isset($titulo7))
+                                        <div class="col-6 mb-3">
+                                            <h6>{{$titulo7}}</h6>
+                                            <input type="{{$tipo4}}" name="{{$nome4}}" value="{{($input4) }}">
+                                            <div class="invalid-feedback">@error($nome4) {{$message}} @enderror</div>
+                                        </div>
+                                    @endif
+                                </div>
+                                @if(isset($titulo8))
                                     <hr class="mt-0 mb-4">
                                     <div class="row pt-1">
                                         <div class="col-6 mb-3">
-                                            <h5>{{$titulo1}}</h5>
-                                            <input type="text" name="{{$nome1}}" value="{{($input1) }}">
-                                            <div class="invalid-feedback">@error($nome1) {{$message}} @enderror</div>
+                                            <h6>{{$titulo8}}</h6>
+                                            <select name="state">
+                                                <option value="PROCESSANDO">PROCESSANDO</option>
+                                                <option value="CANCELADO">CANCELADO</option>
+                                                <option value="CONCLUIDO">CONCLUIDO</option>
+                                            </select>
+                                            @if(request('state') === 'CANCELADO')
+                                                <input hidden="" type="text" name="is_traveling" value="0">
+                                            @elseif(request('state') === 'CONCLUIDO')
+                                                <input hidden="" type="text" name="is_traveling" value="0">
+                                            @else
+                                                <input hidden="" type="text" name="is_traveling" value="1">
+                                            @endif
                                         </div>
-                                        @if(isset($titulo2))
-                                            <div class="col-6 mb-3">
-                                                <h6>{{$titulo2}}</h6>
-                                                <input type="text" name="{{$nome2}}" value="{{($input2) }}">
-                                                <div class="invalid-feedback">@error($nome2) {{$message}} @enderror</div>
-                                            </div>
-                                        @endif
                                     </div>
-                                    @if(isset($titulo3))
-                                        <h6></h6>
-                                        <hr class="mt-0 mb-4">
-                                        <div class="row pt-1">
-                                            <div class="col-6 mb-3">
-                                                <h6>{{$titulo3}}</h6>
-                                                <select name="{{$select1}}">
-                                                    @foreach($array1 as $option)
-                                                        <option value="{{ $option->id }} {{ $selected == $option->id ? 'selected' : '' }}">
-                                                            {{ $option->name }}
-                                                        </option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                            <div class="col-6 mb-3">
-                                                @if(isset($titulo4))
-                                                    <h6>{{$titulo4}}</h6>
-                                                    <input type="{{$tipo}}" name="{{$nome3}}" value="{{($input3) }}">
-                                                    <div class="invalid-feedback">@error($nome3) {{$message}} @enderror</div>
-                                                @endif
-                                            </div>
-                                        </div
-                                    @endif
-                                    @if(isset($titulo5))
-                                        <h6></h6>
-                                        <hr class="mt-0 mb-4">
-                                        <div class="row pt-1">
-                                            <div class="col-6 mb-3">
-                                                <h6>{{$titulo5}}</h6>
-                                                <p class="text-muted">{{$informacao5}}</p>
-                                            </div>
-                                            <div class="col-6 mb-3">
-                                                <h6>{{$titulo6}}</h6>
-                                                <p class="text-muted">{{$informacao6}}</p>
-                                            </div>
+                                @endif
+                                @if(isset($titulo9))
+                                    <hr class="mt-0 mb-4">
+                                    <div class="row pt-1">
+                                        <div class="col-6 mb-3">
+                                            <h6>{{$titulo9}}</h6>
+                                            <select name="condition">
+                                                <option value="FERIAS">FERIAS</option>
+                                                <option value="BAIXA">BAIXA</option>
+                                                <option value="ATIVO">ATIVO</option>
+                                            </select>
+                                            @if(request('condition') === 'ATIVO')
+                                                <input hidden="" type="text" name="is_working" value="1">
+                                            @elseif(request('condition') === 'FERIAS')
+                                                <input hidden="" type="text" name="is_working" value="1">
+                                            @elseif(request('condition') === 'BAIXA')
+                                                <input hidden="" type="text" name="is_working" value="1">
+                                            @endif
                                         </div>
-                                    @endif
-                                    <div class="d-flex justify-content-start gap-2 ">
-
-                                        <button type="submit" class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i></button>
-
-                                        <a class="btn btn-danger" href="{{ route($route_show ,$id) }}"><i class="fa-solid fa-ban"></i></a><br />
                                     </div>
+                                @endif
+                                <div class="d-flex justify-content-start gap-2 ">
+                                    <button type="submit" class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i></button>
+                                    <a class="btn btn-danger" href="{{ route($route_show ,$id) }}"><i class="fa-solid fa-ban"></i></a><br />
                                 </div>
                             </div>
                         </div>
@@ -96,5 +140,5 @@
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 </form>

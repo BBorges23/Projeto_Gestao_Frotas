@@ -90,9 +90,10 @@ class CarmodelController extends Controller
     public function update(Request $request, Carmodel $carmodel)
     {
         $data = $request->validate($this->rules, $this->msg);
-        $carmodel = new Carmodel($data);
+        $carmodel->update($data);
         $carmodel->save();
-        return view('pages.carmodel.show', ['carmodel' => $carmodel]);
+
+        return redirect()->route('admin.carmodels.show', ['carmodel' => $carmodel]);
     }
 
     /**

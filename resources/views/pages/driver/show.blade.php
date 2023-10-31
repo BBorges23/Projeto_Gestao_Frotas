@@ -12,6 +12,8 @@
     'informacao1' => $driver->nif,
     'titulo2' => 'Email',
     'informacao2' => $driver->user->email,
+    'titulo3' => 'Telefone',
+    'informacao3' => $driver->phone,
     'id' => $driver->id,
     'route1' => auth()->user()->getTypeUser().'.drivers.index',
     'route2' => 'admin.drivers.edit',

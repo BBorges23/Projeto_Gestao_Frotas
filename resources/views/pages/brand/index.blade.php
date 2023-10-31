@@ -8,6 +8,16 @@
 @endif
 
 @section('search-bar')
+
+    @role('admin')
+    @section('plus_button')
+        @component('components.plus_button',[
+        'colorBTN'=> 'btn-info',
+         'itens' =>  ['item'=> ['Criar Marca'], 'link'=> ['admin.brands.create']]
+         ])
+        @endcomponent
+    @endsection
+    @endrole
     @component('components.search-bar',[
         'rota' => 'brands',
         'placeholder' => 'Nome'
@@ -47,7 +57,6 @@
                 </div>
             @endforeach
         </div>
-        <a class="btn btn-success" href="{{ route('admin.brands.create',$brand->id) }}">Criar Marca</a><br />
     @endif
     @empty($brand)
         <h4>Não há marcas que correspondam à pesquisa</h4>

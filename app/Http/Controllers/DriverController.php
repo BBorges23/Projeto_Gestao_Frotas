@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
+use Illuminate\Support\Facades\Hash;
 
 class DriverController extends Controller
 {
@@ -21,13 +22,14 @@ class DriverController extends Controller
         'name'=>'required|min:3|max:255',
         'nif' => 'required|regex:/^[0-9]+$/',
         'email'=>'required|regex:/^\S+@\S+\.\S+$/',
-        'phone'=>'required|regex:/^\d{9}$/'
+        'phone'=>'required|regex:/^\d{9}$/',
+        'password' => 'required|min:6'
     ];
 
     protected $rules_update = [
-        'name'=>'required|min:3|max:255',
+//        'name'=>'required|min:3|max:255',
         'nif' => 'required|regex:/^[0-9]+$/',
-        'email'=>'required|regex:/^\S+@\S+\.\S+$/',
+//        'email'=>'required|regex:/^\S+@\S+\.\S+$/',
         'phone'=>'required|regex:/^\d{9}$/',
         'condition'=>'required'
     ];
@@ -36,8 +38,6 @@ class DriverController extends Controller
 
     public function pesquisar(Request $request){
         $pesquisa = $request->input('campo_de_pesquisa');
-
-
 
         if (empty($pesquisa)) {
             return redirect()->route(auth()->user()->getTypeUser().'.drivers.index');
@@ -78,10 +78,28 @@ class DriverController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate($this->rules_create,$this->msg);
-        $driver = new Driver($data);
+
+        // Cria um novo user
+        $user = new User([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+        ]);
+        $user->save();
+
+        // Associa o ID do usuário ao motorista
+        $driver = new Driver([
+            'nif' => $data['nif'],
+            'phone' => $data['phone'],
+            'user_id' => $user->id, // ID do usuário associado
+        ]);
         $driver->save();
+
+        $user->assignRole('driver');
+
         return redirect()->route('admin.drivers.index',$driver);
     }
+
     /**
      * Display the specified resource.
      */
