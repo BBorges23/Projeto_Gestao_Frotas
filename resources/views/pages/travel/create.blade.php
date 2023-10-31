@@ -76,7 +76,7 @@
         'select7' => 'vehicle_id',
         'array7' => $vehicles,
         'option7' => $vehicle,
-        'cancelar' => 'admin.travels.index'
+        'cancelar' => auth()->user()->getTypeUser().'.travels.index'
        ])
         @endcomponent
 

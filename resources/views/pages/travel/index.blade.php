@@ -11,7 +11,7 @@
     @section('plus_button')
         @component('components.plus_button',[
         'colorBTN'=> 'btn-warning',
-        'itens'=>['item'=> ['Criar Viagem'], 'link' => ['admin.travels.create']]])
+        'itens'=>['item'=> ['Criar Viagem'], 'link' => [auth()->user()->getTypeUser().'.travels.create']]])
         @endcomponent
     @endsection
 

@@ -63,7 +63,7 @@
     'select7' => 'vehicle_id',
     'array7' => $vehicles,
     'option7' => $vehicle,
-    'cancelar' => 'admin.maintenances.index'
+    'cancelar' => auth()->user()->getTypeUser().'.maintenances.index'
 
 ])
 @endcomponent

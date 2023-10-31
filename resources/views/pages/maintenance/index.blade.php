@@ -10,7 +10,7 @@
     @section('plus_button')
         @component('components.plus_button',[
         'colorBTN'=> 'btn-secondary',
-        'itens'=>['item' => ['Criar Manutenção'], 'link' => ['admin.maintenances.create']]
+        'itens'=>['item' => ['Criar Manutenção'], 'link' => [auth()->user()->getTypeUser().'.maintenances.create']]
         ])
         @endcomponent()
     @endsection

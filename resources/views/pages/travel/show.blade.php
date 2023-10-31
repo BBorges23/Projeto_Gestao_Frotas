@@ -18,8 +18,8 @@
     'informacao4' => $travel->coords_destino,
     'id' => $travel->id,
     'route1' => auth()->user()->getTypeUser().'.travels.index',
-    'route2' => 'admin.travels.edit',
-    'route3' => 'admin.travels.destroy'
+    'route2' => auth()->user()->getTypeUser().'.travels.edit',
+    'route3' => auth()->user()->getTypeUser().'.travels.destroy'
     ])
     @endcomponent
 
