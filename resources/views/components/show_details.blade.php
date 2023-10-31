@@ -32,6 +32,7 @@
                                         </div>
                                     @endif
                                 </div>
+
                                 @if(isset($titulo3))
                                     <hr class="mt-0 mb-4">
                                     <div class="row pt-1">
@@ -81,7 +82,14 @@
 
                                 @endif
                                 <div class="d-flex justify-content-start gap-2 ">
-                                    <a class="btn btn-primary" href="{{ route($route1) }}"><i class="fa-solid fa-list"></i></a>
+                                    <a class="btn btn-primary" href="{{ route($route1) }}"><i
+                                            class="fa-solid fa-list"></i></a>
+                                    <div class="d-flex justify-content-end gap-1 align-content-end w-100">
+                                        <a class="btn btn-danger" href="{{ route($route1) }}"
+                                           onclick="teste(event)">Cancelar</a>
+                                        <a class="btn btn-success" href="{{ route($route1) }}"
+                                           onclick="confirmation_cancel1(event)">Concluir</a>
+                                    </div>
                                     @role('admin')
                                     <a class="btn btn-success" href="{{ route($route2, $id) }}"><i
                                             class="fa-solid fa-pen-to-square"></i></a>

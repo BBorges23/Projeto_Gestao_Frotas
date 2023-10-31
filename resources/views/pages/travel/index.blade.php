@@ -28,11 +28,11 @@
             @foreach($resultados as $travel)
                 <div class="col-sm-3">
                     @component('components.small-box',[
-                    'bg' => 'bg-warning',
+
                     'icon_label' => 'fa-solid fa-road',
                     'label'=> $travel->id.' - '.$travel->vehicle->licence_plate ,
                     'titulo' => $travel->driver->user->name  ,
-
+                    'driver_state' => $travel->driver_state,
                     'icon_titulo' => 'fa-solid fa-clipboard-user',
                     'sub_titulo' => $travel->coords_origem.' -> '.$travel->coords_destino,
                     'icon'=>'fa-solid fa-route',
@@ -47,11 +47,10 @@
             @foreach($travels as $travel)
                 <div class="col-sm-3">
                     @component('components.small-box',[
-                    'bg' => 'bg-warning',
                     'icon_label' => 'fa-solid fa-road',
                     'label'=> $travel->id.' - '.$travel->vehicle->licence_plate ,
                     'titulo' => $travel->driver->user->name  ,
-
+                    'driver_state' => $travel->driver_state,
                     'icon_titulo' => 'fa-solid fa-clipboard-user',
                     'sub_titulo' => $travel->coords_origem.' -> '.$travel->coords_destino,
                     'icon'=>'fa-solid fa-route',

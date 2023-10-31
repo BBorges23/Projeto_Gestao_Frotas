@@ -1,27 +1,47 @@
-<div class="small-box  {{$bg}}">
-    <div class="inner" >
-        <h3 style="overflow: hidden; display: -webkit-box;-webkit-line-clamp: 4;-webkit-box-orient: vertical;height: 2.5em;">
-            @if(isset($icon_label))
-                <i class="{{ $icon_label }}"></i>
-            @endif
-            {{$label}}
-        </h3>
-        <p>
-            @if(isset($icon_titulo))
-                <i class="{{ $icon_titulo }}"></i>
-            @endif
-            {{$titulo}}</p>
-
-        @if (isset($sub_titulo))
-            <p>{{$sub_titulo}}</p>
+@if(isset($driver_state))
+@if($driver_state === "CONCLUIDO")
+    <div class="small-box bg-success">
+@elseif($driver_state === "ACEITE")
+    <div class="small-box bg-warning">
+@elseif($driver_state === "PROBLEMAS")
+    <div class="small-box bg-danger">
+@elseif($driver_state === "POR ACEITAR")
+    <div class="small-box bg-gray-light">
+@else
+    <div class="small-box">
+@endif
+@else
+    <div class="small-box {{$bg}}">
         @endif
 
-    </div>
-    <div class="icon">
-        <i class="{{$icon}}"></i>
-    </div>
+        <div class="inner">
+            <h3 style="overflow: hidden; display: -webkit-box;-webkit-line-clamp: 4;-webkit-box-orient: vertical;height: 2.5em;">
+                @if(isset($icon_label))
+                    <i class="{{ $icon_label }}"></i>
+                @endif
+                {{$label}}
+            </h3>
+            <p class="fs-5">
+                @if(isset($icon_titulo))
+                    <i class="{{ $icon_titulo }}"></i>
+                @endif
+                {{$titulo}}
+            </p>
 
-    <a href="{{$link}}" class="small-box-footer">
-        Mais Informações <i class="fas fa-arrow-circle-right"></i>
-    </a>
-</div>
+            @if (isset($sub_titulo))
+                <p class="fs-5">{{$sub_titulo}}</p>
+            @endif
+        </div>
+
+        @if(isset($driver_state))
+            <p class="text-end fs-5 pe-3">{{$driver_state}}</p>
+        @endif
+
+        <div class="icon">
+            <i class="{{$icon}}"></i>
+        </div>
+
+        <a href="{{$link}}" class="small-box-footer">
+            Mais Informações <i class="fas fa-arrow-circle-right"></i>
+        </a>
+    </div>

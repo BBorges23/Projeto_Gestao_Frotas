@@ -7273,6 +7273,10 @@ fieldset:disabled .btn {
 .text-opacity-100 {
     --bs-text-opacity: 1; }
 
+.bg-gray-light{
+    background-color: #becbd5 !important;
+}
+
 .bg-primary {
     background-color: #e91e63 !important; }
 
