@@ -25,7 +25,7 @@
                                 <div class="row pt-1">
                                     <div class="col-6 mb-3">
                                         <h6>{{$titulo1}}</h6>
-                                        <input type="{{$tipo1}}" name="{{$nome1}}" value="{{($input1) }}" {{$disabled1}}>
+                                        <input type="{{$tipo1}}" name="{{$nome1}}" value="{{($input1) }}" @if(isset($disabled1)){{$disabled1}}@endif>
                                         <div class="invalid-feedback">@error($nome1) {{$message}} @enderror</div>
                                     </div>
                                     @if(isset($titulo2))
@@ -77,7 +77,7 @@
                                     @if(isset($titulo6))
                                         <div class="col-6 mb-3">
                                             <h6>{{$titulo6}}</h6>
-                                            <input type="{{$tipo3}}" name="{{$nome3}}" value="{{($input3) }}" {{$disabled2}}>
+                                            <input type="{{$tipo3}}" name="{{$nome3}}" value="{{($input3) }}" @if(isset($disabled2)){{$disabled2}}@endif>
                                             <div class="invalid-feedback">@error($nome3) {{$message}} @enderror</div>
                                         </div>
                                     @endif

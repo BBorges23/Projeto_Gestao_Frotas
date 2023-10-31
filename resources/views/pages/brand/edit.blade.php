@@ -37,7 +37,7 @@
             'tipo1' => 'text',
             'nome1' => 'name',
             'input1' => $brand->name,
-            'route_show' => 'admin.brands.show',
+            'route_show' => 'admin.brands.show'
 
             ])
     @endcomponent
