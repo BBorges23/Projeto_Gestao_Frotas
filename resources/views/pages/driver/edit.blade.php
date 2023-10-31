@@ -60,8 +60,39 @@
 {{--                <div class="invalid-feedback">@error('condition') {{$message}} @enderror</div>--}}
 {{--            </table><br />--}}
 
-            <button type="submit" class="btn btn-primary">Editar Motorista</button><br />
-            <a class="btn btn-secondary" href="{{ route('admin.drivers.show',$driver->id) }}">Cancelar</a><br />
-        </form>
-    </div>
+{{--            <button type="submit" class="btn btn-primary">Editar Motorista</button><br />--}}
+{{--            <a class="btn btn-secondary" href="{{ route('admin.drivers.show',$driver->id) }}">Cancelar</a><br />--}}
+{{--        </form>--}}
+{{--    </div>--}}
+
+
+    @component('components.edit_details', [
+    'route_update' => 'admin.drivers.update',
+    'id' => $driver->id,
+    'cor' => 'bg-success',
+    'imagem' => 'images/pessoa.png',
+    'nome' => 'Editar Motorista',
+    'titulo1' => 'Nome',
+    'tipo1' => 'text',
+    'nome1' => 'name',
+    'input1' => $driver->user->name,
+    'disabled1' => 'disabled',
+    'titulo2' => 'NIF',
+    'tipo2' => 'text',
+    'nome2' => 'nif',
+    'input2' => $driver->nif,
+    'titulo6' => 'Email',
+    'tipo3' => 'text',
+    'nome3' => 'email',
+    'input3' =>$driver->user->email,
+    'disabled2' => 'disabled',
+    'titulo7' => 'Contato',
+    'tipo4' => 'text',
+    'nome4'=> 'phone',
+    'input4' => $driver->phone,
+    'titulo9' => 'Condição',
+    'route_show' => 'admin.drivers.show'
+])
+    @endcomponent
+
 @endsection

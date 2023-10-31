@@ -52,5 +52,33 @@
 {{--        </form>--}}
 {{--    </div>--}}
 
+    @foreach($vehicles as $vehicle)
+    @endforeach
+
+    @foreach($drivers as $driver)
+    @endforeach
+        @component('components.create_form', [
+        'route_create' => 'admin.travels.store',
+        'imagem' => 'images/mapa.png',
+        'cor' => 'btn-warning',
+        'nome' => 'Criar Viagem',
+        'titulo1' => 'Coordenadas de Origem',
+        'tipo1' => 'text',
+        'input_nome1' => 'coords_origem',
+        'titulo2' => 'Coordenadas de Destino',
+        'tipo2' => 'text',
+        'input_nome2' => 'coords_destino',
+        'titulo6' => 'Condutor',
+        'select6' => 'driver_id',
+        'array6' => $drivers,
+        'option6' => $driver,
+        'titulo7' => 'Veiculo',
+        'select7' => 'vehicle_id',
+        'array7' => $vehicles,
+        'option7' => $vehicle,
+        'cancelar' => 'admin.travels.index'
+       ])
+        @endcomponent
+
 @endsection
 

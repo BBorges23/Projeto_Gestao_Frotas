@@ -10,17 +10,19 @@
     'imagem' => 'images/vehicle.png',
     'nome' => 'Criar Veículo',
     'titulo1' => 'Matricula',
+    'tipo1' => 'text',
     'input_nome1' => 'licence_plate',
     'titulo2' => 'Ano',
+    'tipo2' => 'text',
     'input_nome2' => 'year',
     'titulo3' => 'Modelo',
-    'select1' => 'carmodel_id',
-    'array1' => $carmodels,
-    'option' => $model,
-    'cancelar' => 'admin.vehicles.index',
+    'select3' => 'carmodel_id',
+    'array3' => $carmodels,
+    'option3' => $model,
     'titulo4' => 'Data de compra',
-    'tipo' => 'date',
-    'input_nome3' => 'date_buy'
+    'tipo4' => 'date',
+    'input_nome4' => 'date_buy',
+    'cancelar' => 'admin.vehicles.index'
 ])
     @endcomponent
     @endforeach

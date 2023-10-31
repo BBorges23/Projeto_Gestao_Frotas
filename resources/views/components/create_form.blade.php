@@ -71,12 +71,29 @@
                                     <hr class="mt-0 mb-4">
                                     <div class="row pt-1">
                                         <div class="col-6 mb-3">
-                                            <h6>{{$titulo5}}</h6>
-                                            <p class="text-muted">{{$informacao5}}</p>
+                                            @if(isset($titulo5))
+                                                <h6>{{$titulo5}}</h6>
+                                                <input type="{{$tipo5}}" name="{{$input_nome5}}" value="{{ old($input_nome5) }}">
+                                                <div class="invalid-feedback">@error($input_nome5) {{$message}} @enderror</div>
+                                            @endif
+                                            @if(isset($titulo6))
+                                                <h6>{{$titulo6}}</h6>
+                                                <select name="{{$select6}}">
+                                                    @foreach($array6 as $option6)
+                                                        <option value="{{ $option6->id }}">{{ $option6->user->name }}</option>
+                                                    @endforeach
+                                                </select>
+                                            @endif
                                         </div>
                                         <div class="col-6 mb-3">
-                                            <h6>{{$titulo6}}</h6>
-                                            <p class="text-muted">{{$informacao6}}</p>
+                                            @if(isset($titulo7))
+                                                <h6>{{$titulo7}}</h6>
+                                                <select name="{{$select7}}">
+                                                    @foreach($array7 as $option7)
+                                                        <option value="{{ $option7->id }}">{{ $option7->licence_plate }}</option>
+                                                    @endforeach
+                                                </select>
+                                            @endif
                                         </div>
                                     </div>
                                     <div class="d-flex justify-content-start gap-2 ">

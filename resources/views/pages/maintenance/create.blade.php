@@ -41,8 +41,31 @@
 {{--                    </td>--}}
 {{--                </tr>--}}
 
-            </table>
-            <button type="submit" class="btn btn-primary">Criar Manutenção</button>
-        </form>
-    </div>
+{{--            </table>--}}
+{{--            <button type="submit" class="btn btn-primary">Criar Manutenção</button>--}}
+{{--        </form>--}}
+{{--    </div>--}}
+
+@foreach($vehicles as $vehicle) @endforeach
+
+@component('components.create_form', [
+    'route_create' => 'admin.maintenances.store',
+    'imagem' => 'images/maintenance.png',
+    'cor' => 'btn-secondary',
+    'nome' => 'Criar Manutenção',
+    'titulo1' => 'Data de Entrada',
+    'tipo1' => 'date',
+    'input_nome1' => 'date_entry',
+    'titulo2' => 'Motivo',
+    'tipo2' => 'text',
+    'input_nome2' => 'motive',
+    'titulo7' => 'Veiculo',
+    'select7' => 'vehicle_id',
+    'array7' => $vehicles,
+    'option7' => $vehicle,
+    'cancelar' => 'admin.maintenances.index'
+
+])
+@endcomponent
+
 @endsection
