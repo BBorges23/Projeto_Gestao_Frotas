@@ -92,9 +92,9 @@ Route::middleware('role:gestor')->group(function (){
             Route::resource('drivers', DriverController::class)
                 ->only('show','index');
             Route::resource('maintenances', MaintenanceController::class)
-                ->only('create','show','index');
+                ->only('create','show','index','store');
             Route::resource('travels', TravelController::class)
-                ->only('create','show','index');
+                ->only('create','show','index','store');
         });
     });
 });

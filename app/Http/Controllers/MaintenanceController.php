@@ -107,4 +107,16 @@ class MaintenanceController extends Controller
         $maintenance->delete();
         return redirect()->route('admin.maintenances.index');
     }
+
+    public function updateDescription(Request $request, Maintenance $maintenance)
+    {
+        $description = $request->input('text');
+
+        if ($description) {
+            $maintenance->update(['comments' => $description]);
+            return response()->json(['message' => 'Descrição atualizada com sucesso']);
+        }
+
+        return response()->json(['message' => 'Falha na atualização da descrição'], 400);
+    }
 }

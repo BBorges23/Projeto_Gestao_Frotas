@@ -1,16 +1,17 @@
-function confirmation_cancel(ev) {
+function confirmation_conclude(ev) {
     ev.preventDefault();
-    var urlToRedirect = ev.currentTarget.getAttribute('href');
+    // var urlToRedirect = ev.currentTarget.getAttribute('href');
 
     Swal.fire({
         title: "Tem a certeza que deseja avançar?",
         text: "",
         icon: "success",
         showCancelButton: true,
-        confirmButtonColor: '#d33',
+        confirmButtonColor: '#198754',
         cancelButtonColor: '#3085d6',
-        confirmButtonText: 'Cancelar',
         cancelButtonText: 'Não',
+        confirmButtonText: 'Concluir',
+
 
     })
         .then((result) => {

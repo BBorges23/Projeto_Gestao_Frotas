@@ -141,4 +141,17 @@ class TravelController extends Controller
         $travel->delete();
         return redirect()->route('admin.travels.index');
     }
+
+    public function updateDescription(Request $request, Travel $travel)
+    {
+        $description = $request->input('text');
+
+        if ($description) {
+            $travel->update(['comments' => $description]);
+            return response()->json(['message' => 'Descrição atualizada com sucesso']);
+        }
+
+        return response()->json(['message' => 'Falha na atualização da descrição'], 400);
+    }
+
 }
