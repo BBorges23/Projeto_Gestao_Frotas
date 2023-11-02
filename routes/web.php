@@ -26,11 +26,7 @@ use App\Http\Controllers\DriverDashboardController;
 /**
  * Zona para guest - Users não autenticados
  */
-Route::get('/', static function () {
-    if(auth()->check()) {return view('index');}
-
-    return view('auth.login');
-});
+Route::get('/', [DashboardController::class,'autenticado'])->name('home');
 
 Route::get('/login',[LoginController::class, 'showLogin'])->name('login');
 Route::post('/login',[LoginController::class,'login']);

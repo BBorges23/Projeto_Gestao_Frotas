@@ -7,7 +7,9 @@
                 @elseif(request()->routeIs('home'))
                     <a href="{{route('home')}}" class="link_navbar">@yield('title')</a>
                 @else
-                    <a href="{{route(preg_replace('/\.\w+$/', '', request()->route()->getName()) .".index")   }}" class="link_navbar">@yield('title')</a>
+                    @if(request()->route()->getName())
+                        <a href="{{route(preg_replace('/\.\w+$/', '', request()->route()->getName()) .".index")   }}" class="link_navbar">@yield('title')</a>
+                    @endif
                 @endif
                 @yield('subtitle')
             </h5>
