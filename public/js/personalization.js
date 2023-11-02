@@ -3,9 +3,9 @@ function confirmation_cancel(ev) {
     var urlToRedirect = ev.currentTarget.getAttribute('href');
 
     Swal.fire({
-        title: "Tem a certeza de que deseja Cancelar?",
-        text: "Não poderá reverter essa decisão!",
-        icon: "warning",
+        title: "Tem a certeza que deseja avançar?",
+        text: "",
+        icon: "success",
         showCancelButton: true,
         confirmButtonColor: '#d33',
         cancelButtonColor: '#3085d6',
@@ -15,79 +15,104 @@ function confirmation_cancel(ev) {
     })
         .then((result) => {
             if (result.isConfirmed) {
-                var descricao = result.value; // Obtém o valor da caixa de texto
-                // Faça algo com a descrição, se necessário
-                window.location.href = urlToRedirect;
+                // var descricao = result.value; // Obtém o valor da caixa de texto
+                var form = document.getElementById('create'); // Seleciona o formulário pelo ID
+                form.submit(); // Submete o formulário
+
+                // window.location.href = urlToRedirect;
             }
         });
-
 }
 
+//
 
-
-
-function confirmation_cancel1(ev) {
+function confirmation_cancel(ev) {
     ev.preventDefault();
     var urlToRedirect = ev.currentTarget.getAttribute('href');
+    var travelId = ev.currentTarget.getAttribute('name');
+    var routeName = ev.currentTarget.getAttribute('id');
 
     Swal.fire({
-        position: 'top-end',
-        icon: 'success',
-        title: 'Salvo com sucesso',
-        showConfirmButton: false,
-        timer: 1500
-    });
-}
-
-function teste(ev) {
-    ev.preventDefault()
-
-    swal.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
+        title: 'Tem a certeza que quer cancelar?',
+        text: "Não vai ser possivel reverter esta situação",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#d33',
         cancelButtonColor: '#3085d6',
-        confirmButtonText: 'Eliminar',
-        cancelButtonText: 'Cancelar',
-    }).then((result) => {
+        confirmButtonText: 'Cancelar',
+        cancelButtonText: 'Não',
+    }).then(async (result) => {
         if (result.isConfirmed) {
-            swal.fire({
+            const { value: text } = await Swal.fire({
                 input: 'textarea',
-                inputLabel: 'Message',
-                inputPlaceholder: 'Type your message here...',
+                inputLabel: 'Observações',
+                inputPlaceholder: 'Introduza as observações aqui...',
                 inputAttributes: {
-                'aria-label': 'Type your message here'
-            },
-            showCancelButton: true})
-        }
-        else if (result.dismiss === Swal.DismissReason.cancel)
-        {
-            swal.fire(
-                'Cancelled',
-                'Your imaginary file is safe :)',
-                'error'
-            )
-        }
-    })
+                    'aria-label': 'Escreva a sua mensagem'
+                },
+                showCancelButton: true
+            });
 
+            if (text) {
+                console.log("Texto da descrição:", text);
+                console.log("ID da viagem:", travelId);
+                console.log("Nome da Rota:", routeName);
+
+                Swal.fire('Cancelamento feito com sucesso', '', 'info')
+                    .then(() => {
+                        $.ajax({
+                            type: "POST",
+                            url: `/${routeName}/update-description/${travelId}`,
+                            data: {
+                                text: text,
+                                "_token": $("meta[name='csrf-token']").attr('content')
+                            },
+                            success: function (response) {
+                                window.location.href = urlToRedirect;
+                            }
+                        });
+                    });
+            }
+        }
+    });
 }
 
 
-
-
+// function confirmation_cancel1(ev) {
+//     ev.preventDefault();
+//     var urlToRedirect = ev.currentTarget.getAttribute('href');
 //
-// const { value: text } = await Swal.fire({
-//     input: 'textarea',
-//     inputLabel: 'Message',
-//     inputPlaceholder: 'Type your message here...',
-//     inputAttributes: {
-//         'aria-label': 'Type your message here'
-//     },
-//     showCancelButton: true
-// })
-//
-// if (text) {
-//     Swal.fire(text)
+//     Swal.fire({
+//         position: 'top-end',
+//         icon: 'success',
+//         title: 'Salvo com sucesso',
+//         showConfirmButton: false,
+//         timer: 1500
+//     });
 // }
+
+// function showSuccessToast(message) {
+//     message.preventDefault()
+//
+//     const Toast = Swal.mixin({
+//         toast: true,
+//         position: 'center',
+//         showConfirmButton: false,
+//         timer: 700,
+//         timerProgressBar: true,
+//         didOpen: (toast) => {
+//             toast.addEventListener('mouseenter', Swal.stopTimer);
+//             toast.addEventListener('mouseleave', Swal.resumeTimer);
+//         }
+//     });
+//
+//     Toast.fire({
+//         icon: 'success',
+//         title: 'Login feito com sucesso'
+//     }).then(() => {
+//         // Redirecionar para a URL após o toast ser fechado
+//         window.location.href = "/home";
+//     });
+// }
+
+

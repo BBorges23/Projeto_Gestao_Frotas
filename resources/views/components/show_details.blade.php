@@ -1,3 +1,4 @@
+<meta name="csrf-token" content="{{ csrf_token() }}">
 <section>
     <div class="container py-4">
         <div class="row d-flex justify-content-center">

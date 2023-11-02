@@ -35,7 +35,17 @@ Route::post('/login',[LoginController::class,'login']);
  * Só users autenticados
  */
 Route::post('/logout',[LoginController::class,'logout'])->name('logout')->middleware('auth');
-Route::get('/home',[DashboardController::class,'autenticado'])->name('home');
+Route::get('/',[DashboardController::class,'autenticado'])->name('home');
+
+
+/**
+ * UpdateDescription Gestor
+ */
+Route::middleware('auth')->group(function (){
+    Route::post('travels/update-description/{travel}', 'App\Http\Controllers\TravelController@updateDescription')->name('travels.updateDescription');
+    Route::post('maintenances/update-description/{maintenance}', 'App\Http\Controllers\MaintenanceController@updateDescription')->name('maintenances.updateDescription');
+
+});
 
 /**
  * Pesquisas
