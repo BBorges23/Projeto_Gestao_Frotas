@@ -80,7 +80,7 @@ class TravelController extends Controller
         $data = $request->validate($this->rules_create, $this->msg);
         $travel = new Travel($data);
         $travel->save();
-        return redirect()->route('admin.travels.show',$travel);
+        return redirect()->route(auth()->user()->getTypeUser().'.travels.show',$travel);
     }
 
     /**

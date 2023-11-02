@@ -62,7 +62,6 @@
 
                                             <h3>Observações</h3>
                                             <p>{{$status_driver}}</p>
-
                                         </div>
                                     @endif
 
