@@ -1,4 +1,4 @@
-<form class="form-custom" method="POST" action="{{route($route_update, $id)}}">
+<form id="submit" class="submit" method="POST" action="{{route($route_update, $id)}}" onsubmit="return confirmation_conclude(event)">
     @csrf
     @method('PUT')
     <div class="container ">

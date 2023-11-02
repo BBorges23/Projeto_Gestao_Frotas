@@ -1,3 +1,4 @@
+<meta name="csrf-token" content="{{ csrf_token() }}">
 <section>
     <div class="container py-4">
         <div class="row d-flex justify-content-center">
@@ -62,7 +63,6 @@
 
                                             <h3>Observações</h3>
                                             <p>{{$status_driver}}</p>
-
                                         </div>
                                     @endif
 
@@ -85,20 +85,25 @@
                                     <a class="btn btn-primary" href="{{ route($route1) }}"><i
                                             class="fa-solid fa-list"></i></a>
                                     <div class="d-flex justify-content-end gap-1 align-content-end w-100">
-                                        <a class="btn btn-danger" href="{{ route($route1) }}"
-                                           onclick="teste(event)">Cancelar</a>
-                                        <a class="btn btn-success" href="{{ route($route1) }}"
-                                           onclick="confirmation_cancel1(event)">Concluir</a>
+                                        @role('gestor')
+                                        @if(request()->routeIs('*.travels.*') || request()->routeIs('*.maintenances.*'))
+                                        <a class="btn btn-danger" href="{{ route($route1)}}"
+                                           onclick="confirmation_cancel(event)" name="{{$id}}" id="{{basename(parse_url(route($route1))['path'])}}" >Cancelar</a>
+                                        @endrole
+                                        @endif
+                                        @role('driver')
+                                        <a class="btn btn-success" href="{{ route($route1) }}" onclick="confirmation_conclude(event)">Concluir</a>
+                                        @endrole
                                     </div>
                                     @role('admin')
                                     <a class="btn btn-success" href="{{ route($route2, $id) }}"><i
                                             class="fa-solid fa-pen-to-square"></i></a>
-                                    <form class="form-custom" method="POST"
-                                          action="{{route($route3, $id)}}" style="display: inline">
+                                    <form id="submit" class="form-custom" method="POST"
+                                          action="{{route($route3, $id)}}" style="display: inline" onsubmit="return confirmation_conclude(event)">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger"><i
-                                                class="fa-solid fa-trash-can"></i>
+                                        <button type="submit" class="btn btn-danger">
+                                            <i class="fa-solid fa-trash-can"></i>
                                         </button>
                                         <br/>
                                     </form>

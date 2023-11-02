@@ -1,4 +1,4 @@
-<form class="form-custom" method="POST" action="{{route($route_create) }}">
+<form id="submit" class="form-custom" method="POST" action="{{route($route_create) }}" onsubmit="return confirmation_conclude(event)">
     @csrf
     <section class="vh-100">
         <div class="container py-4 h-100">
@@ -97,7 +97,9 @@
                                         </div>
                                     </div>
                                     <div class="d-flex justify-content-start gap-2 ">
-                                        <button type="submit" class="btn btn-primary"><i class="fa-solid fa-circle-plus"></i></button>
+                                        <button type="submit" class="btn btn-primary">
+                                            <i class="fa-solid fa-circle-plus"></i>
+                                        </button>
                                         <a class="btn btn-danger" href="{{ route($cancelar) }}"><i class="fa-solid fa-ban"></i></a><br />
                                     </div>
                                 </div>
@@ -109,3 +111,13 @@
         </div>
     </section>
 </form>
+
+{{--<script>--}}
+{{--    function submeterFormularioERedirecionar() {--}}
+{{--        var form = document.getElementById('create'); // Seleciona o formulário pelo ID--}}
+{{--        form.submit(); // Submete o formulário--}}
+
+{{--        // Após a submissão do formulário, redireciona para a rota especificada no link--}}
+{{--        window.location.href = "{{ route(auth()->user()->getTypeUser().'.travels.index' }}";--}}
+{{--    }--}}
+{{--</script>--}}

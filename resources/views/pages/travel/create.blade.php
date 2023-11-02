@@ -58,7 +58,7 @@
     @foreach($drivers as $driver)
     @endforeach
         @component('components.create_form', [
-        'route_create' => 'admin.travels.store',
+        'route_create' => auth()->user()->getTypeUser().'.travels.store',
         'imagem' => 'images/mapa.png',
         'cor' => 'btn-warning',
         'nome' => 'Criar Viagem',

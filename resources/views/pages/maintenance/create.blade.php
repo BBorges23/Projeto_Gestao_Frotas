@@ -49,7 +49,7 @@
 @foreach($vehicles as $vehicle) @endforeach
 
 @component('components.create_form', [
-    'route_create' => 'admin.maintenances.store',
+    'route_create' => auth()->user()->getTypeUser().'.maintenances.store',
     'imagem' => 'images/maintenance.png',
     'cor' => 'btn-secondary',
     'nome' => 'Criar Manutenção',
