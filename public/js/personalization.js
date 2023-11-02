@@ -17,7 +17,7 @@ function confirmation_conclude(ev) {
         .then((result) => {
             if (result.isConfirmed) {
                 // var descricao = result.value; // Obtém o valor da caixa de texto
-                var form = document.getElementById('create'); // Seleciona o formulário pelo ID
+                var form = document.getElementById('submit'); // Seleciona o formulário pelo ID
                 form.submit(); // Submete o formulário
 
                 // window.location.href = urlToRedirect;

@@ -98,12 +98,12 @@
                                     @role('admin')
                                     <a class="btn btn-success" href="{{ route($route2, $id) }}"><i
                                             class="fa-solid fa-pen-to-square"></i></a>
-                                    <form class="form-custom" method="POST"
-                                          action="{{route($route3, $id)}}" style="display: inline">
+                                    <form id="submit" class="form-custom" method="POST"
+                                          action="{{route($route3, $id)}}" style="display: inline" onsubmit="return confirmation_conclude(event)">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger"><i
-                                                class="fa-solid fa-trash-can"></i>
+                                        <button type="submit" class="btn btn-danger">
+                                            <i class="fa-solid fa-trash-can"></i>
                                         </button>
                                         <br/>
                                     </form>

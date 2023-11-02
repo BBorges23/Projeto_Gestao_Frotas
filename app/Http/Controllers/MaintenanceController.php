@@ -67,7 +67,7 @@ class MaintenanceController extends Controller
         $data=$request->validate($this->rules_create, $this->msg);
         $maintenance = new Maintenance($data);
         $maintenance->save();
-        return redirect()->route('admin.maintenances.show', $maintenance);
+        return redirect()->route(auth()->user()->getTypeUser().'.maintenances.show', $maintenance);
     }
     /**
      * Display the specified resource.

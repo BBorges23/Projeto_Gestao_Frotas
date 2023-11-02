@@ -1,4 +1,4 @@
-<form id="create" class="form-custom" method="POST" action="{{route($route_create) }}" onsubmit="return confirmation_conclude(event)">
+<form id="submit" class="form-custom" method="POST" action="{{route($route_create) }}" onsubmit="return confirmation_conclude(event)">
     @csrf
     <section class="vh-100">
         <div class="container py-4 h-100">
