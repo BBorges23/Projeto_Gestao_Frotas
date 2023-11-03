@@ -26,11 +26,7 @@ use App\Http\Controllers\DriverDashboardController;
 /**
  * Zona para guest - Users não autenticados
  */
-Route::get('/', static function () {
-    if(auth()->check()) {return view('index');}
-
-    return view('auth.login');
-});
+Route::get('/', [DashboardController::class,'autenticado'])->name('home');
 
 Route::get('/login',[LoginController::class, 'showLogin'])->name('login');
 Route::post('/login',[LoginController::class,'login']);
@@ -39,7 +35,17 @@ Route::post('/login',[LoginController::class,'login']);
  * Só users autenticados
  */
 Route::post('/logout',[LoginController::class,'logout'])->name('logout')->middleware('auth');
-Route::get('/home',[DashboardController::class,'autenticado'])->name('home');
+Route::get('/',[DashboardController::class,'autenticado'])->name('home');
+
+
+/**
+ * UpdateDescription Gestor
+ */
+Route::middleware('auth')->group(function (){
+    Route::post('travels/update-description/{travel}', 'App\Http\Controllers\TravelController@updateDescription')->name('travels.updateDescription');
+    Route::post('maintenances/update-description/{maintenance}', 'App\Http\Controllers\MaintenanceController@updateDescription')->name('maintenances.updateDescription');
+
+});
 
 /**
  * Pesquisas
@@ -86,9 +92,9 @@ Route::middleware('role:gestor')->group(function (){
             Route::resource('drivers', DriverController::class)
                 ->only('show','index');
             Route::resource('maintenances', MaintenanceController::class)
-                ->only('create','show','index');
+                ->only('create','show','index','store');
             Route::resource('travels', TravelController::class)
-                ->only('create','show','index');
+                ->only('create','show','index','store');
         });
     });
 });
