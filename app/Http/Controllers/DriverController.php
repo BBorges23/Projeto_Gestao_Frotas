@@ -125,14 +125,18 @@ class DriverController extends Controller
     {
         $newState = $request->input('condition');
 
-        if ($newState === 'ATIVO') {
-            $driver->is_working = 1;
-        }
-        elseif ($newState === 'FERIAS')
-        {
+        if ($newState === 'FERIAS') {
             $driver->is_working = 1;
         }
         elseif ($newState === 'BAIXA')
+        {
+            $driver->is_working = 1;
+        }
+        elseif ($newState === 'EM TRABALHO')
+        {
+            $driver->is_working = 1;
+        }
+        elseif ($newState === 'DISPONIVEL')
         {
             $driver->is_working = 1;
         }

@@ -8,6 +8,8 @@
     'imagem' => 'images/pessoa.png',
     'nome' => $driver->user->name,
     'descricao' => 'Motorista Que Você Respeita',
+    'estado' => 'Condição',
+    'driver_state' => $driver->condition,
     'titulo1'=> 'NIF',
     'informacao1' => $driver->nif,
     'titulo2' => 'Email',

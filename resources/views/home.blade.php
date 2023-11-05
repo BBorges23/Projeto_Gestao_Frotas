@@ -16,7 +16,7 @@
                 <div class="icon" >
                     <i class="fa-solid fa-user"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="{{route(auth()->user()->getTypeUser().'.drivers.index')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
         {{--    Veiculos--}}
@@ -30,7 +30,7 @@
                 <div class="icon" >
                     <i class="fa-solid fa-car-side"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="{{route(auth()->user()->getTypeUser().'.vehicles.index')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
         {{--    Viagens--}}
@@ -44,7 +44,7 @@
                 <div class="icon" >
                     <i class="fa-solid fa-route"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="{{route(auth()->user()->getTypeUser().'.travels.index')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
         {{--    Manutencoes--}}
@@ -58,12 +58,12 @@
                 <div class="icon" >
                     <i class="fa-solid fa-screwdriver-wrench"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="{{route(auth()->user()->getTypeUser().'.maintenances.index')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
     </div>
     <div class="row mx-2">
-        <h2 class="mb-4">Gestão Ativos</h2>
+        <h2 class="mb-4">Total</h2>
 
         {{--    Motoristas--}}
         <div class="col-md-3 col-6" >
@@ -76,7 +76,7 @@
                 <div class="icon" >
                     <i class="fa-solid fa-user"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="{{route(auth()->user()->getTypeUser().'.drivers.index')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
         {{--    Veiculos--}}
@@ -90,7 +90,7 @@
                 <div class="icon" >
                     <i class="fa-solid fa-car-side"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="{{route(auth()->user()->getTypeUser().'.vehicles.index')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
         {{--    Viagens--}}
@@ -104,7 +104,7 @@
                 <div class="icon" >
                     <i class="fa-solid fa-route"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="{{route(auth()->user()->getTypeUser().'.travels.index')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
         {{--    Manutencoes--}}
@@ -118,7 +118,7 @@
                 <div class="icon" >
                     <i class="fa-solid fa-screwdriver-wrench"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="{{route(auth()->user()->getTypeUser().'.maintenances.index')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
     </div>

@@ -7,6 +7,17 @@
     <div class="small-box bg-danger">
 @elseif($driver_state === "POR ACEITAR")
     <div class="small-box bg-gray-light">
+
+@elseif($driver_state === "EM TRABALHO")
+    <div class="small-box bg-info">
+@elseif($driver_state === "BAIXA")
+     <div class="small-box bg-secondary">
+@elseif($driver_state === "FERIAS")
+      <div class="small-box bg-warning">
+@elseif($driver_state === "EX_COLABORADOR")
+      <div class="small-box bg-danger">
+@elseif($driver_state === "DISPONIVEL")
+      <div class="small-box bg-success">
 @else
     <div class="small-box">
 @endif

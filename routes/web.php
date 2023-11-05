@@ -123,7 +123,5 @@ Route::middleware('role:driver')->group(function (){
 
             Route::get('/perfil/{driver_id}',[DriverController::class,'perfil'])->name('perfil');
         });
-
     });
-
 });

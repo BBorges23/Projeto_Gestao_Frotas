@@ -41,12 +41,14 @@
                 </div>
                 @endif
             @endforeach
-        @else
-            <p>Nenhuma viagem encontrada.</p>
+            @if($travel->state != "PROCESSANDO")
+               <h4>Nenhuma viagem foi encontrada.</h4>
+            @endif
         @endif
     </div>
 
-    <h2>Manutenções</h2>
+
+    <h2 class="pt-4">Manutenções</h2>
     <div class="row">
 
         @if($maintenances)
