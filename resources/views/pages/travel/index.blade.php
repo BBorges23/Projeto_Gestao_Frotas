@@ -1,4 +1,4 @@
-@extends('index')
+@extends('index',['between' => true])
 @section('title','Viagens')
 @if(request()->routeIs('*.pesquisa'))
     @section('subtitle', ' -> Pesquisa')
@@ -9,6 +9,29 @@
 @section('content')
 
     @section('plus_button')
+
+        <form action="{{ route('travels.pesquisa') }}" method="post" class="d-flex">
+            @csrf
+            <div class="form-check">
+                <input class="form-check-input status-checkbox" type="checkbox" id="checkbox1" name="status[]" value="POR ACEITAR" {{ in_array('POR ACEITAR', session('selectedStatuses', [])) ? 'checked' : '' }}>
+                <label class="form-check-label" for="checkbox1">Por aceitar</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input status-checkbox" type="checkbox" id="checkbox2" name="status[]" value="ACEITE" {{ in_array('ACEITE', session('selectedStatuses', [])) ? 'checked' : '' }}>
+                <label class="form-check-label" for="checkbox2">Aceite</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input status-checkbox" type="checkbox" id="checkbox3" name="status[]" value="PROBLEMAS" {{ in_array('PROBLEMAS', session('selectedStatuses', [])) ? 'checked' : '' }}>
+                <label class="form-check-label" for="checkbox3">Problemas</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input status-checkbox" type="checkbox" id="checkbox4" name="status[]" value="CONCLUIDO" {{ in_array('CONCLUIDO', session('selectedStatuses', [])) ? 'checked' : '' }}>
+                <label class="form-check-label" for="checkbox4">Concluído</label>
+            </div>
+            <!-- Campo oculto para deseleção -->
+            <input type="hidden" name="deselect_status" id="deselect_status" value="">
+        </form>
+
         @component('components.plus_button',[
         'colorBTN'=> 'btn-warning',
         'itens'=>['item'=> ['Criar Viagem'], 'link' => [auth()->user()->getTypeUser().'.travels.create']]])
@@ -78,3 +101,23 @@
         @endif
     </div>
 @endsection
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Adiciona um ouvinte de evento para cada checkbox
+        document.querySelectorAll('.status-checkbox').forEach(function(checkbox) {
+            checkbox.addEventListener('change', function() {
+                // Se a checkbox foi desmarcada, define o valor do campo oculto
+                if (!this.checked) {
+                    document.getElementById('deselect_status').value = this.value;
+                } else {
+                    // Se foi marcada, limpa o campo oculto
+                    document.getElementById('deselect_status').value = '';
+                }
+                // Submete o formulário
+                this.form.submit();
+            });
+        });
+    });
+</script>

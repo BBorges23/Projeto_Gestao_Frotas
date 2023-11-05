@@ -14,14 +14,14 @@ class DriverSeeder extends Seeder
      */
     public function run(): void
     {
-        //Driver::factory(100)->create();
+        //Driver::factory(10)->create();
 
         DB::table('drivers')->insert([
             'user_id'=> '1',
             'nif' => '123456789',
             'phone'=>'911234567',
             'is_working' =>'1',
-            'condition' => 'ATIVO',
+            'condition' => 'EM TRABALHO',
             'created_at'=>now(),
             'updated_at'=>now()
         ]);
@@ -31,7 +31,7 @@ class DriverSeeder extends Seeder
             'nif' => '987654321',
             'phone'=>'926789012',
             'is_working' =>'1',
-            'condition' => 'ATIVO',
+            'condition' => 'DISPONIVEL',
             'created_at'=>now(),
             'updated_at'=>now()
         ]);
@@ -41,7 +41,7 @@ class DriverSeeder extends Seeder
             'nif' => '654321789',
             'phone'=>'939456789',
             'is_working' =>'1',
-            'condition' => 'ATIVO',
+            'condition' => 'DISPONIVEL',
             'created_at'=>now(),
             'updated_at'=>now()
         ]);
@@ -51,7 +51,7 @@ class DriverSeeder extends Seeder
             'nif' => '987123456',
             'phone'=>'968123456',
             'is_working' =>'1',
-            'condition' => 'ATIVO',
+            'condition' => 'DISPONIVEL',
             'created_at'=>now(),
             'updated_at'=>now()
         ]);
@@ -61,7 +61,7 @@ class DriverSeeder extends Seeder
             'nif' => '321654987',
             'phone'=>'920987654',
             'is_working' =>'1',
-            'condition' => 'ATIVO',
+            'condition' => 'FERIAS',
             'created_at'=>now(),
             'updated_at'=>now()
         ]);
@@ -71,7 +71,7 @@ class DriverSeeder extends Seeder
             'nif' => '456789123',
             'phone'=>'935345678',
             'is_working' =>'1',
-            'condition' => 'ATIVO',
+            'condition' => 'EX_COLABORADOR',
             'created_at'=>now(),
             'updated_at'=>now()
         ]);
@@ -81,7 +81,7 @@ class DriverSeeder extends Seeder
             'nif' => '789123654',
             'phone'=>'961234567',
             'is_working' =>'1',
-            'condition' => 'ATIVO',
+            'condition' => 'EX_COLABORADOR',
             'created_at'=>now(),
             'updated_at'=>now()
         ]);

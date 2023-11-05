@@ -31,7 +31,7 @@ class VehicleFactory extends Factory
             'date_buy'=>fake()->dateTime(now()),
             'deleted_at'=> $isActive ? null : $this->faker->dateTimeThisDecade('-1 year'),
             'is_driving'=>$isDriving,
-            'condition'=> $isActive ? ($isDriving ? 'ATIVO': 'PARADO'): $this->faker->randomElement(['VENDIDO','PERDA_TOTAL'])
+            'condition'=> $isActive ? ($isDriving ? 'EM VIAGEM': 'DISPONIVEL'): $this->faker->randomElement(['VENDIDO','PERDA_TOTAL'])
         ];
     }
 }

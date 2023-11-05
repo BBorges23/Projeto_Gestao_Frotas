@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('nif', '9')->unique();
             $table->string('phone',50);
             $table->boolean('is_working')->default(true);
-            $table->enum('condition', ['ATIVO', 'EX_COLABORADOR', 'FERIAS', 'BAIXA']);
+            $table->enum('condition', ['DISPONIVEL', 'EX_COLABORADOR', 'FERIAS', 'BAIXA','EM TRABALHO']);
             $table->softDeletes();
             $table->timestamps();
         });

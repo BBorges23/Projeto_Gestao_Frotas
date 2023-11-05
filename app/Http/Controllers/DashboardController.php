@@ -16,14 +16,17 @@ class DashboardController extends Controller
         if(auth()->check()) {
 
             return view('home', [
-//                'tot_drivers' => Driver::all()->where('condition', "ATIVO")->count(),
-//                'tot_vehicles' => Vehicle::all()->where('is_driving', 0 and 'condition', "ATIVO")->count(),
-//                'tot_maintenances' => Maintenance::all(),
-//                'tot_travels' => Travel::all()
+                'active_drivers' => Driver::all()->where('condition', "DISPONIVEL")->count(),
+                'active_vehicles' => Vehicle::where('condition','DISPONIVEL')->count(),
+                'active_maintenances' => Maintenance::where('state','PROCESSANDO')->count(),
+                'active_travels' => Travel::where('state','PROCESSANDO')->count(),
+                'tot_drives'=> Driver::all()->count(),
+                'tot_vehicles' => Vehicle::all()->count(),
+                'tot_travels'=> Travel::all()->count(),
+                'tot_maintenances'=> Maintenance::all()->count()
             ]);
         }
         return view('auth.login');
-
     }
 
 }

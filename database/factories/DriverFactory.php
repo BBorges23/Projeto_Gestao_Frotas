@@ -29,8 +29,7 @@ class DriverFactory extends Factory
             'phone'=>fake()->phoneNumber,
             'deleted_at'=> $isActive ? null : $this->faker->dateTimeThisDecade('-1 year'),
             'is_working'=> $isWorking,
-            'condition'=> $isActive ? ($isWorking ? 'ATIVO' : $this->faker->randomElement(['BAIXA','FERIAS']
-            )): 'EX_COLABORADOR'
+            'condition'=> $isActive ? ($isWorking ? 'EM TRABALHO' :'DISPONIVEL') : $this->faker->randomElement(['BAIXA','FERIAS','EX_COLABORADOR'])
         ];
     }
 }

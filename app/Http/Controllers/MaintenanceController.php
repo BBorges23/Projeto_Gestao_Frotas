@@ -28,19 +28,54 @@ class MaintenanceController extends Controller
     ];
 
 
-    public function pesquisar(Request $request){
-        $pesquisa = $request->input('campo_de_pesquisa');
-
-        if (empty($pesquisa)) {
-            return redirect()->route(auth()->user()->getTypeUser().'.maintenances.index');
+    public function pesquisar(Request $request)
+    {
+        // Atualiza ou remove os status selecionados se o formulário foi submetido
+        if ($request->has('status_m')) {
+            $selectedStatuses = $request->input('status_m', []);
+            session(['selectedStatuses_m' => $selectedStatuses]); // Ajuste na chave da sessão
+        } elseif ($request->has('deselect_status_m')) {
+            // Se um status foi desmarcado, remove esse status da sessão
+            $deselectedStatus = $request->input('deselect_status_m'); // Ajuste no input
+            $selectedStatuses = session('selectedStatuses_m', []); // Ajuste na chave da sessão
+            if (($key = array_search($deselectedStatus, $selectedStatuses)) !== false) {
+                unset($selectedStatuses[$key]);
+            }
+            session(['selectedStatuses_m' => $selectedStatuses]); // Ajuste na chave da sessão
+        } else {
+            // Se o formulário não foi submetido, usa os status da sessão
+            $selectedStatuses = session('selectedStatuses_m', []); // Ajuste na chave da sessão
         }
 
-        $resultados = Maintenance::join('vehicles', 'maintenances.vehicle_id', '=','vehicles.id')
-            ->where('maintenances.motive', 'like', '%' . $pesquisa . '%')
-            ->orWhere('vehicles.licence_plate', 'like', '%' . $pesquisa . '%')
-            ->get();
 
-        return view('pages.maintenance.index', compact('resultados'));
+        // Recebe a pesquisa de texto se foi submetida
+        $pesquisa = $request->input('campo_de_pesquisa', '');
+
+        // Inicia a consulta com os joins necessários
+        $query = Maintenance::query()
+            ->distinct()
+            ->join('vehicles', 'maintenances.vehicle_id', '=', 'vehicles.id');
+
+        // Se houver status selecionados, filtra as manutenções que correspondem a qualquer um dos status selecionados
+        if (!empty($selectedStatuses)) {
+            $query->whereIn('maintenances.driver_state', $selectedStatuses);
+        }
+
+        // Aplica a pesquisa de texto independentemente dos status selecionados
+        if (!empty($pesquisa)) {
+            $query->where(function ($subquery) use ($pesquisa) {
+                $subquery->where('vehicles.licence_plate', 'like', '%' . $pesquisa . '%')
+                    ->orWhere('maintenances.motive', 'like', '%' . $pesquisa . '%');
+            });
+        }
+
+        // Obtém os resultados da consulta
+        $resultados = $query->get();
+//        dd($resultados);
+
+
+        // Retorna a view com as manutenções filtradas
+        return view('pages.maintenance.index', ['resultados' => $resultados]);
     }
 
     /**

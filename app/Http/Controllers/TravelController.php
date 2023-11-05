@@ -31,21 +31,53 @@ class TravelController extends Controller
         'state' => 'required'
     ];
 
-    public function pesquisar(Request $request){
-        $pesquisa = $request->input('campo_de_pesquisa');
-
-        if (empty($pesquisa)) {
-            return redirect()->route(auth()->user()->getTypeUser().'.travels.index');
+    public function pesquisar(Request $request)
+    {
+        // Atualiza ou remove os estados selecionados se o formulário de estados foi submetido
+        if ($request->has('status')) {
+            $selectedStatuses = $request->input('status', []);
+            session(['selectedStatuses' => $selectedStatuses]);
+        } elseif ($request->has('deselect_status')) {
+            // Se uma checkbox foi desmarcada, remove esse estado da sessão
+            $deselectedStatus = $request->input('deselect_status');
+            $selectedStatuses = session('selectedStatuses', []);
+            if(($key = array_search($deselectedStatus, $selectedStatuses)) !== false) {
+                unset($selectedStatuses[$key]);
+            }
+            session(['selectedStatuses' => $selectedStatuses]);
+        } else {
+            // Se o formulário de estados não foi submetido, usa os estados da sessão
+            $selectedStatuses = session('selectedStatuses', []);
         }
 
-        $resultados = Travel::join('vehicles','travels.vehicle_id','=','vehicles.id')
-            ->join('drivers','travels.driver_id','=','drivers.id')
-            ->join('users','drivers.id','=','users.id')
-            ->where('vehicles.licence_plate','like', '%'.$pesquisa.'%')
-            ->orWhere('users.name', 'like', '%'.$pesquisa.'%')
-            ->orWhere('coords_origem', 'like', '%'.$pesquisa.'%')
-            ->orWhere('coords_destino', 'like', '%'.$pesquisa.'%')->get();
+        // Recebe a pesquisa de texto se foi submetida
+        $pesquisa = $request->input('campo_de_pesquisa', '');
 
+        // Inicia a consulta com os joins necessários
+        $query = Travel::query()
+            ->join('vehicles', 'travels.vehicle_id', '=', 'vehicles.id')
+            ->join('drivers', 'travels.driver_id', '=', 'drivers.id')
+            ->join('users', 'drivers.user_id', '=', 'users.id'); // Certifique-se de que esta é a chave estrangeira correta
+
+        // Se houver estados selecionados, filtra as viagens que correspondem a qualquer um dos estados selecionados
+        if (!empty($selectedStatuses)) {
+            $query->whereIn('travels.driver_state', $selectedStatuses);
+        }
+
+        // Aplica a pesquisa de texto independentemente dos estados selecionados
+        if (!empty($pesquisa)) {
+            $query->where(function ($subquery) use ($pesquisa) {
+                $subquery->where('vehicles.licence_plate', 'like', '%' . $pesquisa . '%')
+                    ->orWhere('users.name', 'like', '%' . $pesquisa . '%')
+                    ->orWhere('travels.coords_origem', 'like', '%' . $pesquisa . '%')
+                    ->orWhere('travels.coords_destino', 'like', '%' . $pesquisa . '%');
+            });
+        }
+
+        // Obtém os resultados da consulta
+        $resultados = $query->get();
+
+        // Retorna a view com as viagens filtradas
         return view('pages.travel.index', compact('resultados'));
     }
 
@@ -54,7 +86,8 @@ class TravelController extends Controller
      */
     public function index()
     {
-        $travels = Travel::paginate(16);
+        $travels = Travel::where('state','PROCESSANDO')->paginate(16);
+//        $travels = Travel::paginate(16);
 
         return view('pages.travel.index',
             ['travels'=> $travels
