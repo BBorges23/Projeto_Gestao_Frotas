@@ -12,9 +12,9 @@ class Maintenance extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $guarded=[];
+    public $timestamps = true;
 
-    protected $dateFormat = 'U';
+    protected $guarded=[];
 
     public function vehicle(): BelongsTo
     {

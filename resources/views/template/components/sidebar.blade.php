@@ -61,13 +61,14 @@
                     <span class="nav-link-text ms-1">Manutenções</span>
                 </a>
             </li>
+                @role('driver')
 
             <li class="nav-item mt-3 pt-3">
                 <h6 class="ps-4 fs-6 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Utilizador</h6>
             </li>
-
             <li class="nav-item">
-                <a class="nav-link text-white fs-5" href="./profile.html">
+
+                <a class="nav-link text-white fs-5" href="{{route(auth()->user()->getTypeUser().'.perfil', auth()->user()->id)}}">
 
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="fa-solid fa-user fa-xl"></i>
@@ -76,6 +77,7 @@
                     <span class="nav-link-text ms-1">Perfil</span>
                 </a>
             </li>
+                @endrole
         </ul>
         <div class="sidenav-footer position-absolute w-100 bottom-0 "></div>
     </div>

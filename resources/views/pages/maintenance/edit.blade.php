@@ -88,6 +88,7 @@
         'input3' => $maintenance->motive,
         'disabled2' => '',
         'titulo8' => 'Estado',
+        'selected4' => $maintenance->state,
         'route_show' => 'admin.maintenances.index'
 
     ])

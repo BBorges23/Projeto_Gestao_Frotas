@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('coords_origem', '50');
             $table->string('coords_destino', '50');
             $table->softDeletes();
-            $table->boolean('is_traveling')->default(true);
+            $table->boolean('is_traveling')->default(false);
             $table->enum('state', ['PROCESSANDO', 'CANCELADO', 'CONCLUIDO']);
             $table->enum('driver_state', ['POR ACEITAR','ACEITE','PROBLEMAS','CONCLUIDO'] );
             $table->text('comments');

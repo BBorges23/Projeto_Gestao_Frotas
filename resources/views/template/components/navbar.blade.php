@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl border border-5 position-sticky blur shadow-blur mt-4 left-auto top-1 z-index-sticky " id="navbarBlur" navbar-scroll="true">
+<nav class="navbar navbar-expand-xl px-0 mx-4 shadow-none border-radius-xl border border-5 position-sticky blur shadow-blur mt-4 left-auto top-1 z-index-sticky " id="navbarBlur" navbar-scroll="true">
     <div class="container-fluid py-1 px-3 ">
         <nav aria-label="breadcrumb">
             <h5>
@@ -6,6 +6,8 @@
                     <a href="{{route(auth()->user()->getTypeUser().'.'.preg_replace('/\.pesquisa$/', '', request()->route()->getName()).".index")}}" class="link_navbar">@yield('title')</a>
                 @elseif(request()->routeIs('home'))
                     <a href="{{route('home')}}" class="link_navbar">@yield('title')</a>
+                @elseif(request()->routeIs('*.perfil'))
+                    @yield('title')
                 @else
                     @if(request()->route()->getName())
                         <a href="{{route(preg_replace('/\.\w+$/', '', request()->route()->getName()) .".index")   }}" class="link_navbar">@yield('title')</a>

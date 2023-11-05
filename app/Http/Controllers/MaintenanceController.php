@@ -4,6 +4,8 @@ use App\Models\Maintenance;
 use App\Http\Controllers\Controller;
 use App\Models\Vehicle;
 use Illuminate\Http\Request;
+use function Sodium\add;
+
 class MaintenanceController extends Controller
 {
     protected $msg = [
@@ -14,6 +16,7 @@ class MaintenanceController extends Controller
         'vehicle_id' => 'required',
         'motive' => 'required',
         'date_entry' => 'required'
+
     ];
 
     protected  $rules_update = [
@@ -21,6 +24,7 @@ class MaintenanceController extends Controller
         'motive' => 'required',
         'date_entry' => 'required',
         'date_exit' => 'required'
+
     ];
 
 
@@ -45,7 +49,7 @@ class MaintenanceController extends Controller
 
     public function index()
     {
-        $maintenances = Maintenance::paginate(16);
+        $maintenances = Maintenance::where('state','PROCESSANDO')->paginate(16);
 
         return view('pages.maintenance.index', [
             'maintenances'=>$maintenances]);
@@ -65,6 +69,7 @@ class MaintenanceController extends Controller
     public function store(Request $request)
     {
         $data=$request->validate($this->rules_create, $this->msg);
+
         $maintenance = new Maintenance($data);
         $maintenance->save();
         return redirect()->route(auth()->user()->getTypeUser().'.maintenances.show', $maintenance);
@@ -93,7 +98,25 @@ class MaintenanceController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request, Maintenance $maintenance)
+
     {
+        $newState = $request->input('state');
+
+        if ($newState === 'CANCELADO') {
+            $maintenance->is_active = 0;
+            $maintenance->state = $newState;
+        }
+        elseif ($newState === 'CONCLUIDO')
+        {
+            $maintenance->is_active = 0;
+            $maintenance->state = $newState;
+        }
+        else
+        {
+            $maintenance->is_active = 1;
+            $maintenance->state = $newState;
+        }
+
         $data=$request->validate($this->rules_update, $this->msg);
         $maintenance->update($data);
         $maintenance->save();
@@ -108,15 +131,70 @@ class MaintenanceController extends Controller
         return redirect()->route('admin.maintenances.index');
     }
 
-    public function updateDescription(Request $request, Maintenance $maintenance)
+    public function cancel(Request $request, Maintenance $maintenance)
     {
         $description = $request->input('text');
 
         if ($description) {
-            $maintenance->update(['comments' => $description]);
+
+            $maintenance->update(['state' => 'CANCELADO','is_active' => 0, 'comments' => $description]);
+            $maintenance->save();
+
             return response()->json(['message' => 'Descrição atualizada com sucesso']);
         }
 
         return response()->json(['message' => 'Falha na atualização da descrição'], 400);
+    }
+
+    public function conclude(Request $request, Maintenance $maintenance)
+    {
+        $description = $request->input('text');
+
+        if ($description) {
+
+            $guarda_estado = $maintenance->driver_state;
+
+            //driver
+            if($guarda_estado == 'ACEITE') {
+
+                $maintenance->update(['driver_state' => 'CONCLUIDO', 'is_active' => 0, 'comments' => $description]);
+                $maintenance->save();
+
+                return response()->json(['message' => 'Descrição atualizada com sucesso']);
+
+            }
+            //gestor
+            $maintenance->update(['state' => 'CONCLUIDO', 'is_active' => 0, 'comments' => $description]);
+            $maintenance->save();
+
+            return response()->json(['message' => 'Descrição atualizada com sucesso']);
+        }
+
+        return response()->json(['message' => 'Falha na atualização da descrição'], 400);
+    }
+
+
+    public function accept(Maintenance $maintenance)
+    {
+        $maintenance->update(['is_active' => 1, 'driver_state' => 'ACEITE']);
+        $maintenance->save();
+
+        return response()->json(['message' => 'Descrição atualizada com sucesso']);
+    }
+
+    public function problems(Request $request, Maintenance $maintenance)
+    {
+        $description = $request->input('text');
+
+        if($description)
+        {
+            $maintenance->update(['is_active' => 0, 'driver_state' => 'PROBLEMAS','comments'=>$description]);
+            $maintenance->save();
+
+            return response()->json(['message' => 'Descrição atualizada com sucesso']);
+        }
+
+        return response()->json(['message' => 'Falha na atualização da descrição'], 400);
+
     }
 }

@@ -1,4 +1,4 @@
-<form id="submit" class="submit" method="POST" action="{{route($route_update, $id)}}" onsubmit="return confirmation_conclude(event)">
+<form id="submit" class="submit" method="POST" action="{{route($route_update, $id)}}" onsubmit="return confirmation_create_edit_form(event)">
     @csrf
     @method('PUT')
     <div class="container ">

@@ -21,6 +21,8 @@
     'route2' => 'admin.travels.edit',
     'route3' => 'admin.travels.destroy',
     'status_driver' => $travel->comments ?: "N/A",
+    'driver_state' => $travel->driver_state,
+    'route4' => 'driver.home.index'
 
     ])
     @endcomponent

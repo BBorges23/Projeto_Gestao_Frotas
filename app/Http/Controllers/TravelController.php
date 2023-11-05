@@ -142,16 +142,68 @@ class TravelController extends Controller
         return redirect()->route('admin.travels.index');
     }
 
-    public function updateDescription(Request $request, Travel $travel)
+    public function cancel(Request $request, Travel $travel)
     {
         $description = $request->input('text');
 
         if ($description) {
-            $travel->update(['comments' => $description]);
+
+            $travel->update(['state' => 'CANCELADO','is_traveling' => 0, 'comments' => $description]);
+            $travel->save();
+
             return response()->json(['message' => 'Descrição atualizada com sucesso']);
         }
 
         return response()->json(['message' => 'Falha na atualização da descrição'], 400);
     }
 
+    public function conclude(Request $request, Travel $travel)
+    {
+        $description = $request->input('text');
+
+        if ($description) {
+
+            $guarda_estado = $travel->driver_state;
+
+            //driver
+            if($guarda_estado == 'ACEITE')
+            {
+                $travel->update(['is_traveling' => 0, 'comments' => $description, 'driver_state' => 'CONCLUIDO']);
+                $travel->save();
+
+                return response()->json(['message' => 'Descrição atualizada com sucesso']);
+            }
+
+            //gestor
+            $travel->update(['state' => 'CONCLUIDO','is_traveling' => 0, 'comments' => $description]);
+            $travel->save();
+
+            return response()->json(['message' => 'Descrição atualizada com sucesso']);
+        }
+        return response()->json(['message' => 'Falha na atualização da descrição'], 400);
+    }
+
+    public function accept(Travel $travel)
+    {
+            $travel->update(['is_traveling' => 1, 'driver_state' => 'ACEITE']);
+            $travel->save();
+
+            return response()->json(['message' => 'Descrição atualizada com sucesso']);
+    }
+
+    public function problems(Request $request,Travel $travel)
+    {
+        $description = $request->input('text');
+
+        if($description)
+        {
+            $travel->update(['is_traveling' => 0, 'driver_state' => 'PROBLEMAS','comments'=>$description]);
+            $travel->save();
+
+            return response()->json(['message' => 'Descrição atualizada com sucesso']);
+        }
+
+        return response()->json(['message' => 'Falha na atualização da descrição'], 400);
+
+    }
 }

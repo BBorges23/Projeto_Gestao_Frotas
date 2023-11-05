@@ -39,11 +39,18 @@ Route::get('/',[DashboardController::class,'autenticado'])->name('home');
 
 
 /**
- * UpdateDescription Gestor
+ * Operações Cancelar e Concluir do Gestor e Driver
  */
 Route::middleware('auth')->group(function (){
-    Route::post('travels/update-description/{travel}', 'App\Http\Controllers\TravelController@updateDescription')->name('travels.updateDescription');
-    Route::post('maintenances/update-description/{maintenance}', 'App\Http\Controllers\MaintenanceController@updateDescription')->name('maintenances.updateDescription');
+    Route::post('maintenances/cancel/{maintenance}', 'App\Http\Controllers\MaintenanceController@cancel')->name('maintenances.cancel');
+    Route::post('maintenances/conclude/{maintenance}', 'App\Http\Controllers\MaintenanceController@conclude')->name('maintenance.conclude');
+    Route::post('maintenances/accept/{maintenance}', 'App\Http\Controllers\MaintenanceController@accept')->name('maintenance.accept');
+    Route::post('maintenances/problems/{maintenance}', 'App\Http\Controllers\MaintenanceController@problems')->name('maintenance.problems');
+
+    Route::post('travels/cancel/{travel}', 'App\Http\Controllers\TravelController@cancel')->name('travels.cancel');
+    Route::post('travels/conclude/{travel}', 'App\Http\Controllers\TravelController@conclude')->name('travels.conclude');
+    Route::post('travels/accept/{travel}', 'App\Http\Controllers\TravelController@accept')->name('travels.accept');
+    Route::post('travels/problems/{travel}', 'App\Http\Controllers\TravelController@problems')->name('travels.problems');
 
 });
 
@@ -113,6 +120,10 @@ Route::middleware('role:driver')->group(function (){
                 ->only('index','show');
             Route::resource('home', DriverDashboardController::class)
                 ->only('index', 'show');
+
+            Route::get('/perfil/{driver_id}',[DriverController::class,'perfil'])->name('perfil');
         });
+
     });
+
 });

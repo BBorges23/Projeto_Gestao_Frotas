@@ -154,4 +154,13 @@ class DriverController extends Controller
         $driver->delete();
         return redirect()->route('admin.drivers.index');
     }
+
+    public function perfil(Driver $driver)
+    {
+        return view('pages.driverdashboard.show',[
+            'driver' => $driver
+        ]);
+    }
+
+
 }

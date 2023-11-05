@@ -106,6 +106,7 @@
         'option3' => $driver,
         'selected3' => $travel->driver->id,
         'titulo8' => 'Estado',
+        'selected4' => $travel->state,
         'route_show' => 'admin.travels.index'
 
     ])
