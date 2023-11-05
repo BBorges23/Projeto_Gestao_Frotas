@@ -91,7 +91,7 @@ class DriverSeeder extends Seeder
             'nif' => '989123654',
             'phone'=>'961234568',
             'is_working' =>'1',
-            'condition' => 'ATIVO',
+            'condition' => 'BAIXA',
             'created_at'=>now(),
             'updated_at'=>now()
         ]);

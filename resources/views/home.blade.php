@@ -39,7 +39,7 @@
             <div class="small-box bg-warning">
                 <div class="inner" >
                     <h3><i class="fa-solid fa-location-dot"></i> {{$active_travels}}</h3>
-                    <p>Viagens em Andamento</p>
+                    <p>Viagens em processamento</p>
                 </div>
                 <div class="icon" >
                     <i class="fa-solid fa-route"></i>
@@ -53,7 +53,7 @@
             <div class="small-box bg-secondary">
                 <div class="inner" >
                     <h3><i class="fa-solid fa-oil-can"></i> {{$active_maintenances}}</h3>
-                    <p>Manutenções em Andamento</p>
+                    <p>Manutenções em processamento</p>
                 </div>
                 <div class="icon" >
                     <i class="fa-solid fa-screwdriver-wrench"></i>

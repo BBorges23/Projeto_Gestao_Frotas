@@ -7,7 +7,7 @@
     'cor' => 'bg-secondary',
     'imagem' => 'images/maintenance.png',
     'nome' => 'Estado',
-    'descricao' => $maintenance->state,
+    'descricao' => $maintenance->driver_state,
     'titulo1' => 'Veiculo',
     'informacao1' => $maintenance->vehicle->licence_plate,
     'titulo2' => 'Motivo',

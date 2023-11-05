@@ -8,6 +8,7 @@
     'imagem' => 'images/mapa.png',
     'nome' => 'Motorista',
     'descricao' => $driver->user->name,
+    'estado' => 'Estado',
     'titulo1' => 'ID',
     'informacao1' => $travel->id,
     'titulo2' => 'Matricula',

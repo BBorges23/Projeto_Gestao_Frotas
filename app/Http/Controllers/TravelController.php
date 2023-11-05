@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Driver;
 use App\Models\Travel;
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Models\Vehicle;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -56,9 +57,11 @@ class TravelController extends Controller
 
         // Inicia a consulta com os joins necessários
         $query = Travel::query()
+            ->select('travels.*', 'vehicles.licence_plate as vehicle_licence_plate', 'users.name as driver_name') // Especifica as colunas e usa alias para evitar conflito
             ->join('vehicles', 'travels.vehicle_id', '=', 'vehicles.id')
             ->join('drivers', 'travels.driver_id', '=', 'drivers.id')
-            ->join('users', 'drivers.user_id', '=', 'users.id'); // Certifique-se de que esta é a chave estrangeira correta
+            ->join('users', 'drivers.user_id', '=', 'users.id')
+            ->distinct(); // Adiciona distinct para evitar duplicatas
 
         // Se houver estados selecionados, filtra as viagens que correspondem a qualquer um dos estados selecionados
         if (!empty($selectedStatuses)) {
@@ -74,7 +77,7 @@ class TravelController extends Controller
                     ->orWhere('travels.coords_destino', 'like', '%' . $pesquisa . '%');
             });
         }
-
+        $query->groupBy('travels.id');
         // Obtém os resultados da consulta
         $resultados = $query->get();
 
@@ -224,10 +227,21 @@ class TravelController extends Controller
 
     public function accept(Travel $travel)
     {
-            $travel->update(['is_traveling' => 1, 'driver_state' => 'ACEITE']);
-            $travel->save();
+        $travel_active = Travel::where('driver_id', auth()->id())
+            ->where('driver_state', 'ACEITE')
+            ->first();
 
-            return response()->json(['message' => 'Descrição atualizada com sucesso']);
+        if($travel_active)
+        {
+            return response()->json([
+                'message' => 'Já tem viagem em andamento',403
+            ]);
+        }
+
+        $travel->update(['is_traveling' => 1, 'driver_state' => 'ACEITE']);
+        $travel->save();
+
+        return response()->json(['message' => 'Viagem aceite com sucesso']);
     }
 
     public function problems(Request $request,Travel $travel)

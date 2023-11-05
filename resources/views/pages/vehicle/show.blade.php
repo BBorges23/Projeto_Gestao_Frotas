@@ -15,6 +15,7 @@
     'titulo3' => 'Data de Compra',
     'informacao3' => $vehicle->date_buy,
     'id' => $vehicle->id,
+    'titulo7' => 'Condição',
     'route1' => auth()->user()->getTypeUser().'.vehicles.index',
     'route2' => 'admin.vehicles.edit',
     'route3' => 'admin.vehicles.destroy'

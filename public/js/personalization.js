@@ -11,8 +11,7 @@ function confirmation_create_edit_form(ev) {
         confirmButtonColor: '#198754',
         cancelButtonColor: '#3085d6',
         cancelButtonText: 'Não',
-        confirmButtonText: 'Concluir',
-
+        confirmButtonText: 'Sim',
 
     })
         .then((result) => {
