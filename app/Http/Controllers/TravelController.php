@@ -90,7 +90,9 @@ class TravelController extends Controller
      */
     public function index()
     {
-        $travels = Travel::where('state','PROCESSANDO')->paginate(16);
+        $travels = Travel::where('state', 'PROCESSANDO')
+            ->orderBy('updated_at', 'desc') // Adiciona ordenação por updated_at em ordem decrescente
+            ->paginate(16);
 //        $travels = Travel::paginate(16);
 
         return view('pages.travel.index',

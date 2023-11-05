@@ -84,7 +84,9 @@ class MaintenanceController extends Controller
 
     public function index()
     {
-        $maintenances = Maintenance::where('state','PROCESSANDO')->paginate(16);
+        $maintenances = Maintenance::where('state', 'PROCESSANDO')
+            ->orderBy('updated_at', 'desc') // Adiciona ordenação por updated_at em ordem decrescente
+            ->paginate(16);
 
         return view('pages.maintenance.index', [
             'maintenances'=>$maintenances]);
