@@ -7,6 +7,7 @@ use App\Models\Travel;
 use App\Http\Controllers\Controller;
 use App\Models\Vehicle;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class TravelController extends Controller
 {
@@ -149,13 +150,18 @@ class TravelController extends Controller
 
         if ($newState === 'CANCELADO') {
             $travel->is_traveling = 0;
+            $travel->state = $newState;
         }
         elseif ($newState === 'CONCLUIDO')
         {
             $travel->is_traveling = 0;
+            $travel->state = $newState;
         }
         else
+        {
             $travel->is_traveling = 1;
+            $travel->state = $newState;
+        }
 
         $data = $request->validate($this->rules_update,$this->msg);
         $travel->update($data);

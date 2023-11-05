@@ -94,11 +94,13 @@
                                     <div class="row pt-1">
                                         <div class="col-6 mb-3">
                                             <h6>{{$titulo8}}</h6>
+
                                             <select name="state">
-                                                <option value="PROCESSANDO">PROCESSANDO</option>
-                                                <option value="CANCELADO">CANCELADO</option>
-                                                <option value="CONCLUIDO">CONCLUIDO</option>
+                                                <option value="PROCESSANDO" {{$selected4 == 'PROCESSANDO' ? 'selected' : ''}}>PROCESSANDO</option>
+                                                <option value="CANCELADO" {{$selected4 == 'CANCELADO' ? 'selected' : ''}}>CANCELADO</option>
+                                                <option value="CONCLUIDO" {{$selected4 == 'CONCLUIDO' ? 'selected' : ''}}>CONCLUIDO</option>
                                             </select>
+
                                             @if(request('state') === 'CANCELADO')
                                                 <input hidden="" type="text" name="is_traveling" value="0">
                                             @elseif(request('state') === 'CONCLUIDO')

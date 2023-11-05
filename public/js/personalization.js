@@ -221,41 +221,5 @@ function confirmation_problems(ev) {
 }
 
 
-// function confirmation_cancel1(ev) {
-//     ev.preventDefault();
-//     var urlToRedirect = ev.currentTarget.getAttribute('href');
-//
-//     Swal.fire({
-//         position: 'top-end',
-//         icon: 'success',
-//         title: 'Salvo com sucesso',
-//         showConfirmButton: false,
-//         timer: 1500
-//     });
-// }
-
-// function showSuccessToast(message) {
-//     message.preventDefault()
-//
-//     const Toast = Swal.mixin({
-//         toast: true,
-//         position: 'center',
-//         showConfirmButton: false,
-//         timer: 700,
-//         timerProgressBar: true,
-//         didOpen: (toast) => {
-//             toast.addEventListener('mouseenter', Swal.stopTimer);
-//             toast.addEventListener('mouseleave', Swal.resumeTimer);
-//         }
-//     });
-//
-//     Toast.fire({
-//         icon: 'success',
-//         title: 'Login feito com sucesso'
-//     }).then(() => {
-//         // Redirecionar para a URL após o toast ser fechado
-//         window.location.href = "/home";
-//     });
-// }
 
 
