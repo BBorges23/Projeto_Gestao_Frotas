@@ -145,7 +145,7 @@
                                             @role('driver')
                                             @if(isset($driver_state))
                                                 @php
-                                                    $activeTravel = App\Models\Travel::where('driver_id', auth()->id())
+                                                    $activeTravel = App\Models\Travel::where('driver_id', auth()->user()->driver->id)
                                                         ->where('driver_state', 'ACEITE')
                                                         ->first();
                                                 @endphp

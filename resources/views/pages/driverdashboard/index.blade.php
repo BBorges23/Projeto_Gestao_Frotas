@@ -22,7 +22,7 @@
 
     <h2>Viagens</h2>
     <div class="row">
-        @if($travels)
+        @if($travels && count($travels) > 0)
             @foreach($travels as $travel)
                 @if($travel->state === "PROCESSANDO")
                 <div class="col-sm-3">
@@ -51,7 +51,7 @@
     <h2 class="pt-4">Manutenções</h2>
     <div class="row">
 
-        @if($maintenances)
+        @if($maintenances && count($maintenances) > 0)
             @foreach($maintenances as $maintenance)
                 @if($maintenance->state === "PROCESSANDO")
                     <div class="col-sm-3">
@@ -71,8 +71,8 @@
                 @endif
             @endforeach
             @if($maintenance->state != "PROCESSANDO")
-                    <h4>Nenhuma viagem foi encontrada.</h4>
-            @endif
+            <h4>Nenhuma viagem foi encontrada.</h4>
+                @endif
         @endif
 
     </div>
