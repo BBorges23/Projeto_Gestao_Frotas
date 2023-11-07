@@ -27,9 +27,7 @@ class DriverController extends Controller
     ];
 
     protected $rules_update = [
-//        'name'=>'required|min:3|max:255',
         'nif' => 'required|regex:/^[0-9]+$/',
-//        'email'=>'required|regex:/^\S+@\S+\.\S+$/',
         'phone'=>'required|regex:/^\d{9}$/',
         'condition'=>'required'
     ];
@@ -127,25 +125,29 @@ class DriverController extends Controller
 
         if ($newState === 'FERIAS') {
             $driver->is_working = 1;
+            $driver->condition = $newState;
         }
         elseif ($newState === 'BAIXA')
         {
             $driver->is_working = 1;
-        }
-        elseif ($newState === 'EM TRABALHO')
-        {
-            $driver->is_working = 1;
+            $driver->condition = $newState;
         }
         elseif ($newState === 'DISPONIVEL')
         {
             $driver->is_working = 1;
+            $driver->condition = $newState;
         }
 
-        $data = $request->validate($this->rules_update, $this->msg);
+        if(auth()->user()->getTypeUser() == 'admin'){
+            $data = $request->validate($this->rules_update, $this->msg);
+        }
+        else{
+            $data = $request->validate($this->rules_update_gestor, $this->msg);
+        }
+
         $driver->update($data);
         $driver->save();
-        return redirect()->route('admin.drivers.show', ['driver'=>$driver]);
-
+        return redirect()->route(auth()->user()->getTypeUser().'.drivers.show', ['driver'=>$driver]);
     }
     /**
      * Remove the specified resource from storage.

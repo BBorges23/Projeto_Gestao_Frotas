@@ -55,6 +55,21 @@
                                                 <h6>{{$titulo4}}</h6>
                                                 <p class="text-muted">{{$informacao4}}</p>
                                             @endif
+                                            @role('gestor')
+                                                @if(isset($titulo7))
+                                                <form id="submit" class="submit" method="POST" action="{{ route($route_update, $id)}}" onsubmit="return confirmation_create_edit_form(event)">
+                                                    @csrf
+                                                    @method('PUT')
+                                                        <h6>{{$titulo7}}:</h6>
+                                                        <select name="condition" class="p-2">
+                                                            <option value="FERIAS" {{$driver_state == 'FERIAS' ? 'selected' : ''}}>FERIAS</option>
+                                                            <option value="BAIXA" {{$driver_state == 'BAIXA' ? 'selected' : ''}}>BAIXA</option>
+                                                            <option value="DISPONIVEL" {{$driver_state == 'DISPONIVEL' ? 'selected' : ''}}>DISPONIVEL</option>
+                                                        </select>
+                                                    <button type="submit" class="btn btn-success mt-2"><i class="fa-solid fa-pen-to-square"></i></button>
+                                                </form>
+                                                @endif
+                                            @endrole
                                         </div>
                                     </div>
 
@@ -86,13 +101,13 @@
                                         <div class="col-6 mb-3">
                                             <h6>{{$titulo6}}</h6>
                                             <p class="text-muted">{{$informacao6}}</p>
-                                        </div>
+
                                     </div>
 
                                 @endif
-                                @if(isset($titulo7))
-                                        <div class="row">
-                                            <h6>{{$titulo7}} :</h6>
+{{--                                @if(isset($titulo7))--}}
+{{--                                        <div class="row">--}}
+{{--                                            <h6>{{$titulo7}} :</h6>--}}
 {{--                                            <form action="" class="d-flex ">--}}
 {{--                                                <div class="col-6">--}}
 {{--                                                    <input type="radio" id="age1" name="age" value="30">--}}
@@ -111,24 +126,6 @@
 {{--                                                    <input type="submit" value="Submit" class="btn btn-success">--}}
 {{--                                                </div>--}}
 {{--                                            </form>--}}
-                                            <select name="condition">
-                                                <option value="FERIAS">FERIAS</option>
-                                                <option value="BAIXA">BAIXA</option>
-                                                <option value="EM TRABALHO">EM TRABALHO</option>
-                                                <option value="DISPONIVEL">DISPONIVEL</option>
-                                            </select>
-
-                                            @if(request('condition') === 'FERIAS')
-                                                <input hidden="" type="text" name="is_working" value="1">
-                                            @elseif(request('condition') === 'BAIXA')
-                                                <input hidden="" type="text" name="is_working" value="1">
-                                            @elseif(request('condition') === 'EM TRABALHO')
-                                                <input hidden="" type="text" name="is_working" value="1">
-                                            @elseif(request('condition') === 'DISPONIVEL')
-                                                <input hidden="" type="text" name="is_working" value="1">
-                                            @endif
-                                            @endif
-                                        </div>
 
                                 <div class="d-flex justify-content-start gap-2 ">
                                     @if(auth()->user()->getTypeUser() !== 'driver')
@@ -151,7 +148,7 @@
                                                 @endphp
                                                 @if($driver_state === "POR ACEITAR")
                                                     @if(!$activeTravel)
-                                                        <a class="btn btn-success" href="{{ route($route4)}}" onclick="confirmation_accept(event)" name="{{$id}}" id="{{basename(parse_url(route($route1))['path'])}}">Aceite</a>
+                                                        <a class="btn btn-success" href="{{ route($route4)}}" onclick="confirmation_accept(event)" name="{{$id}}" id="{{basename(parse_url(route($route1))['path'])}}">Aceitar</a>
                                                         @else
                                                         <p style=" font-weight: bold; color: red">Só pode aceitar nova viagem após concluir a atual</p>
                                                     @endif
@@ -187,5 +184,7 @@
         </div>
     </div>
 </section>
+</form>
+
 
 

@@ -48,32 +48,32 @@
     </div>
 
 
-    <h2 class="pt-4">Manutenções</h2>
-    <div class="row">
+{{--    <h2 class="pt-4">Manutenções</h2>--}}
+{{--    <div class="row">--}}
 
-        @if($maintenances && count($maintenances) > 0)
-            @foreach($maintenances as $maintenance)
-                @if($maintenance->state === "PROCESSANDO")
-                    <div class="col-sm-3">
-                        @component('components.small-box',[
-                        'bg' => 'bg-secondary bg-gradient',
-                        'icon_label' => 'fa-solid fa-gear',
-                        'label'=> $maintenance->id. ' - '.$maintenance->vehicle->licence_plate,
-                        'titulo' =>  $maintenance->motive,
-                        'driver_state' => $maintenance->driver_state,
-                        'icon_titulo' => 'fa-solid fa-oil-can',
-                        'sub_titulo' => date('d-m-Y', strtotime($maintenance->date_entry)) . ' - ' . date('d-m-Y', strtotime($maintenance->date_exit)),
-                        'icon'=>'fa-solid fa-screwdriver-wrench',
-                        'link'=>route('driver.maintenances.show', $maintenance->id)
-                        ])
-                        @endcomponent
-                    </div>
-                @endif
-            @endforeach
-            @if($maintenance->state != "PROCESSANDO")
-            <h4>Nenhuma viagem foi encontrada.</h4>
-                @endif
-        @endif
+{{--        @if($maintenances && count($maintenances) > 0)--}}
+{{--            @foreach($maintenances as $maintenance)--}}
+{{--                @if($maintenance->state === "PROCESSANDO")--}}
+{{--                    <div class="col-sm-3">--}}
+{{--                        @component('components.small-box',[--}}
+{{--                        'bg' => 'bg-secondary bg-gradient',--}}
+{{--                        'icon_label' => 'fa-solid fa-gear',--}}
+{{--                        'label'=> $maintenance->id. ' - '.$maintenance->vehicle->licence_plate,--}}
+{{--                        'titulo' =>  $maintenance->motive,--}}
+{{--                        'driver_state' => $maintenance->driver_state,--}}
+{{--                        'icon_titulo' => 'fa-solid fa-oil-can',--}}
+{{--                        'sub_titulo' => date('d-m-Y', strtotime($maintenance->date_entry)) . ' - ' . date('d-m-Y', strtotime($maintenance->date_exit)),--}}
+{{--                        'icon'=>'fa-solid fa-screwdriver-wrench',--}}
+{{--                        'link'=>route('driver.maintenances.show', $maintenance->id)--}}
+{{--                        ])--}}
+{{--                        @endcomponent--}}
+{{--                    </div>--}}
+{{--                @endif--}}
+{{--            @endforeach--}}
+{{--            @if($maintenance->state != "PROCESSANDO")--}}
+{{--            <h4>Nenhuma manutenção foi encontrada.</h4>--}}
+{{--                @endif--}}
+{{--        @endif--}}
 
-    </div>
+{{--    </div>--}}
 @endsection

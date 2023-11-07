@@ -17,7 +17,7 @@
     'titulo3' => 'Telefone',
     'informacao3' => $driver->phone,
     'id' => $driver->id,
-    'titulo7' => 'Condição',
+    'titulo7' => 'Condição especial',
     'route1' => auth()->user()->getTypeUser().'.drivers.index',
     'route2' => 'admin.drivers.edit',
     'route3' => 'admin.drivers.destroy'

@@ -233,6 +233,7 @@ class TravelController extends Controller
             ->where('driver_state', 'ACEITE')
             ->first();
 
+
         if($travel_active)
         {
             return response()->json([

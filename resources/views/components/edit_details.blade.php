@@ -122,15 +122,6 @@
                                                 <option value="EM TRABALHO">EM TRABALHO</option>
                                                 <option value="DISPONIVEL">DISPONIVEL</option>
                                             </select>
-                                            @if(request('condition') === 'FERIAS')
-                                                <input hidden="" type="text" name="is_working" value="1">
-                                            @elseif(request('condition') === 'BAIXA')
-                                                <input hidden="" type="text" name="is_working" value="1">
-                                            @elseif(request('condition') === 'EM TRABALHO')
-                                                <input hidden="" type="text" name="is_working" value="1">
-                                            @elseif(request('condition') === 'DISPONIVEL')
-                                                <input hidden="" type="text" name="is_working" value="1">
-                                            @endif
                                         </div>
                                     </div>
                                 @endif
