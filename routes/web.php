@@ -51,7 +51,6 @@ Route::middleware('auth')->group(function (){
     Route::post('travels/conclude/{travel}', 'App\Http\Controllers\TravelController@conclude')->name('travels.conclude');
     Route::post('travels/accept/{travel}', 'App\Http\Controllers\TravelController@accept')->name('travels.accept');
     Route::post('travels/problems/{travel}', 'App\Http\Controllers\TravelController@problems')->name('travels.problems');
-
 });
 
 /**
