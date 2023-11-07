@@ -20,7 +20,8 @@
     'titulo7' => 'Condição especial',
     'route1' => auth()->user()->getTypeUser().'.drivers.index',
     'route2' => 'admin.drivers.edit',
-    'route3' => 'admin.drivers.destroy'
+    'route3' => 'admin.drivers.destroy',
+    'route_update' => 'gestor.drivers.update'
     ])
 @endcomponent
 

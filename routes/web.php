@@ -96,7 +96,7 @@ Route::middleware('role:gestor')->group(function (){
             Route::resource('carmodels', CarmodelController::class)
                 ->only('show','index');
             Route::resource('drivers', DriverController::class)
-                ->only('show','index');
+                ->only('show','index', 'update');
             Route::resource('maintenances', MaintenanceController::class)
                 ->only('create','show','index','store');
             Route::resource('travels', TravelController::class)

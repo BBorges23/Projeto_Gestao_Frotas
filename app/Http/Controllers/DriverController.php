@@ -32,6 +32,9 @@ class DriverController extends Controller
         'condition'=>'required'
     ];
 
+    protected $rules_update_gestor = [
+        'condition'=>'required'
+    ];
 
 
     public function pesquisar(Request $request){
