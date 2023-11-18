@@ -102,6 +102,7 @@ function confirmation_conclude(ev) {
                 inputAttributes: {
                     'aria-label': 'Escreva a sua mensagem'
                 },
+
                 showCancelButton: true
             });
 

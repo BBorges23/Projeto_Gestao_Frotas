@@ -78,14 +78,14 @@
                                         <hr class="mt-0 mb-4">
                                         <div class="row pt-1">
                                             <h3>Observações</h3>
-                                            <p>{{$status_driver}}</p>
+                                            <p>{!! nl2br(e($status_driver)) !!}</p>
                                         </div>
                                     @endif
                                     @if(request()->routeIs("*.maintenances.show"))
                                         <hr class="mt-0 mb-4">
                                         <div class="row pt-1">
                                             <h3>Observações</h3>
-                                            <p>{{$status_driver}}</p>
+                                             <p>{{ $status_driver }}</p>
                                         </div>
                                     @endif
 
@@ -102,28 +102,6 @@
                                             <p class="text-muted">{{$informacao6}}</p>
                                         </div>
                                         @endif
-                                        {{--                                @if(isset($titulo7))--}}
-                                        {{--                                        <div class="row">--}}
-                                        {{--                                            <h6>{{$titulo7}} :</h6>--}}
-                                        {{--                                            <form action="" class="d-flex ">--}}
-                                        {{--                                                <div class="col-6">--}}
-                                        {{--                                                    <input type="radio" id="age1" name="age" value="30">--}}
-                                        {{--                                                    <label for="age1">Férias</label><br>--}}
-                                        {{--                                                    <input type="radio" id="age2" name="age" value="60">--}}
-                                        {{--                                                    <label for="age2">Baixa</label><br>--}}
-                                        {{--                                                </div>--}}
-                                        {{--                                                <div class="col-6">--}}
-                                        {{--                                                    <input type="radio" id="age3" name="age" value="100">--}}
-                                        {{--                                                    <label for="age3">Ex-colaborador</label><br>--}}
-                                        {{--                                                    <input type="radio" id="age3" name="age" value="100">--}}
-
-                                        {{--                                                    <label for="age4">Disponível</label><br><br>--}}
-                                        {{--                                                    <a class="btn btn-primary" href="{{ route($route1) }}">--}}
-                                        {{--                                                        <i class="fa-solid fa-list"></i></a>--}}
-                                        {{--                                                    <input type="submit" value="Submit" class="btn btn-success">--}}
-                                        {{--                                                </div>--}}
-                                        {{--                                            </form>--}}
-
                                         <div class="d-flex justify-content-start gap-2 ">
                                             @if(auth()->user()->getTypeUser() !== 'driver')
                                                 <div class="d-flex justify-content-end gap-1 align-content-end w-100">

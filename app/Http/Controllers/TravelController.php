@@ -129,6 +129,7 @@ class TravelController extends Controller
     public function show(Travel $travel)
     {
 
+
         return view('pages.travel.show', [
             'travel' => $travel,
             'driver'=>  $travel->driver,
@@ -206,7 +207,10 @@ class TravelController extends Controller
 
     public function conclude(Request $request, Travel $travel)
     {
-        $description = $request->input('text');
+        $user_log = User::where('id', auth()->user()->id)->first();
+        $name = $user_log->name;
+
+        $description = $travel->comments ."\n". date('d-m-Y H:i') . " - " . $name . ": " . $request->input('text');
 
         if ($description) {
 

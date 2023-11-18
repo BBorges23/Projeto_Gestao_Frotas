@@ -23,7 +23,7 @@ return new class extends Migration
             $table->date('date_buy');
             $table->softDeletes();
             $table->boolean('is_driving');
-            $table->enum('condition', ['DISPONIVEL','VENDIDO', 'PERDA_TOTAL','EM VIAGEM',]);
+            $table->enum('condition', ['DISPONIVEL','VENDIDO', 'PERDA_TOTAL','EM VIAGEM','EM MANUTENÇÃO']);
             $table->timestamps();
         });
     }
