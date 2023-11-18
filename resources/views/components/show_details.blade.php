@@ -56,19 +56,19 @@
                                                 <p class="text-muted">{{$informacao4}}</p>
                                             @endif
                                             @role('gestor')
-                                                @if(isset($titulo7))
+                                            @if(isset($titulo7))
                                                 <form id="submit" class="submit" method="POST" action="{{ route($route_update, $id)}}" onsubmit="return confirmation_create_edit_form(event)">
                                                     @csrf
                                                     @method('PUT')
-                                                        <h6>{{$titulo7}}:</h6>
-                                                        <select name="condition" class="p-2">
-                                                            <option value="FERIAS" {{$driver_state == 'FERIAS' ? 'selected' : ''}}>FERIAS</option>
-                                                            <option value="BAIXA" {{$driver_state == 'BAIXA' ? 'selected' : ''}}>BAIXA</option>
-                                                            <option value="DISPONIVEL" {{$driver_state == 'DISPONIVEL' ? 'selected' : ''}}>DISPONIVEL</option>
-                                                        </select>
+                                                    <h6>{{$titulo7}}:</h6>
+                                                    <select name="condition" class="p-2">
+                                                        <option value="FERIAS" {{$driver_state == 'FERIAS' ? 'selected' : ''}}>FERIAS</option>
+                                                        <option value="BAIXA" {{$driver_state == 'BAIXA' ? 'selected' : ''}}>BAIXA</option>
+                                                        <option value="DISPONIVEL" {{$driver_state == 'DISPONIVEL' ? 'selected' : ''}}>DISPONIVEL</option>
+                                                    </select>
                                                     <button type="submit" class="btn btn-success mt-2"><i class="fa-solid fa-pen-to-square"></i></button>
                                                 </form>
-                                                @endif
+                                            @endif
                                             @endrole
                                         </div>
                                     </div>
@@ -102,65 +102,76 @@
                                             <h6>{{$titulo6}}</h6>
                                             <p class="text-muted">{{$informacao6}}</p>
 
-                                    </div>
-
-                                @endif
-{{--                                @if(isset($titulo7))--}}
-{{--                                        <div class="row">--}}
-{{--                                            <h6>{{$titulo7}} :</h6>--}}
-{{--                                            <form action="" class="d-flex ">--}}
-{{--                                                <div class="col-6">--}}
-{{--                                                    <input type="radio" id="age1" name="age" value="30">--}}
-{{--                                                    <label for="age1">Férias</label><br>--}}
-{{--                                                    <input type="radio" id="age2" name="age" value="60">--}}
-{{--                                                    <label for="age2">Baixa</label><br>--}}
-{{--                                                </div>--}}
-{{--                                                <div class="col-6">--}}
-{{--                                                    <input type="radio" id="age3" name="age" value="100">--}}
-{{--                                                    <label for="age3">Ex-colaborador</label><br>--}}
-{{--                                                    <input type="radio" id="age3" name="age" value="100">--}}
-
-{{--                                                    <label for="age4">Disponível</label><br><br>--}}
-{{--                                                    <a class="btn btn-primary" href="{{ route($route1) }}">--}}
-{{--                                                        <i class="fa-solid fa-list"></i></a>--}}
-{{--                                                    <input type="submit" value="Submit" class="btn btn-success">--}}
-{{--                                                </div>--}}
-{{--                                            </form>--}}
-
-                                <div class="d-flex justify-content-start gap-2 ">
-                                    @if(auth()->user()->getTypeUser() !== 'driver')
-                                        <div class="d-flex justify-content-end gap-1 align-content-end w-100">
-                                            @if(request()->routeIs('*.travels.*') || request()->routeIs('*.maintenances.*'))
-                                                <a class="btn btn-danger" href="{{ route($route1)}}"
-                                                   onclick="confirmation_cancel(event)" name="{{$id}}" id="{{basename(parse_url(route($route1))['path'])}}">Cancelar</a>
-                                                @if($driver_state === "CONCLUIDO" || $driver_state === "PROBLEMAS")
-                                                    <a class="btn btn-success" href="{{ route($route1) }}"
-                                                       onclick="confirmation_conclude(event)" name="{{$id}}" id="{{basename(parse_url(route($route1))['path'])}}">Concluir</a>
-                                                @endif
-                                            @endif
-                                            @endif
-                                            @role('driver')
-                                            @if(isset($driver_state))
-                                                @php
-                                                    $activeTravel = App\Models\Travel::where('driver_id', auth()->user()->driver->id)
-                                                        ->where('driver_state', 'ACEITE')
-                                                        ->first();
-                                                @endphp
-                                                @if($driver_state === "POR ACEITAR")
-                                                    @if(!$activeTravel)
-                                                        <a class="btn btn-success" href="{{ route($route4)}}" onclick="confirmation_accept(event)" name="{{$id}}" id="{{basename(parse_url(route($route1))['path'])}}">Aceitar</a>
-                                                        @else
-                                                        <p style=" font-weight: bold; color: red">Só pode aceitar nova viagem após concluir a atual</p>
-                                                    @endif
-                                                @elseif($driver_state === "ACEITE")
-                                                    @if($activeTravel)
-                                                        <a class="btn btn-danger" href="{{ route($route4)}}" onclick="confirmation_conclude(event)" name="{{$id}}" id="{{basename(parse_url(route($route1))['path'])}}">Concluir</a>
-                                                    @endif
-                                                @endif
-                                            @endif
-                                            @endrole
                                         </div>
-                                </div>
+
+                                        @endif
+                                        {{--                                @if(isset($titulo7))--}}
+                                        {{--                                        <div class="row">--}}
+                                        {{--                                            <h6>{{$titulo7}} :</h6>--}}
+                                        {{--                                            <form action="" class="d-flex ">--}}
+                                        {{--                                                <div class="col-6">--}}
+                                        {{--                                                    <input type="radio" id="age1" name="age" value="30">--}}
+                                        {{--                                                    <label for="age1">Férias</label><br>--}}
+                                        {{--                                                    <input type="radio" id="age2" name="age" value="60">--}}
+                                        {{--                                                    <label for="age2">Baixa</label><br>--}}
+                                        {{--                                                </div>--}}
+                                        {{--                                                <div class="col-6">--}}
+                                        {{--                                                    <input type="radio" id="age3" name="age" value="100">--}}
+                                        {{--                                                    <label for="age3">Ex-colaborador</label><br>--}}
+                                        {{--                                                    <input type="radio" id="age3" name="age" value="100">--}}
+
+                                        {{--                                                    <label for="age4">Disponível</label><br><br>--}}
+                                        {{--                                                    <a class="btn btn-primary" href="{{ route($route1) }}">--}}
+                                        {{--                                                        <i class="fa-solid fa-list"></i></a>--}}
+                                        {{--                                                    <input type="submit" value="Submit" class="btn btn-success">--}}
+                                        {{--                                                </div>--}}
+                                        {{--                                            </form>--}}
+
+                                        <div class="d-flex justify-content-start gap-2 ">
+                                            @if(auth()->user()->getTypeUser() !== 'driver')
+                                                <div class="d-flex justify-content-end gap-1 align-content-end w-100">
+                                                    @if(request()->routeIs('*.travels.*') || request()->routeIs('*.maintenances.*'))
+                                                        <a class="btn btn-danger" href="{{ route($route1)}}"
+                                                           onclick="confirmation_cancel(event)" name="{{$id}}" id="{{basename(parse_url(route($route1))['path'])}}">Cancelar</a>
+                                                        @if($driver_state === "CONCLUIDO" || $driver_state === "PROBLEMAS")
+                                                            <a class="btn btn-success" href="{{ route($route1) }}"
+                                                               onclick="confirmation_conclude(event)" name="{{$id}}" id="{{basename(parse_url(route($route1))['path'])}}">Concluir</a>
+                                                        @endif
+                                                    @endif
+                                                    @endif
+                                                    @role('driver')
+                                                    @if(isset($driver_state))
+                                                        @php
+                                                            $activeTravel = App\Models\Travel::where('driver_id', auth()->user()->driver->id)
+                                                                ->where('driver_state', 'ACEITE')
+                                                                ->first();
+
+                                                            $driver_condition = App\Models\Driver::query()
+                                                                ->where('id', auth()->user()->driver->id)
+                                                                ->value('condition')
+
+                                                        @endphp
+                                                        @if($driver_state === "POR ACEITAR" && $driver_condition === "DISPONIVEL")
+                                                            @if(!$activeTravel)
+                                                                <a class="btn btn-success" href="{{ route($route4)}}" onclick="confirmation_accept(event)" name="{{$id}}" id="{{basename(parse_url(route($route1))['path'])}}">Aceitar</a>
+                                                            @else
+                                                                <p style=" font-weight: bold; color: red">Só pode aceitar nova viagem após concluir a atual</p>
+                                                            @endif
+                                                        @elseif($driver_state === "ACEITE" && $driver_condition === "EM TRABALHO")
+                                                            @if($activeTravel)
+                                                                <a class="btn btn-danger" href="{{ route($route4)}}" onclick="confirmation_conclude(event)" name="{{$id}}" id="{{basename(parse_url(route($route1))['path'])}}">Concluir</a>
+                                                            @endif
+                                                        @else
+                                                            @if($driver_condition === "BAIXA")
+                                                                <p style=" font-weight: bold; color: red">Motorista está de baixa</p>
+                                                            @elseif($driver_condition === "FERIAS")
+                                                                <p style=" font-weight: bold; color: red">Motorista está de férias</p>
+                                                            @endif
+                                                        @endif
+                                                    @endif
+                                                    @endrole
+                                                </div>
+                                        </div>
 
                                         @role('admin')
                                         <a class="btn btn-success" href="{{ route($route2, $id) }}"><i
@@ -175,7 +186,7 @@
                                             <br/>
                                         </form>
                                         @endrole
-                                </div>
+                                    </div>
                             </div>
                         </div>
                     </div>

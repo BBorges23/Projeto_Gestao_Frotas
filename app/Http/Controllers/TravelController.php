@@ -63,7 +63,8 @@ class TravelController extends Controller
             ->join('users', 'drivers.user_id', '=', 'users.id')
             ->distinct(); // Adiciona distinct para evitar duplicatas
 
-        // Se houver estados selecionados, filtra as viagens que correspondem a qualquer um dos estados selecionados
+        // Se houver estados selecionados, filtra as viagens que correspon
+        //dem a qualquer um dos estados selecionados
         if (!empty($selectedStatuses)) {
             $query->whereIn('travels.driver_state', $selectedStatuses);
         }
@@ -215,6 +216,13 @@ class TravelController extends Controller
                 $travel->update(['is_traveling' => 0, 'comments' => $description, 'driver_state' => 'CONCLUIDO']);
                 $travel->save();
 
+                $driver_condition = $travel->driver;
+
+                if ($driver_condition) {
+                    $driver_condition->condition = 'DISPONIVEL';
+                    $driver_condition->save();
+                }
+
                 return response()->json(['message' => 'Descrição atualizada com sucesso']);
             }
 
@@ -243,6 +251,12 @@ class TravelController extends Controller
 
         $travel->update(['is_traveling' => 1, 'driver_state' => 'ACEITE']);
         $travel->save();
+
+        $driver_condition = $travel->driver;
+        if ($driver_condition) {
+            $driver_condition->condition = 'EM TRABALHO';
+            $driver_condition->save();
+        }
 
         return response()->json(['message' => 'Viagem aceite com sucesso']);
     }

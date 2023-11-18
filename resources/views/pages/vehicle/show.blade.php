@@ -18,7 +18,8 @@
     'titulo7' => 'Condição',
     'route1' => auth()->user()->getTypeUser().'.vehicles.index',
     'route2' => 'admin.vehicles.edit',
-    'route3' => 'admin.vehicles.destroy'
+    'route3' => 'admin.vehicles.destroy',
+    'route_update' => 'gestor.vehicle.show'
     ])
     @endcomponent
 @endsection

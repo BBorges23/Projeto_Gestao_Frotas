@@ -14,16 +14,20 @@ class DriverController extends Controller
         'name.min' => 'Nome tem de estar entre 3 e 255 carateres',
         'name.max' => 'Nome tem de estar entre 3 e 255 carateres',
         'nif.regex' => 'O formato de NIF é inválido (ex: XXXXXXXXX)',
+        'nif.unique' => 'O NIF já está registrado.',
         'email.regex' => 'O formato do Email é inválido (ex: teste@gmail.com)',
-        'phone.regex' => 'O formato do Telefone é inválido (ex: 912123123)'
+        'email.unique' => 'O e-mail já está a ser utilizado.',
+        'phone.regex' => 'O formato do Telefone é inválido (ex: 912123123)',
+
 
     ];
     protected $rules_create = [
         'name'=>'required|min:3|max:255',
-        'nif' => 'required|regex:/^[0-9]+$/',
-        'email'=>'required|regex:/^\S+@\S+\.\S+$/',
+        'nif' => 'required|regex:/^[0-9]+$/|unique:drivers,nif',
+        'email' => 'required|regex:/^\S+@\S+\.\S+$/|unique:users,email',
         'phone'=>'required|regex:/^\d{9}$/',
-        'password' => 'required|min:6'
+        'password' => 'required|min:6',
+
     ];
 
     protected $rules_update = [
