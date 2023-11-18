@@ -15,11 +15,12 @@
     'titulo3' => 'Data de Compra',
     'informacao3' => $vehicle->date_buy,
     'id' => $vehicle->id,
-    'titulo7' => 'Condição',
+    'titulo4' => 'Condição',
+    'informacao4' => $vehicle->condition,
     'route1' => auth()->user()->getTypeUser().'.vehicles.index',
     'route2' => 'admin.vehicles.edit',
     'route3' => 'admin.vehicles.destroy',
-    'route_update' => 'gestor.vehicle.show'
+    'route_update' => 'gestor.vehicles.show'
     ])
     @endcomponent
 @endsection

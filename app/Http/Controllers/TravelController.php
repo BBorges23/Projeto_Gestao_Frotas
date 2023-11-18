@@ -189,7 +189,9 @@ class TravelController extends Controller
 
     public function cancel(Request $request, Travel $travel)
     {
-        $description = $request->input('text');
+        $user_log = User::where('id', auth()->user()->id)->first();
+        $name = $user_log->name;
+        $description = $travel->comments ."\n". date('d-m-Y H:i') . " - " . $name . ": " . $request->input('text');
 
         if ($description) {
 
@@ -263,7 +265,10 @@ class TravelController extends Controller
 
     public function problems(Request $request,Travel $travel)
     {
-        $description = $request->input('text');
+        $user_log = User::where('id', auth()->user()->id)->first();
+        $name = $user_log->name;
+
+        $description = $travel->comments ."\n". date('d-m-Y H:i') . " - " . $name . ": " . $request->input('text');
 
         if($description)
         {

@@ -24,7 +24,7 @@
                                 <h6 class="d-flex justify-content-between">Informações
                                     @role('driver')
                                     @if(isset($driver_state))
-                                        @if($driver_state == 'ACEITE')
+                                        @if($driver_state == 'ACEITE' || $driver_state == 'PROBLEMAS' )
                                             <a style="color: #e10505;" href="{{ route($route4)}}" onclick="confirmation_problems(event)" name="{{$id}}" id="{{basename(parse_url(route($route1))['path'])}}" title="Problemas"><i class="fa-solid fa-triangle-exclamation fa-xl" style="color: #e10505;"></i></a>
                                         @endif
                                     @endif
@@ -69,6 +69,7 @@
                                                     <button type="submit" class="btn btn-success mt-2"><i class="fa-solid fa-pen-to-square"></i></button>
                                                 </form>
                                             @endif
+
                                             @endrole
                                         </div>
                                     </div>
@@ -76,7 +77,6 @@
                                     @if(request()->routeIs("*.travels.show"))
                                         <hr class="mt-0 mb-4">
                                         <div class="row pt-1">
-
                                             <h3>Observações</h3>
                                             <p>{{$status_driver}}</p>
                                         </div>
@@ -84,7 +84,6 @@
                                     @if(request()->routeIs("*.maintenances.show"))
                                         <hr class="mt-0 mb-4">
                                         <div class="row pt-1">
-
                                             <h3>Observações</h3>
                                             <p>{{$status_driver}}</p>
                                         </div>
@@ -101,9 +100,7 @@
                                         <div class="col-6 mb-3">
                                             <h6>{{$titulo6}}</h6>
                                             <p class="text-muted">{{$informacao6}}</p>
-
                                         </div>
-
                                         @endif
                                         {{--                                @if(isset($titulo7))--}}
                                         {{--                                        <div class="row">--}}
@@ -157,10 +154,11 @@
                                                             @else
                                                                 <p style=" font-weight: bold; color: red">Só pode aceitar nova viagem após concluir a atual</p>
                                                             @endif
-                                                        @elseif($driver_state === "ACEITE" && $driver_condition === "EM TRABALHO")
-                                                            @if($activeTravel)
+                                                        @elseif(($driver_state === "ACEITE" || $driver_state === "PROBLEMAS") && $driver_condition === "EM TRABALHO")
+{{--                                                            @if($activeTravel)--}}
                                                                 <a class="btn btn-danger" href="{{ route($route4)}}" onclick="confirmation_conclude(event)" name="{{$id}}" id="{{basename(parse_url(route($route1))['path'])}}">Concluir</a>
-                                                            @endif
+{{--                                                            @endif--}}
+
                                                         @else
                                                             @if($driver_condition === "BAIXA")
                                                                 <p style=" font-weight: bold; color: red">Motorista está de baixa</p>
