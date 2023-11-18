@@ -217,7 +217,7 @@ class TravelController extends Controller
             $guarda_estado = $travel->driver_state;
 
             //driver
-            if($guarda_estado == 'ACEITE')
+            if($guarda_estado == 'ACEITE' || $guarda_estado == 'PROBLEMAS')
             {
                 $travel->update(['is_traveling' => 0, 'comments' => $description, 'driver_state' => 'CONCLUIDO']);
                 $travel->save();
