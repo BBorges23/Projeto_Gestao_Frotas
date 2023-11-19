@@ -1,4 +1,4 @@
-@extends('index', ['between' => true])
+@extends('index')
 @section('title','Manutenções')
 @if(request()->routeIs('*.pesquisa'))
     @section('subtitle', ' -> Pesquisa')
@@ -9,27 +9,7 @@
 @section('content')
     @section('plus_button')
 
-        <form action="{{ route('maintenances.pesquisa') }}" method="post" class="d-flex">
-            @csrf
-            <div class="form-check">
-                <input class="form-check-input status-checkbox" type="checkbox" id="checkbox1" name="status_m[]" value="POR ACEITAR" {{ in_array('POR ACEITAR', session('selectedStatuses_m', [])) ? 'checked' : '' }}>
-                <label class="form-check-label" for="checkbox1">Por aceitar</label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input status-checkbox" type="checkbox" id="checkbox2" name="status_m[]" value="ACEITE" {{ in_array('ACEITE', session('selectedStatuses_m', [])) ? 'checked' : '' }}>
-                <label class="form-check-label" for="checkbox2">Aceite</label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input status-checkbox" type="checkbox" id="checkbox3" name="status_m[]" value="PROBLEMAS" {{ in_array('PROBLEMAS', session('selectedStatuses_m', [])) ? 'checked' : '' }}>
-                <label class="form-check-label" for="checkbox3">Problemas</label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input status-checkbox" type="checkbox" id="checkbox4" name="status_m[]" value="CONCLUIDO" {{ in_array('CONCLUIDO', session('selectedStatuses_m', [])) ? 'checked' : '' }}>
-                <label class="form-check-label" for="checkbox4">Concluído</label>
-            </div>
-            <!-- Campo oculto para deseleção -->
-            <input type="hidden" name="deselect_status_m" id="deselect_status_m" value="">
-        </form>
+
 
         @component('components.plus_button',[
         'colorBTN'=> 'btn-secondary',

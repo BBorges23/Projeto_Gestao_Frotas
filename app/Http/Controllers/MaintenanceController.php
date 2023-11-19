@@ -108,6 +108,11 @@ class MaintenanceController extends Controller
         $data=$request->validate($this->rules_create, $this->msg);
 
         $maintenance = new Maintenance($data);
+
+
+        $vehicle_used = Vehicle::where('id', $maintenance->vehicle_id)->first();
+        $vehicle_used->condition = "EM MANUTENÇÃO";
+        $vehicle_used->save();
         $maintenance->save();
         return redirect()->route(auth()->user()->getTypeUser().'.maintenances.show', $maintenance);
     }
