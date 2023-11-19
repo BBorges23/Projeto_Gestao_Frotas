@@ -74,6 +74,7 @@
                     'icon_label' => 'fa-solid fa-road',
                     'label'=> $travel->id.' - '.$travel->vehicle->licence_plate ,
                     'titulo' => $travel->driver->user->name  ,
+                    'calendario'=>  date('d-m-Y', strtotime($travel->date_start))  ." -> ". date('d-m-Y', strtotime($travel->date_end)) ,
                     'driver_state' => $travel->driver_state,
                     'icon_titulo' => 'fa-solid fa-clipboard-user',
                     'sub_titulo' => $travel->coords_origem.' -> '.$travel->coords_destino,
