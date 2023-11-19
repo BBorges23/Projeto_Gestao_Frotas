@@ -31,6 +31,7 @@
             @foreach($resultados as $maintenance)
                 <div class="col-sm-3">
                     @component('components.small-box',[
+                    'bg' => 'btn-warning',
                     'driver_state'=> $maintenance->driver_state,
                     'icon_label' => 'fa-solid fa-gear',
                     'label'=> $maintenance->id. ' - '.$maintenance->vehicle->licence_plate,
@@ -49,6 +50,7 @@
             @foreach($maintenances as $maintenance)
                 <div class="col-sm-3">
                     @component('components.small-box',[
+                    'bg' => 'btn-warning',
                     'driver_state'=> $maintenance->driver_state,
                     'icon_label' => 'fa-solid fa-gear',
                     'label'=> $maintenance->id. ' - '.$maintenance->vehicle->licence_plate,

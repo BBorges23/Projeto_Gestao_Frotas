@@ -21,8 +21,9 @@
     'route2' => 'admin.maintenances.edit',
     'route3' => 'admin.maintenances.destroy',
     'status_driver' => $maintenance->comments ?: "N/A",
-    'driver_state' => $maintenance->driver_state,
-    'route4' => 'driver.home.index'
+    'maintenance_state'=> $maintenance->state,
+    'route4' => 'driver.home.index',
+
 
     ])
     @endcomponent

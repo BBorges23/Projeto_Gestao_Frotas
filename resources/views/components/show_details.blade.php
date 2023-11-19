@@ -105,10 +105,17 @@
                                         <div class="d-flex justify-content-start gap-2 ">
                                             @if(auth()->user()->getTypeUser() !== 'driver')
                                                 <div class="d-flex justify-content-end gap-1 align-content-end w-100">
-                                                    @if(request()->routeIs('*.travels.*') || request()->routeIs('*.maintenances.*'))
+                                                    @if(request()->routeIs('*.travels.*'))
                                                         <a class="btn btn-danger" href="{{ route($route1)}}"
                                                            onclick="confirmation_cancel(event)" name="{{$id}}" id="{{basename(parse_url(route($route1))['path'])}}">Cancelar</a>
                                                         @if($driver_state === "CONCLUIDO" || $driver_state === "PROBLEMAS")
+                                                            <a class="btn btn-success" href="{{ route($route1) }}"
+                                                               onclick="confirmation_conclude(event)" name="{{$id}}" id="{{basename(parse_url(route($route1))['path'])}}">Concluir</a>
+                                                        @endif
+                                                    @elseif(request()->routeIs('*.maintenances.*'))
+                                                        <a class="btn btn-danger" href="{{ route($route1)}}"
+                                                           onclick="confirmation_cancel(event)" name="{{$id}}" id="{{basename(parse_url(route($route1))['path'])}}">Cancelar</a>
+                                                        @if($maintenance_state === "PROCESSANDO")
                                                             <a class="btn btn-success" href="{{ route($route1) }}"
                                                                onclick="confirmation_conclude(event)" name="{{$id}}" id="{{basename(parse_url(route($route1))['path'])}}">Concluir</a>
                                                         @endif

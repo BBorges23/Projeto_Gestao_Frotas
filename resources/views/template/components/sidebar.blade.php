@@ -40,10 +40,10 @@
                         <span class="nav-link-text ms-1">Motoristas</span>
                     </a>
                 </li>
-            @endif
+
 
             <li class="nav-item">
-                <a class="nav-link fs-5 text-white " href="{{route('driver.home.index')}}">
+                <a class="nav-link fs-5 text-white " href="{{route(auth()->user()->getTypeUser().'.travels.index')}}">
 
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="fa-solid fa-route fa-xl"></i>
@@ -52,12 +52,30 @@
                 </a>
             </li>
 
+            <li class="nav-item">
+                <a class="nav-link fs-5 text-white " href="{{route(auth()->user()->getTypeUser().'.maintenances.index')}}">
+
+                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="fa-solid fa-screwdriver-wrench fa-xl"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">Manutenções</span>
+                </a>
+            </li>
+            @endif
             @role('driver')
+
+                <a class="nav-link fs-5 text-white " href="{{route('driver.home.index')}}">
+
+                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="fa-solid fa-route fa-xl"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">Viagens</span>
+                </a>
+
             <li class="nav-item mt-3 pt-3">
                 <h6 class="ps-4 fs-6 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Utilizador</h6>
             </li>
             <li class="nav-item">
-
                 <a class="nav-link text-white fs-5" href="{{route(auth()->user()->getTypeUser().'.perfil', auth()->user()->id)}}">
 
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">

@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 use App\Models\Maintenance;
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Models\Vehicle;
 use Illuminate\Http\Request;
 use function Sodium\add;
@@ -179,8 +180,13 @@ class MaintenanceController extends Controller
 
         if ($description) {
 
+            $maintenance->date_exit = date('Y-m-d');
             $maintenance->update(['state' => 'CANCELADO','is_active' => 0, 'comments' => $description]);
             $maintenance->save();
+
+            $vehicle_used = Vehicle::where('id',$maintenance->vehicle_id)->first();
+            $vehicle_used->condition = "DISPONIVEL";
+            $vehicle_used->save();
 
             return response()->json(['message' => 'Descrição atualizada com sucesso']);
         }
@@ -193,21 +199,15 @@ class MaintenanceController extends Controller
         $description = $request->input('text');
 
         if ($description) {
-
-            $guarda_estado = $maintenance->driver_state;
-
-            //driver
-            if($guarda_estado == 'ACEITE') {
-
-                $maintenance->update(['driver_state' => 'CONCLUIDO', 'is_active' => 0, 'comments' => $description]);
-                $maintenance->save();
-
-                return response()->json(['message' => 'Descrição atualizada com sucesso']);
-
-            }
             //gestor
+            $maintenance->date_exit = date('Y-m-d');
             $maintenance->update(['state' => 'CONCLUIDO', 'is_active' => 0, 'comments' => $description]);
             $maintenance->save();
+
+            $vehicle_used = Vehicle::where('id',$maintenance->vehicle_id)->first();
+            $vehicle_used->condition = "DISPONIVEL";
+
+            $vehicle_used->save();
 
             return response()->json(['message' => 'Descrição atualizada com sucesso']);
         }
