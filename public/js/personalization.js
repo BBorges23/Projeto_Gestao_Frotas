@@ -108,8 +108,6 @@ function confirmation_conclude(ev) {
 
             if (text) {
 
-
-
                 console.log("Texto da descrição:", text);
                 console.log("ID da viagem:", id);
                 console.log("Nome da Rota:", routeName);

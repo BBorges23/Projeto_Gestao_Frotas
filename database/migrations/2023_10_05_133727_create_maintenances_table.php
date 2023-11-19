@@ -22,7 +22,6 @@ return new class extends Migration
             $table->softDeletes();
             $table->boolean('is_active')->default(false);
             $table->enum('state', ['PROCESSANDO ', 'CONCLUIDO', 'CANCELADO']);
-            $table->enum('driver_state', ['POR ACEITAR','ACEITE','PROBLEMAS','CONCLUIDO'] );
             $table->text('comments');
             $table->timestamps();
         });

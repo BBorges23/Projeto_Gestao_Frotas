@@ -4,6 +4,7 @@ use App\Models\Maintenance;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\Vehicle;
+use Cassandra\Date;
 use Illuminate\Http\Request;
 use function Sodium\add;
 
@@ -176,8 +177,10 @@ class MaintenanceController extends Controller
 
     public function cancel(Request $request, Maintenance $maintenance)
     {
-        $description = $request->input('text');
-
+        $user_log = User::where('id', auth()->user()->id)->first();
+        $name = $user_log->name;
+        $description = $maintenance->comments ."\n". date('d-m-Y H:i') . " - " . $name . ": " . $request->input('text');
+        
         if ($description) {
 
             $maintenance->date_exit = date('Y-m-d');
@@ -196,7 +199,10 @@ class MaintenanceController extends Controller
 
     public function conclude(Request $request, Maintenance $maintenance)
     {
-        $description = $request->input('text');
+        $user_log = User::where('id', auth()->user()->id)->first();
+        $name = $user_log->name;
+        $description = $maintenance->comments ."\n". date('d-m-Y H:i') . " - " . $name . ": " . $request->input('text');
+
 
         if ($description) {
             //gestor
