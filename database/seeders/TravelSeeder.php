@@ -25,7 +25,7 @@ class TravelSeeder extends Seeder
             'is_traveling' => '1',
             'state' => 'PROCESSANDO',
             'date_start'=> '2023-06-01',
-            'date_end'=> '2023-07-01',
+            'date_end'=> '2023-06-03',
             'created_at'=>now(),
             'updated_at'=>now()
         ]);
@@ -36,6 +36,8 @@ class TravelSeeder extends Seeder
             'coords_destino'=> 'Lisboa',
             'is_traveling' => '1',
             'state' => 'PROCESSANDO',
+            'date_start'=> '2023-04-06',
+            'date_end'=> '2023-04-08',
             'created_at'=>now(),
             'updated_at'=>now()
         ]);
@@ -46,6 +48,8 @@ class TravelSeeder extends Seeder
             'coords_destino'=> 'Lisboa',
             'is_traveling' => '1',
             'state' => 'PROCESSANDO',
+            'date_start'=> '2023-01-02',
+            'date_end'=> '2023-01-03',
             'created_at'=>now(),
             'updated_at'=>now()
         ]);
@@ -56,16 +60,20 @@ class TravelSeeder extends Seeder
             'coords_destino'=> 'Lisboa',
             'is_traveling' => '1',
             'state' => 'PROCESSANDO',
+            'date_start'=> '2023-02-01',
+            'date_end'=> '2023-02-01',
             'created_at'=>now(),
             'updated_at'=>now()
         ]);
         DB::table('travels')->insert([
             'vehicle_id' => '5',
             'driver_id' => '5',
-            'coords_origem' => 'Palmela',
+            'coords_origem' => 'Berlin',
             'coords_destino'=> 'Lisboa',
             'is_traveling' => '1',
             'state' => 'PROCESSANDO',
+            'date_start'=> '2023-03-01',
+            'date_end'=> '2023-03-26',
             'created_at'=>now(),
             'updated_at'=>now()
         ]);
@@ -73,10 +81,12 @@ class TravelSeeder extends Seeder
         DB::table('travels')->insert([
             'vehicle_id' => '8',
             'driver_id' => '8',
-            'coords_origem' => 'Palmela',
-            'coords_destino'=> 'Lisboa',
+            'coords_origem' => 'Lisboa',
+            'coords_destino'=> 'Madrid',
             'is_traveling' => '1',
             'state' => 'PROCESSANDO',
+            'date_start'=> '2023-08-01',
+            'date_end'=> '2023-08-15',
             'created_at'=>now(),
             'updated_at'=>now()
         ]);
@@ -88,6 +98,8 @@ class TravelSeeder extends Seeder
             'coords_destino'=> 'Viana',
             'is_traveling' => '1',
             'state' => 'PROCESSANDO',
+            'date_start'=> '2023-10-11',
+            'date_end'=> '2023-10-11',
             'created_at'=>now(),
             'updated_at'=>now()
         ]);
@@ -99,6 +111,8 @@ class TravelSeeder extends Seeder
             'coords_destino'=> 'Moita',
             'is_traveling' => '1',
             'state' => 'PROCESSANDO',
+            'date_start'=> '2023-12-15',
+            'date_end'=> '2023-12-23',
             'created_at'=>now(),
             'updated_at'=>now()
         ]);
@@ -110,6 +124,8 @@ class TravelSeeder extends Seeder
             'coords_destino'=> 'Paris',
             'is_traveling' => '1',
             'state' => 'PROCESSANDO',
+            'date_start'=> '2023-04-07',
+            'date_end'=> '2023-04-23',
             'created_at'=>now(),
             'updated_at'=>now()
         ]);

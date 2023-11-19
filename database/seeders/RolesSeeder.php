@@ -23,14 +23,13 @@ class RolesSeeder extends Seeder
 
 
         foreach (User::all() as $user) {
-            if ($user->id == 6)
+            if ($user->id == 1)
                 $user->assignRole('admin');
-            else if ($user->id == 7)
+            else if ($user->id == 2)
                 $user->assignRole('gestor');
             else {
                 $user->assignRole('driver');
             }
-
         }
     }
 }
