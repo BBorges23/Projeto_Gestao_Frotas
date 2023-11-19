@@ -112,12 +112,3 @@
     </section>
 </form>
 
-{{--<script>--}}
-{{--    function submeterFormularioERedirecionar() {--}}
-{{--        var form = document.getElementById('create'); // Seleciona o formulário pelo ID--}}
-{{--        form.submit(); // Submete o formulário--}}
-
-{{--        // Após a submissão do formulário, redireciona para a rota especificada no link--}}
-{{--        window.location.href = "{{ route(auth()->user()->getTypeUser().'.travels.index' }}";--}}
-{{--    }--}}
-{{--</script>--}}

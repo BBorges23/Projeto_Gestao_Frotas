@@ -23,6 +23,8 @@ class TravelController extends Controller
         'driver_id' => 'required',
         'coords_origem'=>'required|max:255',
         'coords_destino' => 'required|max:255',
+        'date_start'=> 'required',
+        'date_end'=> 'required'
     ];
 
     protected $rules_update = [

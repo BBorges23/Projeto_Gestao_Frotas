@@ -40,7 +40,10 @@
             </p>
 
             @if (isset($sub_titulo))
-                <p class="fs-5">{{$sub_titulo}}</p>
+                <p class="fs-5">{{$sub_titulo}} </p>
+                @if (isset($calendario))
+                    <p class="text-start fs-6 pe-3">{{$calendario}}</p>
+                @endif
             @endif
         </div>
 

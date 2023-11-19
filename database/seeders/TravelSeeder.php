@@ -24,6 +24,8 @@ class TravelSeeder extends Seeder
             'coords_destino'=> 'Lisboa',
             'is_traveling' => '1',
             'state' => 'PROCESSANDO',
+            'date_start'=> '2023-06-01',
+            'date_end'=> '2023-07-01',
             'created_at'=>now(),
             'updated_at'=>now()
         ]);
