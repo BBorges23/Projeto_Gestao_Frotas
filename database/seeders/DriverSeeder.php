@@ -188,7 +188,7 @@ class DriverSeeder extends Seeder
 
         DB::table('drivers')->insert([
             'user_id'=> '20',
-            'nif' => '444555666',
+            'nif' => '440555666',
             'phone'=>'927654321',
             'is_working' =>'1',
             'condition' => 'BAIXA',
@@ -288,7 +288,7 @@ class DriverSeeder extends Seeder
 
         DB::table('drivers')->insert([
             'user_id'=> '30',
-            'nif' => '456567678',
+            'nif' => '458567678',
             'phone'=>'967890123',
             'is_working' =>'1',
             'condition' => 'BAIXA',
@@ -298,7 +298,7 @@ class DriverSeeder extends Seeder
 
         DB::table('drivers')->insert([
             'user_id'=> '31',
-            'nif' => '234567890',
+            'nif' => '034567290',
             'phone'=>'929012345',
             'is_working' =>'1',
             'condition' => 'EM TRABALHO',
@@ -306,195 +306,195 @@ class DriverSeeder extends Seeder
             'updated_at'=>now()
         ]);
 
-        DB::table('drivers')->insert([
-            'user_id'=> '32',
-            'nif' => '789012345',
-            'phone'=>'966789012',
-            'is_working' =>'1',
-            'condition' => 'EM TRABALHO',
-            'created_at'=>now(),
-            'updated_at'=>now()
-        ]);
-
-        DB::table('drivers')->insert([
-            'user_id'=> '33',
-            'nif' => '987654321',
-            'phone'=>'927654321',
-            'is_working' =>'1',
-            'condition' => 'DISPONIVEL',
-            'created_at'=>now(),
-            'updated_at'=>now()
-        ]);
-
-        DB::table('drivers')->insert([
-            'user_id'=> '34',
-            'nif' => '012345678',
-            'phone'=>'961098765',
-            'is_working' =>'1',
-            'condition' => 'DISPONIVEL',
-            'created_at'=>now(),
-            'updated_at'=>now()
-        ]);
-
-        DB::table('drivers')->insert([
-            'user_id'=> '35',
-            'nif' => '321654987',
-            'phone'=>'918765432',
-            'is_working' =>'1',
-            'condition' => 'FERIAS',
-            'created_at'=>now(),
-            'updated_at'=>now()
-        ]);
-
-        DB::table('drivers')->insert([
-            'user_id'=> '36',
-            'nif' => '678901234',
-            'phone'=>'966789012',
-            'is_working' =>'1',
-            'condition' => 'FERIAS',
-            'created_at'=>now(),
-            'updated_at'=>now()
-        ]);
-
-        DB::table('drivers')->insert([
-            'user_id'=> '37',
-            'nif' => '345678901',
-            'phone'=>'928765432',
-            'is_working' =>'0',
-            'condition' => 'EX_COLABORADOR',
-            'created_at'=>now(),
-            'updated_at'=>now()
-        ]);
-
-        DB::table('drivers')->insert([
-            'user_id'=> '38',
-            'nif' => '901234567',
-            'phone'=>'967890123',
-            'is_working' =>'0',
-            'condition' => 'EX_COLABORADOR',
-            'created_at'=>now(),
-            'updated_at'=>now()
-        ]);
-
-        DB::table('drivers')->insert([
-            'user_id'=> '39',
-            'nif' => '567890123',
-            'phone'=>'961234567',
-            'is_working' =>'1',
-            'condition' => 'BAIXA',
-            'created_at'=>now(),
-            'updated_at'=>now()
-        ]);
-
-        DB::table('drivers')->insert([
-            'user_id'=> '40',
-            'nif' => '123456789',
-            'phone'=>'969876543',
-            'is_working' =>'1',
-            'condition' => 'BAIXA',
-            'created_at'=>now(),
-            'updated_at'=>now()
-        ]);
-
-        DB::table('drivers')->insert([
-            'user_id'=> '41',
-            'nif' => '987654321',
-            'phone'=>'916543210',
-            'is_working' =>'1',
-            'condition' => 'EM TRABALHO',
-            'created_at'=>now(),
-            'updated_at'=>now()
-        ]);
-
-        DB::table('drivers')->insert([
-            'user_id'=> '42',
-            'nif' => '234567890',
-            'phone'=>'967890123',
-            'is_working' =>'1',
-            'condition' => 'EM TRABALHO',
-            'created_at'=>now(),
-            'updated_at'=>now()
-        ]);
-
-        DB::table('drivers')->insert([
-            'user_id'=> '43',
-            'nif' => '876543210',
-            'phone'=>'918765432',
-            'is_working' =>'1',
-            'condition' => 'DISPONIVEL',
-            'created_at'=>now(),
-            'updated_at'=>now()
-        ]);
-
-        DB::table('drivers')->insert([
-            'user_id'=> '44',
-            'nif' => '345678901',
-            'phone'=>'961234567',
-            'is_working' =>'1',
-            'condition' => 'DISPONIVEL',
-            'created_at'=>now(),
-            'updated_at'=>now()
-        ]);
-
-        DB::table('drivers')->insert([
-            'user_id'=> '45',
-            'nif' => '789012345',
-            'phone'=>'929012345',
-            'is_working' =>'1',
-            'condition' => 'FERIAS',
-            'created_at'=>now(),
-            'updated_at'=>now()
-        ]);
-
-        DB::table('drivers')->insert([
-            'user_id'=> '46',
-            'nif' => '456789012',
-            'phone'=>'928765432',
-            'is_working' =>'1',
-            'condition' => 'FERIAS',
-            'created_at'=>now(),
-            'updated_at'=>now()
-        ]);
-
-        DB::table('drivers')->insert([
-            'user_id'=> '47',
-            'nif' => '890123456',
-            'phone'=>'966789012',
-            'is_working' =>'0',
-            'condition' => 'EX_COLABORADOR',
-            'created_at'=>now(),
-            'updated_at'=>now()
-        ]);
-
-        DB::table('drivers')->insert([
-            'user_id'=> '48',
-            'nif' => '567890123',
-            'phone'=>'961098765',
-            'is_working' =>'0',
-            'condition' => 'EX_COLABORADOR',
-            'created_at'=>now(),
-            'updated_at'=>now()
-        ]);
-
-        DB::table('drivers')->insert([
-            'user_id'=> '49',
-            'nif' => '123456789',
-            'phone'=>'969876543',
-            'is_working' =>'1',
-            'condition' => 'BAIXA',
-            'created_at'=>now(),
-            'updated_at'=>now()
-        ]);
-
-        DB::table('drivers')->insert([
-            'user_id'=> '50',
-            'nif' => '987654321',
-            'phone'=>'927654321',
-            'is_working' =>'1',
-            'condition' => 'BAIXA',
-            'created_at'=>now(),
-            'updated_at'=>now()
-        ]);
+//        DB::table('drivers')->insert([
+//            'user_id'=> '32',
+//            'nif' => '689012345',
+//            'phone'=>'966789012',
+//            'is_working' =>'1',
+//            'condition' => 'EM TRABALHO',
+//            'created_at'=>now(),
+//            'updated_at'=>now()
+//        ]);
+//
+//        DB::table('drivers')->insert([
+//            'user_id'=> '33',
+//            'nif' => '987654321',
+//            'phone'=>'927654321',
+//            'is_working' =>'1',
+//            'condition' => 'DISPONIVEL',
+//            'created_at'=>now(),
+//            'updated_at'=>now()
+//        ]);
+//
+//        DB::table('drivers')->insert([
+//            'user_id'=> '34',
+//            'nif' => '012345678',
+//            'phone'=>'961098765',
+//            'is_working' =>'1',
+//            'condition' => 'DISPONIVEL',
+//            'created_at'=>now(),
+//            'updated_at'=>now()
+//        ]);
+//
+//        DB::table('drivers')->insert([
+//            'user_id'=> '35',
+//            'nif' => '321654987',
+//            'phone'=>'918765432',
+//            'is_working' =>'1',
+//            'condition' => 'FERIAS',
+//            'created_at'=>now(),
+//            'updated_at'=>now()
+//        ]);
+//
+//        DB::table('drivers')->insert([
+//            'user_id'=> '36',
+//            'nif' => '678901234',
+//            'phone'=>'966789012',
+//            'is_working' =>'1',
+//            'condition' => 'FERIAS',
+//            'created_at'=>now(),
+//            'updated_at'=>now()
+//        ]);
+//
+//        DB::table('drivers')->insert([
+//            'user_id'=> '37',
+//            'nif' => '345678901',
+//            'phone'=>'928765432',
+//            'is_working' =>'0',
+//            'condition' => 'EX_COLABORADOR',
+//            'created_at'=>now(),
+//            'updated_at'=>now()
+//        ]);
+//
+//        DB::table('drivers')->insert([
+//            'user_id'=> '38',
+//            'nif' => '901234567',
+//            'phone'=>'967890123',
+//            'is_working' =>'0',
+//            'condition' => 'EX_COLABORADOR',
+//            'created_at'=>now(),
+//            'updated_at'=>now()
+//        ]);
+//
+//        DB::table('drivers')->insert([
+//            'user_id'=> '39',
+//            'nif' => '567890123',
+//            'phone'=>'961234567',
+//            'is_working' =>'1',
+//            'condition' => 'BAIXA',
+//            'created_at'=>now(),
+//            'updated_at'=>now()
+//        ]);
+//
+//        DB::table('drivers')->insert([
+//            'user_id'=> '40',
+//            'nif' => '123456789',
+//            'phone'=>'969876543',
+//            'is_working' =>'1',
+//            'condition' => 'BAIXA',
+//            'created_at'=>now(),
+//            'updated_at'=>now()
+//        ]);
+//
+//        DB::table('drivers')->insert([
+//            'user_id'=> '41',
+//            'nif' => '987654321',
+//            'phone'=>'916543210',
+//            'is_working' =>'1',
+//            'condition' => 'EM TRABALHO',
+//            'created_at'=>now(),
+//            'updated_at'=>now()
+//        ]);
+//
+//        DB::table('drivers')->insert([
+//            'user_id'=> '42',
+//            'nif' => '234567890',
+//            'phone'=>'967890123',
+//            'is_working' =>'1',
+//            'condition' => 'EM TRABALHO',
+//            'created_at'=>now(),
+//            'updated_at'=>now()
+//        ]);
+//
+//        DB::table('drivers')->insert([
+//            'user_id'=> '43',
+//            'nif' => '876543210',
+//            'phone'=>'918765432',
+//            'is_working' =>'1',
+//            'condition' => 'DISPONIVEL',
+//            'created_at'=>now(),
+//            'updated_at'=>now()
+//        ]);
+//
+//        DB::table('drivers')->insert([
+//            'user_id'=> '44',
+//            'nif' => '345678901',
+//            'phone'=>'961234567',
+//            'is_working' =>'1',
+//            'condition' => 'DISPONIVEL',
+//            'created_at'=>now(),
+//            'updated_at'=>now()
+//        ]);
+//
+//        DB::table('drivers')->insert([
+//            'user_id'=> '45',
+//            'nif' => '789012345',
+//            'phone'=>'929012345',
+//            'is_working' =>'1',
+//            'condition' => 'FERIAS',
+//            'created_at'=>now(),
+//            'updated_at'=>now()
+//        ]);
+//
+//        DB::table('drivers')->insert([
+//            'user_id'=> '46',
+//            'nif' => '456789012',
+//            'phone'=>'928765432',
+//            'is_working' =>'1',
+//            'condition' => 'FERIAS',
+//            'created_at'=>now(),
+//            'updated_at'=>now()
+//        ]);
+//
+//        DB::table('drivers')->insert([
+//            'user_id'=> '47',
+//            'nif' => '890123456',
+//            'phone'=>'966789012',
+//            'is_working' =>'0',
+//            'condition' => 'EX_COLABORADOR',
+//            'created_at'=>now(),
+//            'updated_at'=>now()
+//        ]);
+//
+//        DB::table('drivers')->insert([
+//            'user_id'=> '48',
+//            'nif' => '567890123',
+//            'phone'=>'961098765',
+//            'is_working' =>'0',
+//            'condition' => 'EX_COLABORADOR',
+//            'created_at'=>now(),
+//            'updated_at'=>now()
+//        ]);
+//
+//        DB::table('drivers')->insert([
+//            'user_id'=> '49',
+//            'nif' => '123456789',
+//            'phone'=>'969876543',
+//            'is_working' =>'1',
+//            'condition' => 'BAIXA',
+//            'created_at'=>now(),
+//            'updated_at'=>now()
+//        ]);
+//
+//        DB::table('drivers')->insert([
+//            'user_id'=> '50',
+//            'nif' => '987654321',
+//            'phone'=>'927654321',
+//            'is_working' =>'1',
+//            'condition' => 'BAIXA',
+//            'created_at'=>now(),
+//            'updated_at'=>now()
+//        ]);
 
 
     }

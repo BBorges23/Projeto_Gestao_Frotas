@@ -85,7 +85,7 @@
                                         <hr class="mt-0 mb-4">
                                         <div class="row pt-1">
                                             <h3>Observações</h3>
-                                             <p>{{ $status_driver }}</p>
+                                            <p>{{ $status_driver }}</p>
                                         </div>
                                     @endif
 
@@ -125,9 +125,12 @@
                                                                 ->where('id', auth()->user()->driver->id)
                                                                 ->value('condition')
 
+//                                                            $date_start = App\Models\Travel::query()
+
+
                                                         @endphp
-                                                        @if($driver_state === "POR ACEITAR" && $driver_condition === "DISPONIVEL")
-                                                            @if(!$activeTravel)
+                                                        @if($driver_state === "POR ACEITAR" )
+                                                            @if(!$activeTravel && $date_start <= $date_now )
                                                                 <a class="btn btn-success" href="{{ route($route4)}}" onclick="confirmation_accept(event)" name="{{$id}}" id="{{basename(parse_url(route($route1))['path'])}}">Aceitar</a>
                                                             @elseif($date_start > $date_now )
                                                                     <p style=" font-weight: bold; color: red">Viagem inicia em {{date('d-m-Y', strtotime($date_start))}} </p>
@@ -135,9 +138,9 @@
                                                                 <p style=" font-weight: bold; color: red">Só pode aceitar nova viagem após concluir a atual</p>
                                                             @endif
                                                         @elseif(($driver_state === "ACEITE" || $driver_state === "PROBLEMAS") && $driver_condition === "EM TRABALHO")
-{{--                                                            @if($activeTravel)--}}
-                                                                <a class="btn btn-danger" href="{{ route($route4)}}" onclick="confirmation_conclude(event)" name="{{$id}}" id="{{basename(parse_url(route($route1))['path'])}}">Concluir</a>
-{{--                                                            @endif--}}
+                                                            {{--                                                            @if($activeTravel)--}}
+                                                            <a class="btn btn-danger" href="{{ route($route4)}}" onclick="confirmation_conclude(event)" name="{{$id}}" id="{{basename(parse_url(route($route1))['path'])}}">Concluir</a>
+                                                            {{--                                                            @endif--}}
 
                                                         @else
                                                             @if($driver_condition === "BAIXA")

@@ -8,10 +8,10 @@
                 <span class="ms-1 font-weight-bold text-white">Frotas</span>
             </a>
         @else
-        <a class="navbar-brand m-0 fs-2" href="{{route('home')}}">
-            <img src="{{asset('images/logo.png')}}" class="navbar-brand-img h-100" alt="main_logo">
-            <span class="ms-1 font-weight-bold text-white">Frotas</span>
-        </a>
+            <a class="navbar-brand m-0 fs-2" href="{{route('home')}}">
+                <img src="{{asset('images/logo.png')}}" class="navbar-brand-img h-100" alt="main_logo">
+                <span class="ms-1 font-weight-bold text-white">Frotas</span>
+            </a>
         @endif
     </div>
 
@@ -43,7 +43,7 @@
             @endif
 
             <li class="nav-item">
-                <a class="nav-link fs-5 text-white " href="{{route(auth()->user()->getTypeUser().'.travels.index')}}">
+                <a class="nav-link fs-5 text-white " href="{{route('driver.home.index')}}">
 
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="fa-solid fa-route fa-xl"></i>
@@ -52,17 +52,7 @@
                 </a>
             </li>
 
-            <li class="nav-item">
-                <a class="nav-link fs-5 text-white " href="{{route(auth()->user()->getTypeUser().'.maintenances.index')}}">
-
-                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="fa-solid fa-screwdriver-wrench fa-xl"></i>
-                    </div>
-                    <span class="nav-link-text ms-1">Manutenções</span>
-                </a>
-            </li>
-                @role('driver')
-
+            @role('driver')
             <li class="nav-item mt-3 pt-3">
                 <h6 class="ps-4 fs-6 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Utilizador</h6>
             </li>
@@ -77,7 +67,7 @@
                     <span class="nav-link-text ms-1">Perfil</span>
                 </a>
             </li>
-                @endrole
+            @endrole
         </ul>
         <div class="sidenav-footer position-absolute w-100 bottom-0 "></div>
     </div>
