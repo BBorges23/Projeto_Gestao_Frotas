@@ -32,6 +32,7 @@ class MaintenanceSeeder extends Seeder
             'created_at'=>now(),
             'updated_at'=>now()
         ]);
+
         DB::table('maintenances')->insert([
             'vehicle_id' => '2',
             'motive' => 'Pneu',
@@ -42,6 +43,7 @@ class MaintenanceSeeder extends Seeder
             'created_at'=>now(),
             'updated_at'=>now()
         ]);
+
         DB::table('maintenances')->insert([
             'vehicle_id' => '3',
             'motive' => 'Motor',
@@ -52,6 +54,7 @@ class MaintenanceSeeder extends Seeder
             'created_at'=>now(),
             'updated_at'=>now()
         ]);
+
         DB::table('maintenances')->insert([
             'vehicle_id' => '4',
             'motive' => 'Radiador',
@@ -62,6 +65,7 @@ class MaintenanceSeeder extends Seeder
             'created_at'=>now(),
             'updated_at'=>now()
         ]);
+
         DB::table('maintenances')->insert([
             'vehicle_id' => '5',
             'motive' => 'Chassis',

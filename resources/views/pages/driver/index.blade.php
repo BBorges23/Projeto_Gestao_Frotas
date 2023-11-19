@@ -35,6 +35,7 @@
                     'titulo' => $driver->phone,
                     'driver_state' => $driver->condition,
                     'icon'=>'fa-solid fa-user',
+
                     'link'=>route(auth()->user()->getTypeUser().'.drivers.show',$driver->id)
                     ])
                     @endcomponent

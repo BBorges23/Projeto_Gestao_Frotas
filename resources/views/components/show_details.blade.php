@@ -129,6 +129,8 @@
                                                         @if($driver_state === "POR ACEITAR" && $driver_condition === "DISPONIVEL")
                                                             @if(!$activeTravel)
                                                                 <a class="btn btn-success" href="{{ route($route4)}}" onclick="confirmation_accept(event)" name="{{$id}}" id="{{basename(parse_url(route($route1))['path'])}}">Aceitar</a>
+                                                            @elseif($date_start > $date_now )
+                                                                    <p style=" font-weight: bold; color: red">Viagem inicia em {{date('d-m-Y', strtotime($date_start))}} </p>
                                                             @else
                                                                 <p style=" font-weight: bold; color: red">Só pode aceitar nova viagem após concluir a atual</p>
                                                             @endif

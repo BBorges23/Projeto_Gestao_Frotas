@@ -17,26 +17,6 @@ class DriverSeeder extends Seeder
         //Driver::factory(10)->create();
 
         DB::table('drivers')->insert([
-            'user_id'=> '1',
-            'nif' => '123456789',
-            'phone'=>'961234567',
-            'is_working' =>'1',
-            'condition' => 'EM TRABALHO',
-            'created_at'=>now(),
-            'updated_at'=>now()
-        ]);
-
-        DB::table('drivers')->insert([
-            'user_id'=> '2',
-            'nif' => '987654321',
-            'phone'=>'927654321',
-            'is_working' =>'1',
-            'condition' => 'EM TRABALHO',
-            'created_at'=>now(),
-            'updated_at'=>now()
-        ]);
-
-        DB::table('drivers')->insert([
             'user_id'=> '3',
             'nif' => '234567890',
             'phone'=>'928765432',
@@ -61,7 +41,7 @@ class DriverSeeder extends Seeder
             'nif' => '345678901',
             'phone'=>'919012345',
             'is_working' =>'1',
-            'condition' => 'FERIAS',
+            'condition' => 'DISPONIVEL',
             'created_at'=>now(),
             'updated_at'=>now()
         ]);
@@ -71,7 +51,7 @@ class DriverSeeder extends Seeder
             'nif' => '789012345',
             'phone'=>'927890123',
             'is_working' =>'1',
-            'condition' => 'FERIAS',
+            'condition' => 'DISPONIVEL',
             'created_at'=>now(),
             'updated_at'=>now()
         ]);
@@ -80,8 +60,8 @@ class DriverSeeder extends Seeder
             'user_id'=> '7',
             'nif' => '456789012',
             'phone'=>'961234567',
-            'is_working' =>'0',
-            'condition' => 'EX_COLABORADOR',
+            'is_working' =>'1',
+            'condition' => 'DISPONIVEL',
             'created_at'=>now(),
             'updated_at'=>now()
         ]);
@@ -90,8 +70,8 @@ class DriverSeeder extends Seeder
             'user_id'=> '8',
             'nif' => '890123456',
             'phone'=>'929012345',
-            'is_working' =>'0',
-            'condition' => 'EX_COLABORADOR',
+            'is_working' =>'1',
+            'condition' => 'DISPONIVEL',
             'created_at'=>now(),
             'updated_at'=>now()
         ]);
@@ -101,7 +81,7 @@ class DriverSeeder extends Seeder
             'nif' => '567890123',
             'phone'=>'961098765',
             'is_working' =>'1',
-            'condition' => 'BAIXA',
+            'condition' => 'EM TRABALHO',
             'created_at'=>now(),
             'updated_at'=>now()
         ]);
@@ -111,7 +91,7 @@ class DriverSeeder extends Seeder
             'nif' => '012345678',
             'phone'=>'918765432',
             'is_working' =>'1',
-            'condition' => 'BAIXA',
+            'condition' => 'EM TRABALHO',
             'created_at'=>now(),
             'updated_at'=>now()
         ]);
@@ -180,8 +160,8 @@ class DriverSeeder extends Seeder
             'user_id'=> '17',
             'nif' => '333444555',
             'phone'=>'966789012',
-            'is_working' =>'0',
-            'condition' => 'EX_COLABORADOR',
+            'is_working' =>'1',
+            'condition' => 'EM TRABALHO',
             'created_at'=>now(),
             'updated_at'=>now()
         ]);
@@ -190,8 +170,8 @@ class DriverSeeder extends Seeder
             'user_id'=> '18',
             'nif' => '666777888',
             'phone'=>'921234567',
-            'is_working' =>'0',
-            'condition' => 'EX_COLABORADOR',
+            'is_working' =>'1',
+            'condition' => 'EM TRABALHO',
             'created_at'=>now(),
             'updated_at'=>now()
         ]);
@@ -280,8 +260,8 @@ class DriverSeeder extends Seeder
             'user_id'=> '27',
             'nif' => '345456567',
             'phone'=>'928765432',
-            'is_working' =>'0',
-            'condition' => 'EX_COLABORADOR',
+            'is_working' =>'1',
+            'condition' => 'EM TRABALHO',
             'created_at'=>now(),
             'updated_at'=>now()
         ]);
@@ -290,8 +270,8 @@ class DriverSeeder extends Seeder
             'user_id'=> '28',
             'nif' => '678789890',
             'phone'=>'961234567',
-            'is_working' =>'0',
-            'condition' => 'EX_COLABORADOR',
+            'is_working' =>'1',
+            'condition' => 'EM TRABALHO',
             'created_at'=>now(),
             'updated_at'=>now()
         ]);

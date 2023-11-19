@@ -14,6 +14,7 @@
         'informacao2' => auth()->user()->email,
         'titulo3' => 'Telefone',
         'informacao3' => auth()->user()->driver->phone,
+
         ])
     @endcomponent
 

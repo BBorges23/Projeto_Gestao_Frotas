@@ -23,7 +23,9 @@
     'route3' => 'admin.travels.destroy',
     'status_driver' => $travel->comments ?: "N/A",
     'driver_state' => $travel->driver_state,
-    'route4' => 'driver.home.index'
+    'route4' => 'driver.home.index',
+    'date_start'=> $travel->date_start ,
+    'date_now'=> date("Y-m-d").now()
 
     ])
     @endcomponent
