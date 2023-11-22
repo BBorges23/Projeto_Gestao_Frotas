@@ -26,13 +26,13 @@
         @endif
 
         <div class="inner">
-            <h3 style="overflow: hidden; display: -webkit-box;-webkit-line-clamp: 4;-webkit-box-orient: vertical;height: 2.5em;">
+            <h3 style="overflow: hidden; display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;height: 2.5em;">
                 @if(isset($icon_label))
                     <i class="{{ $icon_label }}"></i>
                 @endif
                 {{$label}}
             </h3>
-            <p class="fs-5">
+            <p class="fs-5" style="overflow: hidden; display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;height: 2em;">
                 @if(isset($icon_titulo))
                     <i class="{{ $icon_titulo }}"></i>
                 @endif
@@ -40,10 +40,8 @@
             </p>
 
             @if (isset($sub_titulo))
-                <p class="fs-5">{{$sub_titulo}} </p>
-                @if (isset($calendario))
-                    <p class="text-start fs-6 pe-3">{{$calendario}}</p>
-                @endif
+                <p class="fs-5" style="overflow: hidden; display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;height: 2em;">{{$sub_titulo}} </p>
+
             @endif
             @if (isset($calendario))
                 <p class="text-start fs-6 pe-3" >{{$calendario}}</p>
