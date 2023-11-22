@@ -49,6 +49,7 @@
                                                 @endforeach
                                             </select>
                                         </div>
+
                                     @endif
                                     @if(isset($titulo4))
                                         <div class="col-6 mb-3">
@@ -89,6 +90,23 @@
                                         </div>
                                     @endif
                                 </div>
+                                @if(isset($titulo10))
+                                    <div class="row pt-1">
+                                        <div class="col-6 mb-3">
+                                    @if(isset($select10))
+                                        <select name="{{$select10}}">
+                                            @foreach($array10 as $option10)
+                                                <option value="{{ $option10->id }}">{{ $option10->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    @else
+                                        <input type="{{$tipo4}}" name="{{$input_nome4}}" value="{{ old($input_nome4) }}">
+                                        <div class="invalid-feedback">@error($input_nome4) {{$message}} @enderror</div>
+                                    @endif
+                                        </div>
+                                    </div>
+                                @endif
+
                                 @if(isset($titulo8))
                                     <hr class="mt-0 mb-4">
                                     <div class="row pt-1">

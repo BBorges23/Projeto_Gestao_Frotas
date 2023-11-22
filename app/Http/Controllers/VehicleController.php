@@ -23,15 +23,43 @@ class VehicleController extends Controller
     ];
 
     public function pesquisar(Request $request){
-        $pesquisa = $request->input('campo_de_pesquisa');
-
-        if (empty($pesquisa)) {
-            return redirect()->route(auth()->user()->getTypeUser().'.vehicles.index');
+        // Atualiza ou remove os estados selecionados se o formulário de estados foi submetido
+        if ($request->has('status')) {
+            $selectedStatuses = $request->input('status', []);
+            session(['selectedStatuses' => $selectedStatuses]);
+        } elseif ($request->has('deselect_status')) {
+            // Se uma checkbox foi desmarcada, remove esse estado da sessão
+            $deselectedStatus = $request->input('deselect_status');
+            $selectedStatuses = session('selectedStatuses', []);
+            if(($key = array_search($deselectedStatus, $selectedStatuses)) !== false) {
+                unset($selectedStatuses[$key]);
+            }
+            session(['selectedStatuses' => $selectedStatuses]);
+        } else {
+            // Se o formulário de estados não foi submetido, usa os estados da sessão
+            $selectedStatuses = session('selectedStatuses', []);
         }
 
-        $resultados = Vehicle::where('year', 'like', '%'.$pesquisa.'%')
-            ->orWhere('licence_plate', 'like', '%'.$pesquisa.'%')->get();
+        $pesquisa = $request->input('campo_de_pesquisa');
 
+        $query = Vehicle::query()
+            ->select('vehicles.*') // Especifica as colunas e usa alias para evitar conflito
+            ->distinct();
+
+        if (!empty($selectedStatuses)) {
+            $query->whereIn('vehicles.condition', $selectedStatuses);
+        }
+
+        if (!empty($pesquisa)) {
+            $query->where(function ($subquery) use ($pesquisa) {
+                $subquery->where('year', 'like', '%'.$pesquisa.'%')
+                    ->orWhere('licence_plate', 'like', '%'.$pesquisa.'%');
+            });
+        }
+
+        $query->groupBy('vehicles.id');
+
+        $resultados = $query->get();
         return view('pages.vehicle.index', compact('resultados'));
     }
 
@@ -41,7 +69,7 @@ class VehicleController extends Controller
     public function index()
     {
 
-        $vehicles = Vehicle::paginate(16);
+        $vehicles = Vehicle::paginate(18);
 
 
         return view ('pages.vehicle.index',

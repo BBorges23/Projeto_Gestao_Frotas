@@ -10,6 +10,7 @@ use App\Http\Controllers\MaintenanceController;
 use App\Http\Controllers\TravelController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\DriverDashboardController;
+use \App\Http\Controllers\AccountController;
 
 /*
 |--------------------------------------------------------------------------
@@ -63,6 +64,7 @@ Route::middleware('auth')->group(function (){
     Route::post('maintenances/pesquisa', 'App\Http\Controllers\MaintenanceController@pesquisar')->name('maintenances.pesquisa');
     Route::post('travels/pesquisa', 'App\Http\Controllers\TravelController@pesquisar')->name('travels.pesquisa');
     Route::post('vehicles/pesquisa', 'App\Http\Controllers\VehicleController@pesquisar')->name('vehicles.pesquisa');
+    Route::post('accounts/pesquisa', 'App\Http\Controllers\AccountController@pesquisar')->name('accounts.pesquisa');
 });
 
 /**
@@ -78,6 +80,7 @@ Route::middleware('role:admin')->group(function (){
             Route::resource('drivers', DriverController::class);
             Route::resource('maintenances', MaintenanceController::class);
             Route::resource('travels', TravelController::class);
+            Route::resource('accounts',AccountController::class);
         });
     });
 });

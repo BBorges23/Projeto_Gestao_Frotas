@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 
 class DriverController extends Controller
 {
@@ -18,8 +19,6 @@ class DriverController extends Controller
         'email.regex' => 'O formato do Email é inválido (ex: teste@gmail.com)',
         'email.unique' => 'O e-mail já está a ser utilizado.',
         'phone.regex' => 'O formato do Telefone é inválido (ex: 912123123)',
-
-
     ];
     protected $rules_create = [
         'name'=>'required|min:3|max:255',
@@ -27,7 +26,6 @@ class DriverController extends Controller
         'email' => 'required|regex:/^\S+@\S+\.\S+$/|unique:users,email',
         'phone'=>'required|regex:/^\d{9}$/',
         'password' => 'required|min:6',
-
     ];
 
     protected $rules_update = [
@@ -42,18 +40,47 @@ class DriverController extends Controller
 
 
     public function pesquisar(Request $request){
-        $pesquisa = $request->input('campo_de_pesquisa');
-
-        if (empty($pesquisa)) {
-            return redirect()->route(auth()->user()->getTypeUser().'.drivers.index');
+        // Atualiza ou remove os estados selecionados se o formulário de estados foi submetido
+        if ($request->has('status')) {
+            $selectedStatuses = $request->input('status', []);
+            session(['selectedStatuses' => $selectedStatuses]);
+        } elseif ($request->has('deselect_status')) {
+            // Se uma checkbox foi desmarcada, remove esse estado da sessão
+            $deselectedStatus = $request->input('deselect_status');
+            $selectedStatuses = session('selectedStatuses', []);
+            if(($key = array_search($deselectedStatus, $selectedStatuses)) !== false) {
+                unset($selectedStatuses[$key]);
+            }
+            session(['selectedStatuses' => $selectedStatuses]);
+        } else {
+            // Se o formulário de estados não foi submetido, usa os estados da sessão
+            $selectedStatuses = session('selectedStatuses', []);
         }
 
-        $resultados = Driver::join('users', 'drivers.user_id', '=', 'users.id')
-                        ->where('drivers.nif', 'like', '%' . $pesquisa . '%')
-                        ->orWhere('users.name', 'like', '%' . $pesquisa . '%')
-                        ->get();
+        // Recebe a pesquisa de texto se foi submetida
+        $pesquisa = $request->input('campo_de_pesquisa', '');
 
-        return view('pages.driver.index', compact('resultados'));
+        $query = Driver::query()
+            ->select('drivers.*') // Especifica as colunas e usa alias para evitar conflito
+            ->join('users', 'drivers.user_id', '=', 'users.id')
+            ->distinct();
+
+        if (!empty($selectedStatuses)) {
+            $query->whereIn('drivers.condition', $selectedStatuses);
+        }
+
+        if (!empty($pesquisa)) {
+            $query->where(function ($subquery) use ($pesquisa) {
+                $subquery->where('drivers.nif', 'like', '%' . $pesquisa . '%')
+                    ->orWhere('users.name', 'like', '%' . $pesquisa . '%');
+            });
+        }
+
+
+        $query->groupBy('drivers.id');
+
+        $resultados = $query->get();
+        return view('pages.driver.index',compact('resultados'));
     }
 
     /**
@@ -61,7 +88,6 @@ class DriverController extends Controller
      */
     public function index()
     {
-
         $drivers = Driver::paginate(16);
 
         return view('pages.driver.index',

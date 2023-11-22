@@ -64,8 +64,17 @@
                                                         <input type="{{$tipo4}}" name="{{$input_nome4}}" value="{{ old($input_nome4) }}">
                                                         <div class="invalid-feedback">@error($input_nome4) {{$message}} @enderror</div>
                                                     @endif
+                                                @elseif(isset($titulo8))
+                                                    <div class="col-6 mb-3">
+                                                            <h6>{{$titulo8}}</h6>
+                                                            <select name="{{$select8}}">
+                                                                <option value="1">admin</option>
+                                                                <option value="2">gestor</option>
+                                                            </select>
+                                                    </div>
                                                 @endif
                                             </div>
+
                                         </div
                                     @endif
                                     <hr class="mt-0 mb-4">
@@ -95,7 +104,10 @@
                                                 </select>
                                             @endif
                                         </div>
+
+
                                     </div>
+
                                     <div class="d-flex justify-content-start gap-2 ">
                                         <button type="submit" class="btn btn-primary">
                                             <i class="fa-solid fa-circle-plus"></i>

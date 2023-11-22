@@ -61,6 +61,23 @@
                     <span class="nav-link-text ms-1">Manutenções</span>
                 </a>
             </li>
+
+                @role('admin')
+
+                <li class="nav-item mt-3 pt-3">
+                    <h6 class="ps-4 fs-6 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Contas</h6>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link fs-5 text-white " href="{{route('admin.accounts.index')}}">
+
+                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="fa-solid fa-users-gear"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Criar Utilizadores</span>
+                    </a>
+                </li>
+                @endrole
             @endif
             @role('driver')
 

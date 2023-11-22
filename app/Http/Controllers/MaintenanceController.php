@@ -88,7 +88,7 @@ class MaintenanceController extends Controller
     {
         $maintenances = Maintenance::where('state', 'PROCESSANDO')
             ->orderBy('updated_at', 'desc') // Adiciona ordenação por updated_at em ordem decrescente
-            ->paginate(16);
+            ->paginate(18);
 
         return view('pages.maintenance.index', [
             'maintenances'=>$maintenances]);
@@ -180,7 +180,7 @@ class MaintenanceController extends Controller
         $user_log = User::where('id', auth()->user()->id)->first();
         $name = $user_log->name;
         $description = $maintenance->comments ."\n". date('d-m-Y H:i') . " - " . $name . ": " . $request->input('text');
-        
+
         if ($description) {
 
             $maintenance->date_exit = date('Y-m-d');

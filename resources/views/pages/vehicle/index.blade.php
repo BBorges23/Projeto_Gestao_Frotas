@@ -5,9 +5,31 @@
 
 @endif
 @section('subtitle', ' -> Listagem')
-
 @section('content')
     @role('admin')
+
+    <form action="{{ route('vehicles.pesquisa') }}" method="post" class="d-flex">
+        @csrf
+        <div class="form-check">
+            <input class="form-check-input status-checkbox" type="checkbox" id="checkbox1" name="status[]" value="DISPONIVEL" {{ in_array('DISPONIVEL', session('selectedStatuses', [])) ? 'checked' : '' }}>
+            <label class="form-check-label" for="checkbox1">Disponivel</label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input status-checkbox" type="checkbox" id="checkbox2" name="status[]" value="VENDIDO" {{ in_array('VENDIDO', session('selectedStatuses', [])) ? 'checked' : '' }}>
+            <label class="form-check-label" for="checkbox2">Vendido</label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input status-checkbox" type="checkbox" id="checkbox3" name="status[]" value="EM VIAGEM" {{ in_array('EM VIAGEM', session('selectedStatuses', [])) ? 'checked' : '' }}>
+            <label class="form-check-label" for="checkbox3">Em viagem</label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input status-checkbox" type="checkbox" id="checkbox4" name="status[]" value="EM MANUTENCAO" {{ in_array('EM MANUTENCAO', session('selectedStatuses', [])) ? 'checked' : '' }}>
+            <label class="form-check-label" for="checkbox4">Em manutenção</label>
+        </div>
+        <!-- Campo oculto para deseleção -->
+        <input type="hidden" name="deselect_status" id="deselect_status" value="">
+    </form>
+
         @section('plus_button')
             <div class="dropdown pe-3">
                 <button class="btn btn-info border rounded-circle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
@@ -18,6 +40,7 @@
                     <li><a class="dropdown-item" href="{{ route('admin.carmodels.index') }}">Listagem Modelos</a></li>
                 </ul>
             </div>
+
             @component('components.plus_button',[
             'colorBTN'=> 'btn-info',
              'itens' =>  ['item'=> ['Criar Veículos', 'Criar Modelos', 'Criar Marca'], 'link'=> ['admin.vehicles.create', 'admin.carmodels.create','admin.brands.create']]  ,
@@ -37,7 +60,7 @@
     @if(isset($resultados))
         <div class="row">
             @foreach ($resultados as $vehicle)
-                <div class="col-md-3 ">
+                <div class="col-xl-2  col-6 ">
                     @component('components.small-box',[
                     'bg' => 'bg-info',
                     'label'=> $vehicle->model->brand->name,
@@ -53,7 +76,7 @@
     @else
         <div class="row">
             @foreach ($vehicles as $vehicle)
-                <div class="col-sm-3">
+                <div class="col-xl-2  col-6  " >
                     @component('components.small-box',[
                     'bg' => 'bg-info',
                     'label'=> $vehicle->model->brand->name,
@@ -84,3 +107,24 @@
         @endif
     </div>
 @endsection
+
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Adiciona um ouvinte de evento para cada checkbox
+        document.querySelectorAll('.status-checkbox').forEach(function(checkbox) {
+            checkbox.addEventListener('change', function() {
+                // Se a checkbox foi desmarcada, define o valor do campo oculto
+                if (!this.checked) {
+                    document.getElementById('deselect_status').value = this.value;
+                } else {
+                    // Se foi marcada, limpa o campo oculto
+                    document.getElementById('deselect_status').value = '';
+                }
+                // Submete o formulário
+                this.form.submit();
+            });
+        });
+    });
+</script>
