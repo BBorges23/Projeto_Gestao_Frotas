@@ -29,7 +29,7 @@
     @if(isset($resultados))
         <div class="row">
             @foreach($resultados as $maintenance)
-                <div class="col-sm-3">
+                <div class="col-xl-4 col-6">
                     @component('components.small-box',[
                     'bg' => 'btn-warning',
                     'driver_state'=> $maintenance->driver_state,
@@ -48,7 +48,7 @@
     @else
         <div class="row">
             @foreach($maintenances as $maintenance)
-                <div class="col-sm-3">
+                <div class="col-xl-4 col-6">
                     @component('components.small-box',[
                     'bg' => 'btn-warning',
                     'driver_state'=> $maintenance->driver_state,

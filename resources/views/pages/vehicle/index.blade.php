@@ -58,7 +58,7 @@
     @endsection
 
     @if(isset($resultados))
-        <div class="row">
+        <div class="row  ">
             @foreach ($resultados as $vehicle)
                 <div class="col-xl-2  col-6 ">
                     @component('components.small-box',[

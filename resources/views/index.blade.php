@@ -9,10 +9,10 @@
 
     @include('template.components.navbar')
 
-    <div class="container-fluid py-4">
+    <div class="container-fluid py-4 ">
 
-        <div class="row min-vh-80 h-100">
-            <div class="col-12">
+        <div class="row min-vh-80 h-100 me-2 ms-2">
+            <div class="col-12 ">
                 <div class="d-flex {{isset($between) && $between ? 'justify-content-between' : 'justify-content-end'}}  mb-2">
                 @yield('plus_button')
                 </div>

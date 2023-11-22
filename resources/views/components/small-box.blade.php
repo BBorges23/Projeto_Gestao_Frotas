@@ -45,6 +45,9 @@
                     <p class="text-start fs-6 pe-3">{{$calendario}}</p>
                 @endif
             @endif
+            @if (isset($calendario))
+                <p class="text-start fs-6 pe-3" >{{$calendario}}</p>
+            @endif
         </div>
 
         @if(isset($driver_state))
