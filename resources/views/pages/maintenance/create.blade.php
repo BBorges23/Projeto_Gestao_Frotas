@@ -4,7 +4,7 @@
 @section('content')
 
 
-@foreach($vehicles as $vehicle) @endforeach
+@foreach($vehicles->whereNull('deleted_at') as $vehicle) @endforeach
 
 @component('components.create_form', [
     'route_create' => auth()->user()->getTypeUser().'.maintenances.store',

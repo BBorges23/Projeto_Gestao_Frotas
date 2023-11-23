@@ -33,7 +33,7 @@
         </form>
 
         @component('components.plus_button',[
-        'colorBTN'=> 'btn-warning',
+        'colorBTN'=> 'btn-secondary',
         'itens'=>['item'=> ['Criar Viagem'], 'link' => [auth()->user()->getTypeUser().'.travels.create']]])
         @endcomponent
     @endsection

@@ -19,7 +19,8 @@ class VehicleController extends Controller
         'carmodel_id'=>'required',
         'licence_plate' => 'required|regex:/^[A-Z]{2}-\d{2}-[A-Z]{2}$/',
         'year'=>'required|min:4|max:4',
-        'date_buy'=>'required'
+        'date_buy'=>'required',
+        'condition' => 'required',
     ];
 
     public function pesquisar(Request $request){
@@ -59,7 +60,7 @@ class VehicleController extends Controller
 
         $query->groupBy('vehicles.id');
 
-        $resultados = $query->get();
+        $resultados = $query->paginate(18);
         return view('pages.vehicle.index', compact('resultados'));
     }
 
@@ -68,14 +69,9 @@ class VehicleController extends Controller
      */
     public function index()
     {
+        $vehicles = Vehicle::where('condition', '!=', 'PERDA_TOTAL')->paginate(18);
 
-        $vehicles = Vehicle::paginate(18);
-
-
-        return view ('pages.vehicle.index',
-            ['vehicles' => $vehicles,
-
-                ]);
+        return view('pages.vehicle.index', ['vehicles' => $vehicles]);
     }
 
     /**
@@ -120,10 +116,46 @@ class VehicleController extends Controller
      */
     public function update(Request $request, Vehicle $vehicle)
     {
+        $newCondition = $request->input('condition');
+
+
+        if ($newCondition === 'DISPONIVEL') {
+            $vehicle->is_driving = 0;
+            $vehicle->condition = $newCondition;
+        }
+        elseif ($newCondition === 'VENDIDO')
+        {
+            $vehicle->is_driving = 0;
+            $vehicle->deleted_at = date('d-m-Y H:i');
+            $vehicle->condition = $newCondition;
+        }
+        elseif($newCondition === 'PERDA_TOTAL')
+        {
+            $vehicle->is_driving = 0;
+            $vehicle->deleted_at = date('d-m-Y H:i');
+            $vehicle->condition = $newCondition;
+        }
+        elseif($newCondition === 'EM VIAGEM')
+        {
+            $vehicle->is_driving = 1;
+            $vehicle->condition = $newCondition;
+        }
+        elseif($newCondition === 'EM MANUTENCAO')
+        {
+            $vehicle->is_driving = 0;
+            $vehicle->condition = $newCondition;
+        }
+
         $data = $request->validate($this->rules, $this->msg);
         $vehicle->update($data);
         $vehicle->save();
-        return redirect()->route('admin.vehicles.show', ['vehicle'=>$vehicle]);
+
+        if($newCondition === 'PERDA_TOTAL' || 'VENDIDO')
+        {
+            return redirect()->route('admin.vehicles.index');
+        }
+        else
+            return redirect()->route('admin.vehicles.show', ['vehicle'=>$vehicle]);
     }
     /**
      * Remove the specified resource from storage.

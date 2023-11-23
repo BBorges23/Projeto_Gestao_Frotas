@@ -79,7 +79,7 @@ class DriverController extends Controller
 
         $query->groupBy('drivers.id');
 
-        $resultados = $query->get();
+        $resultados = $query->paginate(16);
         return view('pages.driver.index',compact('resultados'));
     }
 
@@ -88,7 +88,7 @@ class DriverController extends Controller
      */
     public function index()
     {
-        $drivers = Driver::paginate(16);
+        $drivers = Driver::orderBy('updated_at','desc')->paginate(16);
 
         return view('pages.driver.index',
         ['drivers' => $drivers,

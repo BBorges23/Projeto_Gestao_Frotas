@@ -72,7 +72,7 @@ class MaintenanceController extends Controller
         }
 
         // Obtém os resultados da consulta
-        $resultados = $query->get();
+        $resultados = $query->paginate(18);
 //        dd($resultados);
 
 

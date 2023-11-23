@@ -143,6 +143,33 @@
                                         </div>
                                     </div>
                                 @endif
+                                @if(isset($titulo11))
+                                    <div class="row pt-1">
+                                        <div class="col-6 mb-3">
+                                            <h6>{{$titulo11}}</h6>
+
+                                            <select name="condition">
+                                                <option value="DISPONIVEL" {{$selected11 == 'DISPONIVEL' ? 'selected' : ''}}>DISPONIVEL</option>
+                                                <option value="VENDIDO" {{$selected11 == 'VENDIDO' ? 'selected' : ''}}>VENDIDO</option>
+                                                <option value="PERDA_TOTAL" {{$selected11 == 'PERDA_TOTAL' ? 'selected' : ''}}>PERDA TOTAL</option>
+                                                <option value="EM VIAGEM" {{$selected11 == 'EM VIAGEM' ? 'selected' : ''}}>EM VIAGEM</option>
+                                                <option value="EM MANUTENCAO" {{$selected11 == 'EM MANUTENCAO' ? 'selected' : ''}}>EM MANUTENÇÃO</option>
+                                            </select>
+
+                                            @if(request('condition') === 'DISPONIVEL')
+                                                <input hidden="" type="text" name="is_driving" value="0">
+                                            @elseif(request('condition') === 'VENDIDO')
+                                                <input hidden="" type="text" name="is_driving" value="0">
+                                            @elseif(request('condition') === 'PERDA_TOTAL')
+                                                <input hidden="" type="text" name="is_driving" value="0">
+                                            @elseif(request('condition') === 'EM VIAGEM')
+                                                <input hidden="" type="text" name="is_driving" value="1">
+                                            @else
+                                                <input hidden="" type="text" name="is_driving" value="0">
+                                            @endif
+                                        </div>
+                                    </div>
+                                @endif
                                 <div class="d-flex justify-content-start gap-2 ">
                                     <button type="submit" class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i></button>
                                     <a class="btn btn-danger" href="{{ route($route_show ,$id) }}"><i class="fa-solid fa-ban"></i></a><br />

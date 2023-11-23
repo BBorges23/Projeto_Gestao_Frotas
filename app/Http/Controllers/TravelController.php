@@ -82,7 +82,7 @@ class TravelController extends Controller
         }
         $query->groupBy('travels.id');
         // Obtém os resultados da consulta
-        $resultados = $query->get();
+        $resultados = $query->paginate(16);
 
         // Retorna a view com as viagens filtradas
         return view('pages.travel.index', compact('resultados'));
@@ -102,7 +102,6 @@ class TravelController extends Controller
             ['travels'=> $travels
             ]);
     }
-
 
     /**
      * Show the form for creating a new resource.
@@ -128,10 +127,9 @@ class TravelController extends Controller
     /**
      * Display the specified resource.
      */
+
     public function show(Travel $travel)
     {
-
-
         return view('pages.travel.show', [
             'travel' => $travel,
             'driver'=>  $travel->driver,

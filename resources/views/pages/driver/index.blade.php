@@ -7,7 +7,6 @@
 @section('subtitle', ' -> Listagem')
 @section('content')
 
-    @role('admin')
         @section('plus_button')
 
             <form action="{{ route('drivers.pesquisa') }}" method="post" class="d-flex">
@@ -31,15 +30,15 @@
                 <!-- Campo oculto para deseleção -->
                 <input type="hidden" name="deselect_status" id="deselect_status" value="">
             </form>
-
-
+            @role('admin')
             @component('components.plus_button',[
-            'colorBTN' => 'bg-success',
+            'colorBTN' => 'btn-secondary',
             'itens' => ['item' => ['Criar Motorista'], 'link' => ['admin.drivers.create']]
             ])
             @endcomponent()
+            @endrole
         @endsection
-    @endrole
+
 
     @section('search-bar')
             @component('components.search-bar',[
