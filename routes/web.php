@@ -72,7 +72,12 @@ Route::middleware('auth')->group(function (){
 
 /**
  * Admin permissões
+ *
  */
+
+//Route::get('/admin/vehicles/history/{vehicle}', [VehicleController::class, 'showDeleted'])
+//    ->name('vehicles.history.deleted');
+
 Route::middleware('role:admin')->group(function (){
     Route::prefix('/admin')->group(function (){
         Route::name('admin.')->group(function (){
