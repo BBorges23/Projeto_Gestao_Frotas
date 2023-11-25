@@ -30,6 +30,8 @@
                 <!-- Campo oculto para deseleção -->
                 <input type="hidden" name="deselect_status" id="deselect_status" value="">
             </form>
+            <div class="d-flex p-1"><p><a href="{{route('admin.drivers.history')}}" class="link-underline-primary">Histórico</a></p></div>
+
             @role('admin')
             @component('components.plus_button',[
             'colorBTN' => 'btn-secondary',

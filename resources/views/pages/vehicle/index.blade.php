@@ -15,10 +15,6 @@
                         <label class="form-check-label" for="checkbox1">Disponivel</label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input status-checkbox" type="checkbox" id="checkbox2" name="status[]" value="VENDIDO" {{ in_array('VENDIDO', session('selectedStatuses', [])) ? 'checked' : '' }}>
-                        <label class="form-check-label" for="checkbox2">Vendido</label>
-                    </div>
-                    <div class="form-check">
                         <input class="form-check-input status-checkbox" type="checkbox" id="checkbox3" name="status[]" value="EM VIAGEM" {{ in_array('EM VIAGEM', session('selectedStatuses', [])) ? 'checked' : '' }}>
                         <label class="form-check-label" for="checkbox3">Em viagem</label>
                     </div>
@@ -29,6 +25,7 @@
                     <!-- Campo oculto para deseleção -->
                     <input type="hidden" name="deselect_status" id="deselect_status" value="">
                 </form>
+                <div class="d-flex p-1"><p><a href="{{route('admin.vehicles.history')}}" class="link-underline-primary">Histórico</a></p></div>
             @role('admin')
             <div class="d-flex justify-content-end">
                 <div class="dropdown pe-3">

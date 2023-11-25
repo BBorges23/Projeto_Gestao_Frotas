@@ -29,7 +29,6 @@ class MaintenanceController extends Controller
 
     ];
 
-
     public function pesquisar(Request $request)
     {
         // Atualiza ou remove os status selecionados se o formulário foi submetido
@@ -221,7 +220,6 @@ class MaintenanceController extends Controller
         return response()->json(['message' => 'Falha na atualização da descrição'], 400);
     }
 
-
     public function accept(Maintenance $maintenance)
     {
         $maintenance->update(['is_active' => 1, 'driver_state' => 'ACEITE']);
@@ -244,5 +242,15 @@ class MaintenanceController extends Controller
 
         return response()->json(['message' => 'Falha na atualização da descrição'], 400);
 
+    }
+
+    public function history()
+    {
+        $maintenances = Maintenance::where('state', 'CONCLUIDO')
+            ->orWhere('state','CANCELADO')
+            ->paginate(16);
+
+        return view('pages.maintenance.history',[
+            'maintenances'=>$maintenances]);
     }
 }

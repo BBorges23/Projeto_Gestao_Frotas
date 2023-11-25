@@ -9,7 +9,6 @@
 @section('content')
 
     @section('plus_button')
-
         <form action="{{ route('travels.pesquisa') }}" method="post" class="d-flex">
             @csrf
             <div class="form-check">
@@ -31,6 +30,7 @@
             <!-- Campo oculto para deseleção -->
             <input type="hidden" name="deselect_status" id="deselect_status" value="">
         </form>
+        <div class="d-flex p-1"><p><a href="{{route('admin.travels.history')}}" class="link-underline-primary">Histórico</a></p></div>
 
         @component('components.plus_button',[
         'colorBTN'=> 'btn-secondary',

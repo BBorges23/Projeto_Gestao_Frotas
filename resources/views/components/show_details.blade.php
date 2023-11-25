@@ -106,9 +106,10 @@
                                             @if(auth()->user()->getTypeUser() !== 'driver')
                                                 <div class="d-flex justify-content-end gap-1 align-content-end w-100">
                                                     @if(request()->routeIs('*.travels.*'))
+                                                        @if($state === "PROCESSANDO")
                                                         <a class="btn btn-danger" href="{{ route($route1)}}"
                                                            onclick="confirmation_cancel(event)" name="{{$id}}" id="{{basename(parse_url(route($route1))['path'])}}">Cancelar</a>
-                                                        @if($driver_state === "CONCLUIDO" || $driver_state === "PROBLEMAS")
+                                                        @elseif($driver_state === "CONCLUIDO" || $driver_state === "PROBLEMAS")
                                                             <a class="btn btn-success" href="{{ route($route1) }}"
                                                                onclick="confirmation_conclude(event)" name="{{$id}}" id="{{basename(parse_url(route($route1))['path'])}}">Concluir</a>
                                                         @endif
@@ -133,8 +134,6 @@
                                                                 ->value('condition')
 
 //                                                            $date_start = App\Models\Travel::query()
-
-
                                                         @endphp
                                                         @if($driver_state === "POR ACEITAR" )
                                                             @if(!$activeTravel && $date_start <= $date_now )
@@ -161,19 +160,34 @@
                                                 </div>
                                         </div>
 
-                                        @role('admin')
-                                        <a class="btn btn-success" href="{{ route($route2, $id) }}"><i
-                                                class="fa-solid fa-pen-to-square"></i></a>
-                                        <form id="submit" class="form-custom" method="POST"
-                                              action="{{route($route3, $id)}}" style="display: inline" onclick="return confirmation_create_edit_form(event)">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger">
-                                                <i class="fa-solid fa-trash-can"></i>
-                                            </button>
-                                            <br/>
-                                        </form>
-                                        @endrole
+{{--                                        @role('admin')--}}
+
+
+
+{{--                                        @php--}}
+{{--                                        //$deteled = App\Models\Driver::withTrashed()->get();--}}
+{{--                                        $deleted = App\Models\Driver::query()--}}
+{{--                                                  ->where('id', auth()->user()->driver->id)--}}
+{{--                                                  ->value('deleted_at')--}}
+{{--                                        @endphp--}}
+{{--                                        {{$deleted}}--}}
+{{--                                            @if($deleted == 'NULL')--}}
+{{--                                                <a class="btn btn-success" href="{{ route($route2, $id) }}"><i--}}
+{{--                                                        class="fa-solid fa-pen-to-square"></i></a>--}}
+{{--                                                <form id="submit" class="form-custom" method="POST"--}}
+{{--                                                      action="{{route($route3, $id)}}" style="display: inline" onclick="return confirmation_create_edit_form(event)">--}}
+{{--                                                    @csrf--}}
+{{--                                                    @method('DELETE')--}}
+{{--                                                    <button type="submit" class="btn btn-danger">--}}
+{{--                                                        <i class="fa-solid fa-trash-can"></i>--}}
+{{--                                                    </button>--}}
+{{--                                                    <br/>--}}
+{{--                                                </form>--}}
+{{--                                            @else--}}
+{{--                                                nada--}}
+{{--                                            @endif--}}
+{{--                                        @endif--}}
+{{--                                        @endrole--}}
                                     </div>
                             </div>
                         </div>

@@ -18,13 +18,11 @@
     'informacao4' => $maintenance->date_exit,
     'id' => $maintenance->id,
     'route1' => auth()->user()->getTypeUser().'.maintenances.index',
-    'route2' => 'admin.maintenances.edit',
-    'route3' => 'admin.maintenances.destroy',
+    'route2' => $maintenance->state == 'PROCESSANDO' ? 'admin.maintenances.edit' : null,
+    'route3' => $maintenance->state == 'PROCESSANDO' ? 'admin.maintenances.edit' : null,
     'status_driver' => $maintenance->comments ?: "N/A",
     'maintenance_state'=> $maintenance->state,
     'route4' => 'driver.home.index',
-
-
     ])
     @endcomponent
 

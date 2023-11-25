@@ -8,7 +8,7 @@
     'imagem' => 'images/mapa.png',
     'nome' => 'Motorista',
     'descricao' => $driver->user->name,
-    'estado' => 'Estado',
+    'estado' => 'Estado Motorista',
     'titulo1' => 'ID',
     'informacao1' => $travel->id,
     'titulo2' => 'Matricula',
@@ -19,14 +19,14 @@
     'informacao4' =>  date('d-m-Y', strtotime($travel->date_end))  .' | '. $travel->coords_destino,
     'id' => $travel->id,
     'route1' => auth()->user()->getTypeUser().'.travels.index',
-    'route2' => 'admin.travels.edit',
-    'route3' => 'admin.travels.destroy',
+    'route2' => $travel->state == 'PROCESSANDO' ? 'admin.travels.edit' : null,
+    'route3' => $travel->state == 'PROCESSANDO' ? 'admin.travels.destroy' : null,
     'status_driver' => $travel->comments ?: "N/A",
     'driver_state' => $travel->driver_state,
+    'state' =>$travel->state,
     'route4' => 'driver.home.index',
     'date_start'=> $travel->date_start ,
     'date_now'=> date("Y-m-d").now()
-
     ])
     @endcomponent
 

@@ -19,8 +19,9 @@
     'id' => $driver->id,
     'titulo7' => 'Condição especial',
     'route1' => auth()->user()->getTypeUser().'.drivers.index',
-    'route2' => 'admin.drivers.edit',
-    'route3' => 'admin.drivers.destroy',
+    'deleted' =>$driver,
+    'route2' => $driver->trashed() ? null : 'admin.drivers.edit',
+    'route3' => $driver->trashed() ? null : 'admin.drivers.destroy',
     'route_update' => 'gestor.drivers.update'
     ])
 @endcomponent

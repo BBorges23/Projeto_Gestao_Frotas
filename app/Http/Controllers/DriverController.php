@@ -201,4 +201,19 @@ class DriverController extends Controller
         ]);
     }
 
+    public function history()
+    {
+        $drivers = Driver::onlyTrashed()->get();
+        return view('pages.driver.history',[
+            'drivers'=>$drivers]);
+    }
+
+    public function delete(int $id)
+    {
+        $drivers = Driver::withTrashed()->find($id);
+
+        return view('pages.driver.show',[
+            'driver'=>$drivers]);
+    }
+
 }

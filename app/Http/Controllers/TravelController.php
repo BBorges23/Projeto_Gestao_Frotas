@@ -285,4 +285,14 @@ class TravelController extends Controller
         return response()->json(['message' => 'Falha na atualização da descrição'], 400);
 
     }
+
+    public function history()
+    {
+        $travels = Travel::where('state', 'CONCLUIDO')
+            ->orWhere('state','CANCELADO')
+            ->paginate(16);
+
+        return view('pages.travel.history',[
+            'travels'=>$travels]);
+    }
 }

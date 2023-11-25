@@ -18,8 +18,8 @@
     'titulo4' => 'Condição',
     'informacao4' => $vehicle->condition,
     'route1' => auth()->user()->getTypeUser().'.vehicles.index',
-    'route2' => 'admin.vehicles.edit',
-    'route3' => 'admin.vehicles.destroy',
+    'route2' => $vehicle->trashed() ? null : 'admin.vehicles.edit',
+    'route3' => $vehicle->trashed() ? null : 'admin.vehicles.destroy',
     'route_update' => 'gestor.vehicles.show'
     ])
     @endcomponent

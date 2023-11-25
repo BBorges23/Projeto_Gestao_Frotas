@@ -69,7 +69,8 @@ class VehicleController extends Controller
      */
     public function index()
     {
-        $vehicles = Vehicle::where('condition', '!=', 'PERDA_TOTAL')->paginate(18);
+        $vehicles = Vehicle::where('condition', '!=', 'PERDA_TOTAL')
+            ->paginate(18);
 
         return view('pages.vehicle.index', ['vehicles' => $vehicles]);
     }
@@ -162,9 +163,24 @@ class VehicleController extends Controller
      */
     public function destroy(Vehicle $vehicle)
     {
-        //$vehicle->maintenance()->delete();
-        //$vehicle->travel()->delete();
         $vehicle->delete();
         return redirect()->route('admin.vehicles.index');
+    }
+
+    public function history()
+    {
+        $vehicles = Vehicle::withTrashed()->get();
+
+        return view('pages.vehicle.history',[
+            'vehicles'=>$vehicles]);
+    }
+
+    public function delete(int $id)
+    {
+        $vehicles = Vehicle::withTrashed()->find($id);
+
+        return view('pages.vehicle.show',[
+            'model' => $vehicles->model,
+            'vehicle'=>$vehicles]);
     }
 }
