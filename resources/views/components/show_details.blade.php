@@ -135,7 +135,8 @@
 
 //                                                            $date_start = App\Models\Travel::query()
                                                         @endphp
-                                                        @if($driver_state === "POR ACEITAR" )
+
+                                                        @if($driver_state === "POR ACEITAR" && $driver_condition == 'DISPONIVEL')
                                                             @if(!$activeTravel && $date_start <= $date_now )
                                                                 <a class="btn btn-success" href="{{ route($route4)}}" onclick="confirmation_accept(event)" name="{{$id}}" id="{{basename(parse_url(route($route1))['path'])}}">Aceitar</a>
                                                             @elseif($date_start > $date_now )

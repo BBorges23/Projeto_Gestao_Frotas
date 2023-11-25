@@ -57,6 +57,20 @@ Route::middleware('auth')->group(function (){
 });
 
 /**
+ * Para Admin e Gestor Histórico
+ */
+//Route::middleware('auth')->group(function (){
+//    Route::get('/drivers/history',[DriverController::class,'history'])->name('drivers.history');
+//    Route::get('/drivers/history{id}',[DriverController::class,'delete'])->name('drivers.delete');
+//
+//    Route::get('/vehicles/history',[VehicleController::class,'history'])->name('vehicles.history');
+//    Route::get('/vehicles/history{id}',[VehicleController::class,'delete'])->name('vehicles.delete');
+//
+//    Route::get('/travels/history',[TravelController::class,'history'])->name('travels.history');
+//    Route::get('/maintenances/history',[MaintenanceController::class,'history'])->name('maintenances.history');
+//});
+
+/**
  * Pesquisas
  */
 Route::middleware('auth')->group(function (){
@@ -67,12 +81,10 @@ Route::middleware('auth')->group(function (){
     Route::post('travels/pesquisa', 'App\Http\Controllers\TravelController@pesquisar')->name('travels.pesquisa');
     Route::post('vehicles/pesquisa', 'App\Http\Controllers\VehicleController@pesquisar')->name('vehicles.pesquisa');
     Route::post('accounts/pesquisa', 'App\Http\Controllers\AccountController@pesquisar')->name('accounts.pesquisa');
-
 });
 
 /**
  * Admin permissões
- *
  */
 
 //Route::get('/admin/vehicles/history/{vehicle}', [VehicleController::class, 'showDeleted'])
@@ -81,16 +93,15 @@ Route::middleware('auth')->group(function (){
 Route::middleware('role:admin')->group(function (){
     Route::prefix('/admin')->group(function (){
         Route::name('admin.')->group(function (){
+
             Route::get('/drivers/history',[DriverController::class,'history'])->name('drivers.history');
             Route::get('/drivers/history{id}',[DriverController::class,'delete'])->name('drivers.delete');
 
             Route::get('/vehicles/history',[VehicleController::class,'history'])->name('vehicles.history');
             Route::get('/vehicles/history{id}',[VehicleController::class,'delete'])->name('vehicles.delete');
 
-
             Route::get('/travels/history',[TravelController::class,'history'])->name('travels.history');
             Route::get('/maintenances/history',[MaintenanceController::class,'history'])->name('maintenances.history');
-
 
             Route::resource('vehicles',VehicleController::class);
             Route::resource('brands', BrandController::class);
@@ -99,7 +110,6 @@ Route::middleware('role:admin')->group(function (){
             Route::resource('maintenances', MaintenanceController::class);
             Route::resource('travels', TravelController::class);
             Route::resource('accounts',AccountController::class);
-
         });
     });
 });
@@ -110,6 +120,15 @@ Route::middleware('role:admin')->group(function (){
 Route::middleware('role:gestor')->group(function (){
     Route::prefix('/gestor')->group(function (){
         Route::name('gestor.')->group(function (){
+
+            Route::get('/drivers/history',[DriverController::class,'history'])->name('drivers.history');
+            Route::get('/drivers/history{id}',[DriverController::class,'delete'])->name('drivers.delete');
+
+            Route::get('/vehicles/history',[VehicleController::class,'history'])->name('vehicles.history');
+            Route::get('/vehicles/history{id}',[VehicleController::class,'delete'])->name('vehicles.delete');
+
+            Route::get('/travels/history',[TravelController::class,'history'])->name('travels.history');
+            Route::get('/maintenances/history',[MaintenanceController::class,'history'])->name('maintenances.history');
 
             Route::resource('vehicles',VehicleController::class)
                 ->only('show','index');

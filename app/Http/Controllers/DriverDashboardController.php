@@ -18,11 +18,12 @@ class DriverDashboardController extends Controller
 
         $driver = $user->driver;
 
-        $travels = $driver->travel;
+        $travels = $driver->travel->where('state','PROCESSANDO');
 
         $vehicles = $driver->vehicle;
         $vehicleIds = $vehicles->pluck('id')->toArray();
         $maintenances = Maintenance::whereIn('vehicle_id', $vehicleIds)->get();
+
 
         return view('pages.driverdashboard.index', [
             'driver' => $driver,

@@ -9,7 +9,7 @@
 @section('content')
     @section('plus_button')
 
-        <div class="d-flex p-1"><p><a href="{{route('admin.maintenances.history')}}" class="link-underline-primary">Histórico</a></p></div>
+        <div class="d-flex p-1"><p><a href="{{route(auth()->user()->getTypeUser().'.maintenances.history')}}" class="link-underline-primary">Histórico</a></p></div>
 
         @component('components.plus_button',[
         'colorBTN'=> 'btn-secondary',

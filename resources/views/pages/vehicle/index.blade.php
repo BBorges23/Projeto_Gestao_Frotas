@@ -25,7 +25,7 @@
                     <!-- Campo oculto para deseleção -->
                     <input type="hidden" name="deselect_status" id="deselect_status" value="">
                 </form>
-                <div class="d-flex p-1"><p><a href="{{route('admin.vehicles.history')}}" class="link-underline-primary">Histórico</a></p></div>
+                    <div class="d-flex p-1"><p><a href="{{route(auth()->user()->getTypeUser().'.vehicles.history')}}" class="link-underline-primary">Histórico</a></p></div>
             @role('admin')
             <div class="d-flex justify-content-end">
                 <div class="dropdown pe-3">

@@ -3,10 +3,9 @@
 
 @section('content')
 
-
     <h2>Viagens</h2>
     <div class="row">
-        @if($travels && count($travels) > 0)
+        @if(empty($travels->isEmpty()))
             @foreach($travels as $travel)
                 @if($travel->state === "PROCESSANDO")
                 <div class="col-sm-3">
@@ -26,10 +25,10 @@
                 </div>
                 @endif
             @endforeach
-            @if($travel->state != "PROCESSANDO")
-               <h4>Nenhuma viagem foi encontrada.</h4>
-            @endif
+        @else
+            <h4>Nenhuma viagem foi encontrada.</h4>
         @endif
+
     </div>
 
 

@@ -30,7 +30,7 @@
             <!-- Campo oculto para deseleção -->
             <input type="hidden" name="deselect_status" id="deselect_status" value="">
         </form>
-        <div class="d-flex p-1"><p><a href="{{route('admin.travels.history')}}" class="link-underline-primary">Histórico</a></p></div>
+        <div class="d-flex p-1"><p><a href="{{route(auth()->user()->getTypeUser().'.travels.history')}}" class="link-underline-primary">Histórico</a></p></div>
 
         @component('components.plus_button',[
         'colorBTN'=> 'btn-secondary',

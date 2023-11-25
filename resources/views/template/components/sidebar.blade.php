@@ -80,7 +80,6 @@
                 @endrole
             @endif
             @role('driver')
-
                 <a class="nav-link fs-5 text-white " href="{{route('driver.home.index')}}">
 
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
@@ -102,6 +101,15 @@
                     <span class="nav-link-text ms-1">Perfil</span>
                 </a>
             </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white fs-5" href="{{route(auth()->user()->getTypeUser().'.travels.history', auth()->user()->id)}}">
+                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="fa-solid fa-map-location-dot fa-xl"></i>
+                        </div>
+
+                        <span class="nav-link-text ms-1">Histórico</span>
+                    </a>
+                </li>
             @endrole
         </ul>
         <div class="sidenav-footer position-absolute w-100 bottom-0 "></div>

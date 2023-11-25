@@ -22,6 +22,7 @@
     'route2' => $travel->state == 'PROCESSANDO' ? 'admin.travels.edit' : null,
     'route3' => $travel->state == 'PROCESSANDO' ? 'admin.travels.destroy' : null,
     'status_driver' => $travel->comments ?: "N/A",
+    //'driver_state' => $travel->state == 'PROCESSANDO' ? $travel->driver_state : null,
     'driver_state' => $travel->driver_state,
     'state' =>$travel->state,
     'route4' => 'driver.home.index',
