@@ -117,6 +117,7 @@ Route::middleware('role:admin')->group(function (){
 /**
  * Gestor permissões
  */
+
 Route::middleware('role:gestor')->group(function (){
     Route::prefix('/gestor')->group(function (){
         Route::name('gestor.')->group(function (){
