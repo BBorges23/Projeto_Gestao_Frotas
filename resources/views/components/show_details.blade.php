@@ -109,9 +109,10 @@
                                                         @if($state === "PROCESSANDO")
                                                         <a class="btn btn-danger" href="{{ route($route1)}}"
                                                            onclick="confirmation_cancel(event)" name="{{$id}}" id="{{basename(parse_url(route($route1))['path'])}}">Cancelar</a>
-                                                        @elseif($driver_state === "CONCLUIDO" || $driver_state === "PROBLEMAS")
+                                                            @if($driver_state === "CONCLUIDO" || $driver_state === "PROBLEMAS")
                                                             <a class="btn btn-success" href="{{ route($route1) }}"
                                                                onclick="confirmation_conclude(event)" name="{{$id}}" id="{{basename(parse_url(route($route1))['path'])}}">Concluir</a>
+                                                            @endif
                                                         @endif
                                                     @elseif(request()->routeIs('*.maintenances.*'))
                                                         @if($maintenance_state === "PROCESSANDO")
@@ -132,8 +133,6 @@
                                                             $driver_condition = App\Models\Driver::query()
                                                                 ->where('id', auth()->user()->driver->id)
                                                                 ->value('condition')
-
-//                                                            $date_start = App\Models\Travel::query()
                                                         @endphp
 
                                                         @if($driver_state === "POR ACEITAR" && $driver_condition == 'DISPONIVEL')
@@ -145,10 +144,7 @@
                                                                 <p style=" font-weight: bold; color: red">Só pode aceitar nova viagem após concluir a atual</p>
                                                             @endif
                                                         @elseif(($driver_state === "ACEITE" || $driver_state === "PROBLEMAS") && $driver_condition === "EM TRABALHO")
-                                                            {{--                                                            @if($activeTravel)--}}
                                                             <a class="btn btn-danger" href="{{ route($route4)}}" onclick="confirmation_conclude(event)" name="{{$id}}" id="{{basename(parse_url(route($route1))['path'])}}">Concluir</a>
-                                                            {{--                                                            @endif--}}
-
                                                         @else
                                                             @if($driver_condition === "BAIXA")
                                                                 <p style=" font-weight: bold; color: red">Motorista está de baixa</p>

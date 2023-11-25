@@ -163,6 +163,9 @@ Route::middleware('role:driver')->group(function (){
                 ->only('index', 'show');
 
             Route::get('/perfil/{driver_id}',[DriverController::class,'perfil'])->name('perfil');
+            //Route::get('/travels/history',[TravelController::class,'history_driver'])->name('travels.history');
+            Route::get('/history/{driver_id}',[TravelController::class,'history_driver'])->name('travels.history');
+
         });
     });
 });
