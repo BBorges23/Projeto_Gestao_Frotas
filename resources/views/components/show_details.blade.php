@@ -114,9 +114,9 @@
                                                                onclick="confirmation_conclude(event)" name="{{$id}}" id="{{basename(parse_url(route($route1))['path'])}}">Concluir</a>
                                                         @endif
                                                     @elseif(request()->routeIs('*.maintenances.*'))
-                                                        <a class="btn btn-danger" href="{{ route($route1)}}"
-                                                           onclick="confirmation_cancel(event)" name="{{$id}}" id="{{basename(parse_url(route($route1))['path'])}}">Cancelar</a>
                                                         @if($maintenance_state === "PROCESSANDO")
+                                                            <a class="btn btn-danger" href="{{ route($route1)}}"
+                                                               onclick="confirmation_cancel(event)" name="{{$id}}" id="{{basename(parse_url(route($route1))['path'])}}">Cancelar</a>
                                                             <a class="btn btn-success" href="{{ route($route1) }}"
                                                                onclick="confirmation_conclude(event)" name="{{$id}}" id="{{basename(parse_url(route($route1))['path'])}}">Concluir</a>
                                                         @endif
@@ -159,6 +159,24 @@
                                                     @endrole
                                                 </div>
                                         </div>
+                                        @role('admin')
+                                        @if(isset($route2))
+                                            <a class="btn btn-success" href="{{ route($route2, $id) }}"><i
+                                                    class="fa-solid fa-pen-to-square"></i></a>
+                                            @if(isset($route3))
+                                                <form id="submit" class="form-custom" method="POST"
+                                                      action="{{route($route3, $id)}}" style="display: inline" onclick="return confirmation_create_edit_form(event)">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger">
+                                                        <i class="fa-solid fa-trash-can"></i>
+                                                    </button>
+                                                    <br/>
+                                                </form>
+                                            @endif
+                                        @endif
+                                        @endrole
+{{--                                        @if(isset($deleted))--}}
 
 {{--                                        @role('admin')--}}
 
