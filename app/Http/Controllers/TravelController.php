@@ -110,7 +110,9 @@ class TravelController extends Controller
     {
         return view ('pages.travel.create',[
             'drivers' => Driver::all(),
-            'vehicles' => Vehicle::all()]);
+            'vehicles' => Vehicle::whereNull('deleted_at')
+                ->where('condition','!=','EM MANUTENÇÃO')
+                ->get()]);
     }
 
     /**

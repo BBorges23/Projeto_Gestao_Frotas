@@ -17,7 +17,7 @@
     'titulo3' => 'Telefone',
     'informacao3' => $driver->phone,
     'id' => $driver->id,
-    'titulo7' => $driver->trashed() ? null: 'Condição especial',
+    'titulo7' => (!$driver->trashed() && $driver->condition != 'EM TRABALHO') ? 'Condição especial' : null,
     'route1' => auth()->user()->getTypeUser().'.drivers.index',
     'deleted' =>$driver,
     'route2' => $driver->trashed() ? null : 'admin.drivers.edit',
