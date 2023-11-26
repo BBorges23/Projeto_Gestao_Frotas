@@ -17,6 +17,7 @@ class AccountController extends Controller
      * Display a listing of the resource.
      */
 
+    // Mensagens de validação e regras para criar e atualizar utilizadores
     protected $msg = [
         'required' => 'Preencha todos os campos',
         'name.min' => 'Nome tem de estar entre 3 e 255 carateres',
@@ -35,7 +36,9 @@ class AccountController extends Controller
         'email'=>'required',
     ];
 
-
+    /**
+     * Pesquisa utilizadores com base em um campo de pesquisa fornecido.
+     */
     public function pesquisar(Request $request){
         $pesquisa = $request->input('campo_de_pesquisa');
 
@@ -50,6 +53,9 @@ class AccountController extends Controller
         return view('pages.account.index', compact('resultados'));
     }
 
+    /**
+     * Exibe uma lista de utilizadores paginada.
+     */
     public function index()
     {
         $users = User::paginate(16);
@@ -61,7 +67,7 @@ class AccountController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Exibe o formulário para criar um novo utilizadores.
      */
     public function create()
     {
@@ -70,7 +76,7 @@ class AccountController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Armazena um novo utilizadores no banco de dados.
      */
 
     /*
@@ -84,7 +90,7 @@ class AccountController extends Controller
 
         Log::info('Valor recebido de roles:', ['roles' => $data['roles'] ?? 'Não fornecido']);
 
-        // Cria um novo user
+        // Cria um novo utilizador
         $user = new User([
             'name' => $data['name'],
             'email' => $data['email'],
@@ -99,7 +105,7 @@ class AccountController extends Controller
             $role = Role::find($data['roles']);
 
             if ($role) {
-                // Atribui a role ao usuário
+                // Atribui a role ao utilizador
                 $user->assignRole($role->name);
             } else {
                 // Tratar o caso em que a role não existe
@@ -114,78 +120,77 @@ class AccountController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Exibe os detalhes de um usuário específico.
      */
     public function show(string $id)
     {
-        // Encontrar o usuário pelo ID
+        // Encontra o utilizador pelo ID
         $user = User::find($id);
 
 
-
-        // Verificar se o usuário foi encontrado
+        // Verifica se o utilizador foi encontrado
         if ($user) {
-            // Retornar a view com os dados do usuário
+            // Retornar a view com os dados do utilizador
             return view('pages.account.show', [
                 'user' => $user
             ]);
         } else {
-            // Redirecionar ou mostrar uma mensagem de erro se o usuário não for encontrado
+            // Redireciona ou mostra uma mensagem de erro se o utilizador não for encontrado
             return redirect()->back()->with('error', 'utilizador não encontrado.');
         }
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Exibe o formulário para editar um utilizador específico.
      */
     public function edit(string $id)
     {
-        // Encontrar o usuário pelo ID
+        // Encontra o utilizador pelo ID
         $user = User::find($id);
 
         $roles = Role::all();
 
-        // Verificar se o usuário foi encontrado
+        // Verifica se o utilizador foi encontrado
         if ($user) {
-            // Retornar a view com os dados do usuário
+            // Retorna a view com os dados do utilizador
             return view('pages.account.edit', ['user' => $user],compact('roles'));
         } else {
-            // Redirecionar ou mostrar uma mensagem de erro se o usuário não for encontrado
+            // Redireciona ou mostra uma mensagem de erro se o utilizador não for encontrado
             return redirect()->back()->with('error', 'Utilizador não encontrado.');
         }
     }
 
 
     /**
-     * Update the specified resource in storage.
+     * Atualiza as informações de um utilizador no banco de dados.
      */
     public function update(Request $request, string $id)
     {
         // Validação dos dados de entrada
         $data = $request->validate($this->rules_update, $this->msg);
 
-        // Localiza o motorista pelo ID
+        // Localiza o utilizador pelo ID
         $user = User::findOrFail($id);
 
-        // Atualiza o motorista com os novos dados
+        // Atualiza o utilizador com os novos dados
         $user->update($data);
 
-        // Redireciona para a página de exibição do motorista com o ID do usuário
+        // Redireciona para a página de exibição do utilizador com o ID do utilizador
         return redirect()->route(auth()->user()->getTypeUser() . '.accounts.show', ['account' => $user->id])
                          ->with('userId', $user->id);
     }
 
 
     /**
-     * Remove the specified resource from storage.
+     * Remove um utilizador específico do banco de dados.
      */
     public function destroy(string $id)
     {
 
-        // Localiza o driver pelo ID e exclui
+        // Localiza o utilizador pelo ID e exclui
         User::findOrFail($id)->delete();
 
-        // Redireciona para a lista de drivers
+        // Redireciona para a lista de utilizadores
         return redirect()->route('admin.accounts.index');
     }
 }

@@ -10,15 +10,19 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Laravel\Prompts\Table;
 
+/**
+ * Seeder para popular a tabela de usuários (users) no banco de dados.
+ */
 class UserSeeder extends Seeder
 {
     /**
-     * Run the database seeds.
+     * Executa o processo de seed no banco de dados.
      */
     public function run(): void
     {
         //User::factory(5)->create();
 
+        // Insere dados na tabela 'users' para diferentes tipos de usuários
         DB::table('users')->insert([
             'name' => 'admin',
             'email' => 'admin@teste.pt',

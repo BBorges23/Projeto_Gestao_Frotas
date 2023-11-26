@@ -10,6 +10,9 @@ use Illuminate\Http\Request;
 
 class CarmodelController extends Controller
 {
+    /**
+     * Mensagens de validação e regras para o modelo de carro.
+     */
     protected $msg = [
         'required' => 'Preencha todos os campos',
         'min' => 'Modelo tem de estar entre 3 e 255 carateres',
@@ -22,8 +25,9 @@ class CarmodelController extends Controller
         'brand_id' => 'required'
     ];
 
-
-
+    /**
+     * Pesquisa modelos de carro com base em um campo de pesquisa fornecido.
+     */
     public function pesquisar(Request $request){
         $pesquisa = $request->input('campo_de_pesquisa');
 
@@ -37,7 +41,7 @@ class CarmodelController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * Exibe uma lista paginada de modelos de carro.
      */
     public function index()
     {
@@ -47,7 +51,7 @@ class CarmodelController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Exibe o formulário para criar um novo modelo de carro.
      */
     public function create()
     {
@@ -55,7 +59,7 @@ class CarmodelController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Armazena um novo modelo de carro no banco de dados.
      */
     public function store(Request $request)
     {
@@ -66,7 +70,7 @@ class CarmodelController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Exibe os detalhes de um modelo de carro específico.
      */
     public function show(Carmodel $carmodel)
     {
@@ -74,7 +78,7 @@ class CarmodelController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Exibe o formulário para editar um modelo de carro específico.
      */
     public function edit(Carmodel $carmodel)
     {
@@ -85,7 +89,7 @@ class CarmodelController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Atualiza as informações de um modelo de carro no banco de dados.
      */
     public function update(Request $request, Carmodel $carmodel)
     {
@@ -97,7 +101,7 @@ class CarmodelController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove um modelo de carro específico do banco de dados.
      */
     public function destroy(Carmodel $carmodel)
     {

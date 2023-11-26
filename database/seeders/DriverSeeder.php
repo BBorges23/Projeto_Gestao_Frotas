@@ -10,12 +10,13 @@ use Illuminate\Support\Facades\DB;
 class DriverSeeder extends Seeder
 {
     /**
-     * Run the database seeds.
+     * Executa o processo de seed no banco de dados.
      */
     public function run(): void
     {
         //Driver::factory(10)->create();
 
+        // Inserção direta de motoristas na tabela 'drivers'
         DB::table('drivers')->insert([
             'user_id'=> '3',
             'nif' => '234567890',

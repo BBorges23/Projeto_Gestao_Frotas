@@ -9,14 +9,19 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
+/**
+ * Seeder para popular a tabela de viagens (travels) no banco de dados.
+ */
 class TravelSeeder extends Seeder
 {
     /**
-     * Run the database seeds.
+     * Executa o processo de seed no banco de dados.
      */
     public function run(): void
     {
         //Travel::factory(10)->create();
+
+        // Insere dados na tabela 'travels'
         DB::table('travels')->insert([
             'vehicle_id' => '1',
             'driver_id' => '1',

@@ -16,11 +16,17 @@ class Carmodel extends Model
 
     //protected $table='models';//car_models
 
+    /**
+     * Define a relação entre o modelo de carro e sua marca associada.
+     */
     public function brand(): BelongsTo
     {
         return $this->belongsTo(Brand::class)->withTrashed();
     }
 
+    /**
+     * Define a relação entre o modelo de carro e seus veículos associados.
+     */
     public function vehicle(): HasMany
     {
         return $this->hasMany(Vehicle::class);

@@ -5,6 +5,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 class  BrandController extends Controller
 {
+    /**
+     * Mensagens de validação e regras para a marca.
+     */
     protected $msg = [
         'required' => 'Preencha todos os campos',
         'min' => 'Marca tem de estar entre 3 e 255 carateres',
@@ -16,8 +19,9 @@ class  BrandController extends Controller
         'name'=>'required|min:3|max:255',
     ];
 
-
-
+    /**
+     * Pesquisa marcas com base em um campo de pesquisa fornecido.
+     */
     public function pesquisar(Request $request){
         $pesquisa = $request->input('campo_de_pesquisa');
 
@@ -31,7 +35,7 @@ class  BrandController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * Exibe uma lista de marcas paginada.
      */
     public function index()
     {
@@ -41,7 +45,7 @@ class  BrandController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Exibe o formulário para criar uma nova marca.
      */
     public function create()
     {
@@ -49,7 +53,7 @@ class  BrandController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Armazena uma nova marca no banco de dados.
      */
     public function store(Request $request)
     {
@@ -60,7 +64,7 @@ class  BrandController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Exibe os detalhes de uma marca específica.
      */
     public function show(Brand $brand)
     {
@@ -70,7 +74,7 @@ class  BrandController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Exibe o formulário para editar uma marca específica.
      */
     public function edit(Brand $brand)
     {
@@ -78,7 +82,7 @@ class  BrandController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Atualiza as informações de uma marca no banco de dados.
      */
     public function update(Request $request, Brand $brand)
     {
@@ -89,7 +93,7 @@ class  BrandController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove uma marca específica do banco de dados.
      */
     public function destroy(Brand $brand)
     {

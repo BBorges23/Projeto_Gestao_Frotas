@@ -10,18 +10,23 @@ use Illuminate\Support\Facades\DB;
 class DriverDashboardController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Exibe uma lista de informações do painel do motorista.
      */
     public function index()
     {
         $user = auth()->user();
 
+        // Obtém o motorista associado ao utilizador autenticado
         $driver = $user->driver;
 
+        // Obtém as viagens em andamento do motorista
         $travels = $driver->travel->where('state','PROCESSANDO');
 
+        // Obtém os veículos associados ao motorista
         $vehicles = $driver->vehicle;
+        // Obtém os IDs dos veículos do motorista
         $vehicleIds = $vehicles->pluck('id')->toArray();
+        // Obtém as manutenções associadas aos veículos do motorista
         $maintenances = Maintenance::whereIn('vehicle_id', $vehicleIds)->get();
 
 

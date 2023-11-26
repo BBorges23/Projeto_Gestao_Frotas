@@ -11,10 +11,14 @@ use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
+    /**
+     * Exibe o dashboard quando o utilizador está autenticado.
+     */
     public function autenticado()
     {
+        // Verifica se o utilizador está autenticado
         if(auth()->check()) {
-
+            // Retorna a view do dashboard com informações sobre motoristas, veículos, manutenções e viagens
             return view('home', [
                 'active_drivers' => Driver::all()->where('condition', "DISPONIVEL")->count(),
                 'active_vehicles' => Vehicle::where('condition','DISPONIVEL')->count(),
@@ -26,6 +30,7 @@ class DashboardController extends Controller
                 'tot_maintenances'=> Maintenance::all()->count()
             ]);
         }
+        // Se o utilizador não estiver autenticado, redireciona para a página de login
         return view('auth.login');
     }
 }

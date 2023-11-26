@@ -16,17 +16,19 @@ class Travel extends Model
 
     protected $table = 'travels';
 
+    /**
+     * Define o relacionamento entre a viagem (travel) e o motorista associado.
+     */
     public function driver(): BelongsTo
     {
         return $this->belongsTo(Driver::class)->withTrashed();
     }
 
+    /**
+     * Define o relacionamento entre a viagem (travel) e o veículo associado.
+     */
     public function vehicle(): BelongsTo
     {
-
         return $this->belongsTo(Vehicle::class)->withTrashed();
     }
-
-
-
 }

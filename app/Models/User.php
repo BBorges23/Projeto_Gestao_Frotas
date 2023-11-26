@@ -51,10 +51,17 @@ class User extends Authenticatable
 
 
 //    protected $guarded=[];
+
+    /**
+     * Define o relacionamento entre o usuário (User) e o modelo do motorista (Driver).
+     */
     public function driver(): HasOne{
         return $this->hasOne(Driver::class);
     }
 
+    /**
+     * Obtém o tipo de utilizador autenticado (Admin, Gestor, Driver, etc.).
+     */
     public function getTypeUser()
     {
         return auth()->user()['roles'][0]['name'];

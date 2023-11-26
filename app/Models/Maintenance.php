@@ -16,9 +16,11 @@ class Maintenance extends Model
 
     protected $guarded=[];
 
+    /**
+     * Define a relação entre a manutenção e o veículo associado.
+     */
     public function vehicle(): BelongsTo
     {
-
         return $this->belongsTo(Vehicle::class)->withTrashed();
     }
 }

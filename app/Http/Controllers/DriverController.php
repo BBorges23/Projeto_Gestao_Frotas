@@ -38,7 +38,9 @@ class DriverController extends Controller
         'condition'=>'required'
     ];
 
-
+    /**
+     * Pesquisa e filtra motoristas com base no estado e no campo de pesquisa.
+     */
     public function pesquisar(Request $request){
         // Atualiza ou remove os estados selecionados se o formulário de estados foi submetido
         if ($request->has('status')) {
@@ -84,7 +86,7 @@ class DriverController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * Exibe a lista de motoristas.
      */
     public function index()
     {
@@ -97,14 +99,15 @@ class DriverController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Exibe o formulário de criação de motorista.
      */
     public function create()
     {
         return view ('pages.driver.create');
     }
+
     /**
-     * Store a newly created resource in storage.
+     * Armazena um novo motorista no banco de dados.
      */
     public function store(Request $request)
     {
@@ -132,7 +135,7 @@ class DriverController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Exibe os detalhes de um motorista específico.
      */
     public function show(Driver $driver)
     {
@@ -140,8 +143,9 @@ class DriverController extends Controller
             'driver' => $driver
         ]);
     }
+
     /**
-     * Show the form for editing the specified resource.
+     * Exibe o formulário de edição de um motorista específico.
      */
     public function edit(Driver $driver)
     {
@@ -149,8 +153,9 @@ class DriverController extends Controller
             'driver' => $driver
         ]);
     }
+
     /**
-     * Update the specified resource in storage.
+     * Atualiza as informações de um motorista no banco de dados.
      */
     public function update(Request $request, Driver $driver)
     {
@@ -182,8 +187,9 @@ class DriverController extends Controller
         $driver->save();
         return redirect()->route(auth()->user()->getTypeUser().'.drivers.show', ['driver'=>$driver]);
     }
+
     /**
-     * Remove the specified resource from storage.
+     * Remove um motorista do banco de dados.
      */
     public function destroy(Driver $driver)
     {
@@ -194,6 +200,9 @@ class DriverController extends Controller
         return redirect()->route('admin.drivers.index');
     }
 
+    /**
+     * Exibe o perfil de um motorista.
+     */
     public function perfil(Driver $driver)
     {
         return view('pages.driverdashboard.show',[
@@ -201,6 +210,9 @@ class DriverController extends Controller
         ]);
     }
 
+    /**
+     * Exibe o histórico de motoristas excluídos.
+     */
     public function history()
     {
         $drivers = Driver::onlyTrashed()->get();
@@ -208,6 +220,9 @@ class DriverController extends Controller
             'drivers'=>$drivers]);
     }
 
+    /**
+     * Exibe detalhes de um motorista excluído.
+     */
     public function delete(int $id)
     {
         $drivers = Driver::withTrashed()->find($id);

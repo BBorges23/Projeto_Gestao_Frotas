@@ -6,13 +6,17 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
+/**
+ * Seeder para popular a tabela 'carmodels' com alguns modelos de carros predefinidos.
+ */
 class CarmodelSeeder extends Seeder
 {
     /**
-     * Run the database seeds.
+     * Executa o processo de seed no banco de dados.
      */
     public function run(): void
     {
+        // Lista de modelos de carros predefinidos
         $carmodels = [
             'Mustang', 'F-150', 'Focus', 'Explorer',
             'Camry', 'Corolla', 'RAV4', 'Prius',
@@ -47,15 +51,17 @@ class CarmodelSeeder extends Seeder
 
         $entries = [];
 
+        // Loop para criar as entradas para inserção na tabela 'carmodels'
         foreach ($carmodels as $carmodel) {
             $entries[] = [
-                'name' => $carmodel,
-                'created_at' => now(),
-                'brand_id'=>fake()->numberBetween(1,29),
-                'updated_at' => now(),
+                'name' => $carmodel,// Nome do modelo de carro
+                'created_at' => now(),// Timestamp de criação
+                'brand_id'=>fake()->numberBetween(1,29),// Gera um ID de marca aleatório
+                'updated_at' => now(), // Timestamp de atualização
             ];
         }
 
+        // Insere as entradas na tabela 'carmodels'
         DB::table('carmodels')->insert($entries);
     }
 }

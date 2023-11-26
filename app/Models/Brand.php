@@ -12,6 +12,9 @@ class Brand extends Model
 
     protected $guarded=[];
 
+    /**
+     * Define a relação entre a marca e seus modelos de carro.
+     */
     public function model(): HasMany{
         return $this->hasMany(CarModel::class);
     }
