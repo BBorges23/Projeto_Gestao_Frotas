@@ -30,15 +30,18 @@
                 <!-- Campo oculto para deseleção -->
                 <input type="hidden" name="deselect_status" id="deselect_status" value="">
             </form>
-            <div class="d-flex p-1"><p><a href="{{route(auth()->user()->getTypeUser().'.drivers.history')}}" class="link-underline-primary">Histórico</a></p></div>
+            <div class="d-flex justify-content-end">
 
-            @role('admin')
-            @component('components.plus_button',[
-            'colorBTN' => 'btn-secondary',
-            'itens' => ['item' => ['Criar Motorista'], 'link' => ['admin.drivers.create']]
-            ])
-            @endcomponent()
-            @endrole
+                <div class="d-flex p-1 pe-5"><p><a href="{{route(auth()->user()->getTypeUser().'.drivers.history')}}" class="link_navbar">Histórico</a></p></div>
+
+                @role('admin')
+                @component('components.plus_button',[
+                'colorBTN' => 'btn-secondary',
+                'itens' => ['item' => ['Criar Motorista'], 'link' => ['admin.drivers.create']]
+                ])
+                @endcomponent()
+                @endrole
+            </div>
         @endsection
 
 

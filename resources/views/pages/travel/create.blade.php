@@ -4,10 +4,10 @@
 @section('content')
 
 
-    @foreach($vehicles->whereNull('deleted_at') as $vehicle)
+    @foreach($vehicles as $vehicle)
     @endforeach
 
-    @foreach($drivers->whereNull('deleted_at') as $driver)
+    @foreach($drivers as $driver)
     @endforeach
         @component('components.create_form', [
         'route_create' => auth()->user()->getTypeUser().'.travels.store',

@@ -290,6 +290,7 @@ class TravelController extends Controller
     {
         $travels = Travel::where('state', 'CONCLUIDO')
             ->orWhere('state','CANCELADO')
+            ->orderBy('updated_at', 'desc')
             ->paginate(16);
 
         return view('pages.travel.history',[

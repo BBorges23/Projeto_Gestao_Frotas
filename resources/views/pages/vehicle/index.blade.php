@@ -25,9 +25,10 @@
                     <!-- Campo oculto para deseleção -->
                     <input type="hidden" name="deselect_status" id="deselect_status" value="">
                 </form>
-                    <div class="d-flex p-1"><p><a href="{{route(auth()->user()->getTypeUser().'.vehicles.history')}}" class="link-underline-primary">Histórico</a></p></div>
-            @role('admin')
             <div class="d-flex justify-content-end">
+                <div class="d-flex p-1 pe-5"><p><a href="{{route(auth()->user()->getTypeUser().'.vehicles.history')}}" class="link_navbar">Histórico</a></p></div>
+                @role('admin')
+
                 <div class="dropdown pe-3">
                     <button class="btn btn-secondary border rounded-circle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="fa-solid fa-list"></i>
@@ -42,9 +43,9 @@
              'itens' =>  ['item'=> ['Criar Veículos', 'Criar Modelos', 'Criar Marca'], 'link'=> ['admin.vehicles.create', 'admin.carmodels.create','admin.brands.create']]  ,
              ])
             @endcomponent
-            </div>
-            @endrole
+                @endrole
 
+            </div>
         @endsection
 
 

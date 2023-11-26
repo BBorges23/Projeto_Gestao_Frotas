@@ -222,32 +222,37 @@ class MaintenanceController extends Controller
 
     public function accept(Maintenance $maintenance)
     {
+        $vehicle_used = Vehicle::where('id',$maintenance->vehicle_id)->first();
+        $vehicle_used->condition = "EM MANUTENÇÃO";
+        $vehicle_used->save();
+
         $maintenance->update(['is_active' => 1, 'driver_state' => 'ACEITE']);
         $maintenance->save();
 
         return response()->json(['message' => 'Descrição atualizada com sucesso']);
     }
 
-    public function problems(Request $request, Maintenance $maintenance)
-    {
-        $description = $request->input('text');
-
-        if($description)
-        {
-            $maintenance->update(['is_active' => 0, 'driver_state' => 'PROBLEMAS','comments'=>$description]);
-            $maintenance->save();
-
-            return response()->json(['message' => 'Descrição atualizada com sucesso']);
-        }
-
-        return response()->json(['message' => 'Falha na atualização da descrição'], 400);
-
-    }
+//    public function problems(Request $request, Maintenance $maintenance)
+//    {
+//        $description = $request->input('text');
+//
+//        if($description)
+//        {
+//            $maintenance->update(['is_active' => 0, 'driver_state' => 'PROBLEMAS','comments'=>$description]);
+//            $maintenance->save();
+//
+//            return response()->json(['message' => 'Descrição atualizada com sucesso']);
+//        }
+//
+//        return response()->json(['message' => 'Falha na atualização da descrição'], 400);
+//
+//    }
 
     public function history()
     {
         $maintenances = Maintenance::where('state', 'CONCLUIDO')
             ->orWhere('state','CANCELADO')
+            ->orderBy('updated_at', 'desc')
             ->paginate(16);
 
         return view('pages.maintenance.history',[

@@ -56,7 +56,7 @@
                                                 <p class="text-muted">{{$informacao4}}</p>
                                             @endif
                                             @role('gestor')
-                                            @if(isset($titulo7))
+                                            @if(isset($titulo7) )
                                                 <form id="submit" class="submit" method="POST" action="{{ route($route_update, $id)}}" onsubmit="return confirmation_create_edit_form(event)">
                                                     @csrf
                                                     @method('PUT')
@@ -135,8 +135,8 @@
                                                                 ->value('condition')
                                                         @endphp
 
-                                                        @if($driver_state === "POR ACEITAR" && $driver_condition == 'DISPONIVEL')
-                                                            @if(!$activeTravel && $date_start <= $date_now )
+                                                        @if($driver_state === "POR ACEITAR" )
+                                                            @if(!$activeTravel && $date_start <= $date_now && $driver_condition == 'DISPONIVEL')
                                                                 <a class="btn btn-success" href="{{ route($route4)}}" onclick="confirmation_accept(event)" name="{{$id}}" id="{{basename(parse_url(route($route1))['path'])}}">Aceitar</a>
                                                             @elseif($date_start > $date_now )
                                                                     <p style=" font-weight: bold; color: red">Viagem inicia em {{date('d-m-Y', strtotime($date_start))}} </p>

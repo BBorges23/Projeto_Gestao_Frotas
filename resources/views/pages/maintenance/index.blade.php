@@ -56,7 +56,7 @@
                     'label'=> $maintenance->id. ' - '.$maintenance->vehicle->licence_plate,
                     'titulo' =>  $maintenance->motive,
                     'icon_titulo' => 'fa-solid fa-oil-can',
-                    'calendario' => date('d-m-Y', strtotime($maintenance->date_entry)) . ' - ' . date('d-m-Y', strtotime($maintenance->date_exit)),
+                    'calendario' => $maintenance->date_exit == "0000-00-00" ? date('d-m-Y', strtotime($maintenance->date_entry)) : date('d-m-Y', strtotime($maintenance->date_entry)) . ' - ' . date('d-m-Y', strtotime($maintenance->date_exit)),
                     'icon'=>'fa-solid fa-screwdriver-wrench',
                     'link'=>route(auth()->user()->getTypeUser() . '.maintenances.show',$maintenance->id)
                     ])
