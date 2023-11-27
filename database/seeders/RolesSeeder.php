@@ -28,11 +28,11 @@ class RolesSeeder extends Seeder
         // Atribui roles aos usuários existentes
         foreach (User::all() as $user) {
             if ($user->id == 1)
-                $user->assignRole('admin');// Atribui a role 'admin' ao usuário com ID 1
+                $user->assignRole('admin');// Atribui a role 'admin' ao utilizador com ID 1
             else if ($user->id == 2)
-                $user->assignRole('gestor');// Atribui a role 'gestor' ao usuário com ID 2
+                $user->assignRole('gestor');// Atribui a role 'gestor' ao utilizador com ID 2
             else {
-                $user->assignRole('driver');// Atribui a role 'driver' aos demais usuários
+                $user->assignRole('driver');// Atribui a role 'driver' aos demais utilizadores
             }
         }
     }

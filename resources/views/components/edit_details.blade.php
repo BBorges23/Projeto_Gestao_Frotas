@@ -1,11 +1,12 @@
 <form id="submit" class="submit" method="POST" action="{{route($route_update, $id)}}" onsubmit="return confirmation_create_edit_form(event)">
-    @csrf
-    @method('PUT')
+    @csrf <!-- Token de proteção contra falsificação de solicitações entre sites (CSRF) -->
+    @method('PUT') <!-- Método HTTP para atualização (PUT) -->
     <div class="container ">
         <div class="row d-flex justify-content-center ">
             <div class="col-9 ">
                 <div class="card " style="border-radius: .5rem;">
                     <div class="row g-0">
+                        <!-- Coluna esquerda com imagem e detalhes -->
                         <div class="col-md-4 text-center text-white {{$cor}}"
                              style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
                             <img src="{{asset($imagem)}}"
@@ -16,19 +17,21 @@
                             @if(isset($descricao))
                                 <h5 class="pb-2">{{$descricao}}</h5>
                             @endif
-
                         </div>
+                        <!-- Coluna direita com campos do formulário -->
                         <div class="col-md-8">
                             <div class="card-body p-4">
                                 <h6>Informações</h6>
                                 <hr class="mt-0 mb-4">
                                 <div class="row pt-1">
+                                    <!-- Primeiro conjunto de campos do formulário -->
                                     <div class="col-6 mb-3">
                                         <h6>{{$titulo1}}</h6>
                                         <input type="{{$tipo1}}" name="{{$nome1}}" value="{{($input1) }}" @if(isset($disabled1)){{$disabled1}}@endif>
                                         <div class="invalid-feedback">@error($nome1) {{$message}} @enderror</div>
                                     </div>
                                     @if(isset($titulo2))
+                                        <!-- Segundo conjunto de campos do formulário (se aplicável) -->
                                         <div class="col-6 mb-3">
                                             <h6>{{$titulo2}}</h6>
                                             <input type={{$tipo2}} name="{{$nome2}}" value="{{($input2) }}">
@@ -38,6 +41,7 @@
                                 </div>
                                 <hr class="mt-0 mb-4">
                                 <div class="row pt-1">
+                                    <!-- Campos adicionais do formulário com base em condições -->
                                     @if(isset($titulo3))
                                         <div class="col-6 mb-3">
                                             <h6>{{$titulo3}}</h6>
@@ -90,6 +94,7 @@
                                         </div>
                                     @endif
                                 </div>
+                                <!-- Campos adicionais com base em condições específicas -->
                                 @if(isset($titulo10))
                                     <div class="row pt-1">
                                         <div class="col-6 mb-3">
@@ -106,7 +111,7 @@
                                         </div>
                                     </div>
                                 @endif
-
+                                <!-- Outras condições específicas -->
                                 @if(isset($titulo8))
                                     <hr class="mt-0 mb-4">
                                     <div class="row pt-1">
@@ -119,6 +124,7 @@
                                                 <option value="CONCLUIDO" {{$selected4 == 'CONCLUIDO' ? 'selected' : ''}}>CONCLUIDO</option>
                                             </select>
 
+                                            <!-- Condição específica para esconder o campo -->
                                             @if(request('state') === 'CANCELADO')
                                                 <input hidden="" type="text" name="is_traveling" value="0">
                                             @elseif(request('state') === 'CONCLUIDO')
@@ -129,6 +135,7 @@
                                         </div>
                                     </div>
                                 @endif
+                                <!-- Outras condições específicas -->
                                 @if(isset($titulo9))
                                     <hr class="mt-0 mb-4">
                                     <div class="row pt-1">
@@ -143,6 +150,7 @@
                                         </div>
                                     </div>
                                 @endif
+                                <!-- Outras condições específicas -->
                                 @if(isset($titulo11))
                                     <div class="row pt-1">
                                         <div class="col-6 mb-3">
@@ -156,6 +164,7 @@
                                                 <option value="EM MANUTENCAO" {{$selected11 == 'EM MANUTENCAO' ? 'selected' : ''}}>EM MANUTENÇÃO</option>
                                             </select>
 
+                                            <!-- Condição específica para esconder o campo -->
                                             @if(request('condition') === 'DISPONIVEL')
                                                 <input hidden="" type="text" name="is_driving" value="0">
                                             @elseif(request('condition') === 'VENDIDO')
@@ -170,6 +179,7 @@
                                         </div>
                                     </div>
                                 @endif
+                                <!-- Botões de envio do formulário -->
                                 <div class="d-flex justify-content-start gap-2 ">
                                     <button type="submit" class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i></button>
                                     <a class="btn btn-danger" href="{{ route($route_show ,$id) }}"><i class="fa-solid fa-ban"></i></a><br />

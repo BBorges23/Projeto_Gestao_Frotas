@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Log;
 
 class DriverController extends Controller
 {
+    // Mensagens de validação
     protected $msg = [
         'required' => 'Preencha todos os campos',
         'name.min' => 'Nome tem de estar entre 3 e 255 carateres',
@@ -20,6 +21,7 @@ class DriverController extends Controller
         'email.unique' => 'O e-mail já está a ser utilizado.',
         'phone.regex' => 'O formato do Telefone é inválido (ex: 912123123)',
     ];
+    // Regras de validação para criação de motorista
     protected $rules_create = [
         'name'=>'required|min:3|max:255',
         'nif' => 'required|regex:/^[0-9]+$/|unique:drivers,nif',
@@ -28,12 +30,14 @@ class DriverController extends Controller
         'password' => 'required|min:6',
     ];
 
+    // Regras de validação para atualização de motorista
     protected $rules_update = [
         'nif' => 'required|regex:/^[0-9]+$/',
         'phone'=>'required|regex:/^\d{9}$/',
         'condition'=>'required'
     ];
 
+    // Regras de validação para atualização de motorista por gestor
     protected $rules_update_gestor = [
         'condition'=>'required'
     ];

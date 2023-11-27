@@ -14,8 +14,6 @@ class DriverSeeder extends Seeder
      */
     public function run(): void
     {
-        //Driver::factory(10)->create();
-
         // Inserção direta de motoristas na tabela 'drivers'
         DB::table('drivers')->insert([
             'user_id'=> '3',

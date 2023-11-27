@@ -31,6 +31,7 @@ function confirmation_cancel(ev) {
     var id = ev.currentTarget.getAttribute('name');
     var routeName = ev.currentTarget.getAttribute('id');
 
+    // Exibe um popup de confirmação com caixa de texto para observações
     Swal.fire({
         title: 'Tem a certeza que quer cancelar?',
         text: "Não vai ser possivel reverter esta situação",
@@ -42,6 +43,7 @@ function confirmation_cancel(ev) {
         cancelButtonText: 'Não',
     }).then(async (result) => {
         if (result.isConfirmed) {
+            // Se confirmado, exibe uma caixa de texto para observações
             const { value: text } = await Swal.fire({
                 input: 'textarea',
                 inputLabel: 'Observações',
@@ -53,12 +55,14 @@ function confirmation_cancel(ev) {
             });
 
             if (text) {
+                // Se texto informado, realiza operações e redireciona
                 console.log("Texto da descrição:", text);
                 console.log("ID da viagem:", id);
                 console.log("Nome da Rota:", routeName);
 
                 Swal.fire('Cancelamento feito com sucesso', '', 'info')
                     .then(() => {
+                        // Realiza uma requisição AJAX para processar o cancelamento
                         $.ajax({
                             type: "POST",
                             url: `/${routeName}/cancel/${id}`,

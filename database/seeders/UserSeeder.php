@@ -20,7 +20,6 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        //User::factory(5)->create();
 
         // Insere dados na tabela 'users' para diferentes tipos de usuários
         DB::table('users')->insert([

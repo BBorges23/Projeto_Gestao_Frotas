@@ -12,12 +12,16 @@ use Illuminate\Support\Facades\Log;
 
 class TravelController extends Controller
 {
+    // Mensagens de validação
     protected $msg = [
         'required' => 'Preencha todos os campos',
-        'max' => 'Coordenadas tem de estar entre 3 e 255 carateres'
-
+        'max' => 'Coordenadas tem de estar entre 3 e 255 caracteres',
+        'date_start.before_or_equal' => 'A data de início deve ser menor ou igual à data de fim',
+        'date_start.before' => 'A data de início deve ser menor que a data de fim'
     ];
 
+
+    // Regras de validação para criação de viagem
     protected $rules_create = [
         'vehicle_id' => 'required',
         'driver_id' => 'required',
@@ -27,6 +31,7 @@ class TravelController extends Controller
         'date_end' => 'required|date'
     ];
 
+    // Regras de validação para atualização de viagem
     protected $rules_update = [
         'vehicle_id' => 'required',
         'driver_id' => 'required',
@@ -35,6 +40,9 @@ class TravelController extends Controller
         'state' => 'required'
     ];
 
+    /**
+     * Pesquisa e filtra as viagens com base no estado e no campo de pesquisa.
+     */
     public function pesquisar(Request $request)
     {
         // Atualiza ou remove os estados selecionados se o formulário de estados foi submetido
@@ -65,8 +73,7 @@ class TravelController extends Controller
             ->join('users', 'drivers.user_id', '=', 'users.id')
             ->distinct(); // Adiciona distinct para evitar duplicatas
 
-        // Se houver estados selecionados, filtra as viagens que correspon
-        //dem a qualquer um dos estados selecionados
+        // Se houver estados selecionados, filtra as viagens que correspondem a qualquer um dos estados selecionados
         if (!empty($selectedStatuses)) {
             $query->whereIn('travels.driver_state', $selectedStatuses);
         }
@@ -89,7 +96,7 @@ class TravelController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * Exibe uma lista de viagens em andamento.
      */
     public function index()
     {
@@ -103,7 +110,7 @@ class TravelController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Exibe o formulário de criação de viagem.
      */
     public function create()
     {
@@ -115,7 +122,7 @@ class TravelController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Armazena uma nova viagem no banco de dados.
      */
     public function store(Request $request)
     {
@@ -126,9 +133,8 @@ class TravelController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Exibe os detalhes de uma viagem específica.
      */
-
     public function show(Travel $travel)
     {
         return view('pages.travel.show', [
@@ -139,7 +145,7 @@ class TravelController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Exibe o formulário de edição de uma viagem específica.
      */
     public function edit(Travel $travel)
     {
@@ -150,7 +156,7 @@ class TravelController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Atualiza os detalhes de uma viagem específica no banco de dados.
      */
     public function update(Request $request, Travel $travel)
     {
@@ -178,7 +184,7 @@ class TravelController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove uma viagem específica do banco de dados.
      */
     public function destroy(Travel $travel)
     {
@@ -189,6 +195,9 @@ class TravelController extends Controller
         return redirect()->route('admin.travels.index');
     }
 
+    /**
+     * Cancela uma viagem com uma descrição fornecida.
+     */
     public function cancel(Request $request, Travel $travel)
     {
         $user_log = User::where('id', auth()->user()->id)->first();
@@ -206,6 +215,9 @@ class TravelController extends Controller
         return response()->json(['message' => 'Falha na atualização da descrição'], 400);
     }
 
+    /**
+     * Conclui uma viagem com uma descrição fornecida.
+     */
     public function conclude(Request $request, Travel $travel)
     {
         $user_log = User::where('id', auth()->user()->id)->first();
@@ -233,7 +245,7 @@ class TravelController extends Controller
                 return response()->json(['message' => 'Descrição atualizada com sucesso']);
             }
 
-            //gestor
+            // Se for Gestor
             $travel->update(['state' => 'CONCLUIDO','is_traveling' => 0, 'comments' => $description]);
             $travel->save();
 
@@ -242,6 +254,9 @@ class TravelController extends Controller
         return response()->json(['message' => 'Falha na atualização da descrição'], 400);
     }
 
+    /**
+     * Aceita uma viagem específica.
+     */
     public function accept(Travel $travel)
     {
         $travel_active = Travel::where('driver_id', auth()->id())
@@ -267,6 +282,9 @@ class TravelController extends Controller
         return response()->json(['message' => 'Viagem aceite com sucesso']);
     }
 
+    /**
+     * Reporta problemas em uma viagem específica.
+     */
     public function problems(Request $request,Travel $travel)
     {
         $user_log = User::where('id', auth()->user()->id)->first();
@@ -286,6 +304,9 @@ class TravelController extends Controller
 
     }
 
+    /**
+     * Exibe o histórico de viagens concluídas ou canceladas.
+     */
     public function history()
     {
         $travels = Travel::where('state', 'CONCLUIDO')
@@ -297,6 +318,9 @@ class TravelController extends Controller
             'travels'=>$travels]);
     }
 
+    /**
+     * Exibe o histórico de viagens concluídas ou canceladas para um driver em específico.
+     */
     public function history_driver()
     {
         $travels = Travel::find(auth()->user()->driver->id)

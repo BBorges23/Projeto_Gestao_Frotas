@@ -17,7 +17,6 @@ class TravelFactory extends Factory
      */
     public function definition(): array
     {
-//        $isTraveling = $this->faker->boolean(50);
 
         return [
 

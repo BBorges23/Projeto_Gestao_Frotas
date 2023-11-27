@@ -13,9 +13,6 @@ use Psy\Util\Str;
 
 class AccountController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
 
     // Mensagens de validação e regras para criar e atualizar utilizadores
     protected $msg = [

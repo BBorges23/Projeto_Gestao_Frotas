@@ -19,7 +19,6 @@ class TravelSeeder extends Seeder
      */
     public function run(): void
     {
-        //Travel::factory(10)->create();
 
         // Insere dados na tabela 'travels'
         DB::table('travels')->insert([

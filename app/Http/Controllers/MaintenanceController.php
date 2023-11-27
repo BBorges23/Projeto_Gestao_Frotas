@@ -10,17 +10,20 @@ use function Sodium\add;
 
 class MaintenanceController extends Controller
 {
+    // Mensagens de validação
     protected $msg = [
-        'required' => 'Preencha todos os campos'
+        'required' => 'Preencha todos os campos',
+        'date_entry.after_or_equal' => 'A data de entrada não pode ser no passado'
     ];
 
-    protected  $rules_create = [
+    // Regras de validação para criação de manutenção
+    protected $rules_create = [
         'vehicle_id' => 'required',
         'motive' => 'required',
-        'date_entry' => 'required'
-
+        'date_entry' => 'required|date|after_or_equal:today'
     ];
 
+    // Regras de validação para atualização de manutenção
     protected  $rules_update = [
         'vehicle_id' => 'required',
         'motive' => 'required',
@@ -29,6 +32,9 @@ class MaintenanceController extends Controller
 
     ];
 
+    /**
+     * Pesquisa e filtra as manutenções com base no estado e no campo de pesquisa.
+     */
     public function pesquisar(Request $request)
     {
         // Atualiza ou remove os status selecionados se o formulário foi submetido
@@ -77,9 +83,8 @@ class MaintenanceController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * Exibe uma lista de manutenções em andamento.
      */
-
     public function index()
     {
         $maintenances = Maintenance::where('state', 'PROCESSANDO')
@@ -91,15 +96,16 @@ class MaintenanceController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Exibe o formulário de criação de manutenção.
      */
     public function create()
     {
         return view('pages.maintenance.create', [
             'vehicles'=>Vehicle::all()]);
     }
+
     /**
-     * Store a newly created resource in storage.
+     * Armazena uma nova manutenção no banco de dados.
      */
     public function store(Request $request)
     {
@@ -114,8 +120,9 @@ class MaintenanceController extends Controller
         $maintenance->save();
         return redirect()->route(auth()->user()->getTypeUser().'.maintenances.show', $maintenance);
     }
+
     /**
-     * Display the specified resource.
+     * Exibe os detalhes de uma manutenção específica.
      */
     public function show(Maintenance $maintenance)
     {
@@ -124,8 +131,9 @@ class MaintenanceController extends Controller
             'vehicle' => $maintenance->vehicle
         ]);
     }
+
     /**
-     * Show the form for editing the specified resource.
+     * Exibe o formulário de edição de uma manutenção específica.
      */
     public function edit(Maintenance $maintenance)
     {
@@ -134,8 +142,9 @@ class MaintenanceController extends Controller
             'vehicles' => Vehicle::all()
         ]);
     }
+
     /**
-     * Update the specified resource in storage.
+     * Atualiza as informações de uma manutenção no banco de dados.
      */
     public function update(Request $request, Maintenance $maintenance)
 
@@ -162,8 +171,9 @@ class MaintenanceController extends Controller
         $maintenance->save();
         return view('pages.maintenance.show', ['maintenance' => $maintenance]);
     }
+
     /**
-     * Remove the specified resource from storage.
+     * Remove uma manutenção do banco de dados.
      */
     public function destroy(Maintenance $maintenance)
     {
@@ -193,6 +203,9 @@ class MaintenanceController extends Controller
         return response()->json(['message' => 'Falha na atualização da descrição'], 400);
     }
 
+    /**
+     * Conclui uma manutenção.
+     */
     public function conclude(Request $request, Maintenance $maintenance)
     {
         $user_log = User::where('id', auth()->user()->id)->first();
@@ -217,6 +230,9 @@ class MaintenanceController extends Controller
         return response()->json(['message' => 'Falha na atualização da descrição'], 400);
     }
 
+    /**
+     * Aceita uma manutenção.
+     */
     public function accept(Maintenance $maintenance)
     {
         $vehicle_used = Vehicle::where('id',$maintenance->vehicle_id)->first();
@@ -229,22 +245,9 @@ class MaintenanceController extends Controller
         return response()->json(['message' => 'Descrição atualizada com sucesso']);
     }
 
-//    public function problems(Request $request, Maintenance $maintenance)
-//    {
-//        $description = $request->input('text');
-//
-//        if($description)
-//        {
-//            $maintenance->update(['is_active' => 0, 'driver_state' => 'PROBLEMAS','comments'=>$description]);
-//            $maintenance->save();
-//
-//            return response()->json(['message' => 'Descrição atualizada com sucesso']);
-//        }
-//
-//        return response()->json(['message' => 'Falha na atualização da descrição'], 400);
-//
-//    }
-
+    /**
+     * Exibe o histórico de manutenções concluídas ou canceladas.
+     */
     public function history()
     {
         $maintenances = Maintenance::where('state', 'CONCLUIDO')
