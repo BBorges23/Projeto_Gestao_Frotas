@@ -20,13 +20,7 @@ class TravelFactory extends Factory
 //        $isTraveling = $this->faker->boolean(50);
 
         return [
-//            'vehicle_id'=>fake()->numberBetween(1,10),
-//            'driver_id'=>fake()->numberBetween(1,10),
-//            'coords_origem'=>fake()->city,
-//            'coords_destino'=>fake()->city,
-//            'deleted_at'=> $isTraveling ? null : $this->faker->dateTimeThisDecade('-1 year'),
-//            'is_traveling'=>$isTraveling,
-//            'state'=> $isTraveling ? $this->faker->randomElement(['PROCESSANDO']) : $this->faker->randomElement(['CANCELADO', 'CONCLUIDO'])
+
         ];
     }
 }

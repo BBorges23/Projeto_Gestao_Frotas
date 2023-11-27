@@ -20,7 +20,7 @@ class  BrandController extends Controller
     ];
 
     /**
-     * Pesquisa marcas com base em um campo de pesquisa fornecido.
+     * Pesquisa marcas com base num campo de pesquisa fornecido.
      */
     public function pesquisar(Request $request){
         $pesquisa = $request->input('campo_de_pesquisa');
@@ -53,7 +53,7 @@ class  BrandController extends Controller
     }
 
     /**
-     * Armazena uma nova marca no banco de dados.
+     * Armazena uma nova marca na base de dados.
      */
     public function store(Request $request)
     {

@@ -29,8 +29,6 @@ use \App\Http\Controllers\AccountController;
  */
 Route::get('/', [DashboardController::class,'autenticado'])->name('home');
 
-
-
 Route::get('/login',[LoginController::class, 'showLogin'])->name('login');
 Route::post('/login',[LoginController::class,'login']);
 
@@ -49,29 +47,15 @@ Route::middleware('auth')->group(function (){
     Route::post('maintenances/conclude/{maintenance}', 'App\Http\Controllers\MaintenanceController@conclude')->name('maintenance.conclude');
     Route::post('maintenances/accept/{maintenance}', 'App\Http\Controllers\MaintenanceController@accept')->name('maintenance.accept');
     Route::post('maintenances/problems/{maintenance}', 'App\Http\Controllers\MaintenanceController@problems')->name('maintenance.problems');
-
     Route::post('travels/cancel/{travel}', 'App\Http\Controllers\TravelController@cancel')->name('travels.cancel');
     Route::post('travels/conclude/{travel}', 'App\Http\Controllers\TravelController@conclude')->name('travels.conclude');
     Route::post('travels/accept/{travel}', 'App\Http\Controllers\TravelController@accept')->name('travels.accept');
     Route::post('travels/problems/{travel}', 'App\Http\Controllers\TravelController@problems')->name('travels.problems');
 });
 
-/**
- * Para Admin e Gestor Histórico
- */
-//Route::middleware('auth')->group(function (){
-//    Route::get('/drivers/history',[DriverController::class,'history'])->name('drivers.history');
-//    Route::get('/drivers/history{id}',[DriverController::class,'delete'])->name('drivers.delete');
-//
-//    Route::get('/vehicles/history',[VehicleController::class,'history'])->name('vehicles.history');
-//    Route::get('/vehicles/history{id}',[VehicleController::class,'delete'])->name('vehicles.delete');
-//
-//    Route::get('/travels/history',[TravelController::class,'history'])->name('travels.history');
-//    Route::get('/maintenances/history',[MaintenanceController::class,'history'])->name('maintenances.history');
-//});
 
 /**
- * Pesquisas
+ * Pesquisas para todos os roles
  */
 Route::middleware('auth')->group(function (){
     Route::post('brands/pesquisa', 'App\Http\Controllers\BrandController@pesquisar')->name('brands.pesquisa');
@@ -86,10 +70,6 @@ Route::middleware('auth')->group(function (){
 /**
  * Admin permissões
  */
-
-//Route::get('/admin/vehicles/history/{vehicle}', [VehicleController::class, 'showDeleted'])
-//    ->name('vehicles.history.deleted');
-
 Route::middleware('role:admin')->group(function (){
     Route::prefix('/admin')->group(function (){
         Route::name('admin.')->group(function (){
@@ -117,7 +97,6 @@ Route::middleware('role:admin')->group(function (){
 /**
  * Gestor permissões
  */
-
 Route::middleware('role:gestor')->group(function (){
     Route::prefix('/gestor')->group(function (){
         Route::name('gestor.')->group(function (){
@@ -163,7 +142,6 @@ Route::middleware('role:driver')->group(function (){
                 ->only('index', 'show');
 
             Route::get('/perfil/{driver_id}',[DriverController::class,'perfil'])->name('perfil');
-            //Route::get('/travels/history',[TravelController::class,'history_driver'])->name('travels.history');
             Route::get('/history/{driver_id}',[TravelController::class,'history_driver'])->name('travels.history');
 
         });

@@ -50,7 +50,6 @@ class User extends Authenticatable
     ];
 
 
-//    protected $guarded=[];
 
     /**
      * Define o relacionamento entre o usuário (User) e o modelo do motorista (Driver).
@@ -60,7 +59,7 @@ class User extends Authenticatable
     }
 
     /**
-     * Obtém o tipo de utilizador autenticado (Admin, Gestor, Driver, etc.).
+     * Obtém o tipo de utilizador autenticado (Admin, Gestor, Driver)
      */
     public function getTypeUser()
     {

@@ -78,7 +78,6 @@ class DriverController extends Controller
             });
         }
 
-
         $query->groupBy('drivers.id');
 
         $resultados = $query->paginate(16);

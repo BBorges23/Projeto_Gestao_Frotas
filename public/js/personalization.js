@@ -1,8 +1,8 @@
 /*Botão de "Criar" em qualquer Form*/
 function confirmation_create_edit_form(ev) {
     ev.preventDefault();
-    // var urlToRedirect = ev.currentTarget.getAttribute('href');
 
+    // Exibe um popup de confirmação usando a biblioteca SweetAlert
     Swal.fire({
         title: "Tem a certeza que deseja avançar?",
         text: "",
@@ -16,11 +16,10 @@ function confirmation_create_edit_form(ev) {
     })
         .then((result) => {
             if (result.isConfirmed) {
-                // var descricao = result.value; // Obtém o valor da caixa de texto
+                // Submete o formulário se o usuário confirmar
                 var form = document.getElementById('submit'); // Seleciona o formulário pelo ID
                 form.submit(); // Submete o formulário
 
-                // window.location.href = urlToRedirect;
             }
         });
 }
@@ -170,6 +169,7 @@ function confirmation_accept(ev) {
     });
 }
 
+/*Botão de "Comunicar Problemas" para o motorista comunicar problemas na Viagem */
 function confirmation_problems(ev) {
     ev.preventDefault();
     var urlToRedirect = ev.currentTarget.getAttribute('href');

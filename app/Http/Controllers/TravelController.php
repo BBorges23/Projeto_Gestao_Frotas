@@ -23,8 +23,8 @@ class TravelController extends Controller
         'driver_id' => 'required',
         'coords_origem'=>'required|max:255',
         'coords_destino' => 'required|max:255',
-        'date_start'=> 'required',
-        'date_end'=> 'required'
+        'date_start' => 'required|date|before_or_equal:date_end',
+        'date_end' => 'required|date'
     ];
 
     protected $rules_update = [
@@ -96,7 +96,6 @@ class TravelController extends Controller
         $travels = Travel::where('state', 'PROCESSANDO')
             ->orderBy('updated_at', 'desc') // Adiciona ordenação por updated_at em ordem decrescente
             ->paginate(16);
-//        $travels = Travel::paginate(16);
 
         return view('pages.travel.index',
             ['travels'=> $travels
@@ -218,7 +217,7 @@ class TravelController extends Controller
 
             $guarda_estado = $travel->driver_state;
 
-            //driver
+            // Se for driver
             if($guarda_estado === 'ACEITE' || $guarda_estado === 'PROBLEMAS')
             {
                 $travel->update(['is_traveling' => 0, 'comments' => $description, 'driver_state' => 'CONCLUIDO']);
@@ -248,7 +247,6 @@ class TravelController extends Controller
         $travel_active = Travel::where('driver_id', auth()->id())
             ->where('driver_state', 'ACEITE')
             ->first();
-
 
         if($travel_active)
         {

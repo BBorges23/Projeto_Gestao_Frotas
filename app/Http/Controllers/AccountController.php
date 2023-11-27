@@ -37,7 +37,7 @@ class AccountController extends Controller
     ];
 
     /**
-     * Pesquisa utilizadores com base em um campo de pesquisa fornecido.
+     * Pesquisa utilizadores com base num campo de pesquisa fornecido.
      */
     public function pesquisar(Request $request){
         $pesquisa = $request->input('campo_de_pesquisa');
@@ -67,7 +67,7 @@ class AccountController extends Controller
     }
 
     /**
-     * Exibe o formulário para criar um novo utilizadores.
+     * Exibe o formulário para criar um novo utilizador.
      */
     public function create()
     {
@@ -76,13 +76,7 @@ class AccountController extends Controller
     }
 
     /**
-     * Armazena um novo utilizadores no banco de dados.
-     */
-
-    /*
-     * Funcionalidade de criar utilizador imcompleta
-     * Falta ver o email verificado, o id para depois se associar ao motorista
-     * Falta ver o remember_token que não está a ser associado
+     * Armazena um novo utilizadores na base de dados.
      */
     public function store(Request $request)
     {
@@ -127,10 +121,9 @@ class AccountController extends Controller
         // Encontra o utilizador pelo ID
         $user = User::find($id);
 
-
         // Verifica se o utilizador foi encontrado
         if ($user) {
-            // Retornar a view com os dados do utilizador
+            // Retorna a view com os dados do utilizador
             return view('pages.account.show', [
                 'user' => $user
             ]);
@@ -162,7 +155,7 @@ class AccountController extends Controller
 
 
     /**
-     * Atualiza as informações de um utilizador no banco de dados.
+     * Atualiza as informações de um utilizador na base de dados.
      */
     public function update(Request $request, string $id)
     {
@@ -182,7 +175,7 @@ class AccountController extends Controller
 
 
     /**
-     * Remove um utilizador específico do banco de dados.
+     * Remove um utilizador específico da base de dados.
      */
     public function destroy(string $id)
     {

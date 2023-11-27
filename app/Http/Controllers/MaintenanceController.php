@@ -48,7 +48,6 @@ class MaintenanceController extends Controller
             $selectedStatuses = session('selectedStatuses_m', []); // Ajuste na chave da sessão
         }
 
-
         // Recebe a pesquisa de texto se foi submetida
         $pesquisa = $request->input('campo_de_pesquisa', '');
 
@@ -72,8 +71,6 @@ class MaintenanceController extends Controller
 
         // Obtém os resultados da consulta
         $resultados = $query->paginate(18);
-//        dd($resultados);
-
 
         // Retorna a view com as manutenções filtradas
         return view('pages.maintenance.index', ['resultados' => $resultados]);

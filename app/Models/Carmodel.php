@@ -14,8 +14,6 @@ class Carmodel extends Model
 
     protected $guarded = [];
 
-    //protected $table='models';//car_models
-
     /**
      * Define a relação entre o modelo de carro e sua marca associada.
      */
