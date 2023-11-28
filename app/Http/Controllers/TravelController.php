@@ -323,9 +323,11 @@ class TravelController extends Controller
      */
     public function history_driver()
     {
-        $travels = Travel::find(auth()->user()->driver->id)
-            ->where('state', 'CANCELADO')
-            ->orWhere('state','CONCLUIDO')
+        $travels = Travel::where('driver_id',auth()->user()->driver->id)
+            ->where(function($query) {
+                $query->where('state', 'CANCELADO')
+                    ->orWhere('state', 'CONCLUIDO');
+            })
             ->paginate(16);
 
         return view('pages.travel.history',[

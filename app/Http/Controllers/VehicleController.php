@@ -13,9 +13,17 @@ class VehicleController extends Controller
         'required' => 'Preencha todos os campos',
         'min' => 'Insira um ano entre 1950-2023',
         'max' => 'Insira um ano entre 1950-2023',
-        'regex'=> 'Formato inválido para Matrícula (AA-11-BB)'
+        'regex'=> 'Formato inválido para Matrícula (AA-11-BB)',
+        'licence_plate.unique' => 'Matrícula já está a ser utilizada',
     ];
     protected $rules = [
+        'carmodel_id'=>'required',
+        'licence_plate' => 'required|regex:/^[A-Z]{2}-\d{2}-[A-Z]{2}$/|unique:vehicles,licence_plate',
+        'year'=>'required|min:4|max:4',
+        'date_buy'=>'required',
+    ];
+
+    protected $rules_update = [
         'carmodel_id'=>'required',
         'licence_plate' => 'required|regex:/^[A-Z]{2}-\d{2}-[A-Z]{2}$/',
         'year'=>'required|min:4|max:4',
@@ -166,7 +174,7 @@ class VehicleController extends Controller
         }
 
         // Valida os dados do formulário
-        $data = $request->validate($this->rules, $this->msg);
+        $data = $request->validate($this->rules_update, $this->msg);
         // Atualiza o veículo com os dados fornecidos
         $vehicle->update($data);
         // Salva as alterações no banco de dados
