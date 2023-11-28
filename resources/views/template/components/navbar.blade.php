@@ -10,7 +10,11 @@
                     @yield('title')
                 @else
                     @if(request()->route()->getName())
-                        <a href="{{route(preg_replace('/\.\w+$/', '', request()->route()->getName()) .".index")   }}" class="link_navbar">@yield('title')</a>
+                        @if(auth()->user()->getTypeUser() == "driver")
+                            <a href="{{route('driver.home.index') }}" class="link_navbar">@yield('title')</a>
+                        @else
+                            <a href="{{route(preg_replace('/\.\w+$/', '', request()->route()->getName()) .'.index') }}" class="link_navbar">@yield('title')</a>
+                        @endif
                     @endif
                 @endif
                 @yield('subtitle')
